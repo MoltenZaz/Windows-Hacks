@@ -19,6 +19,7 @@ SendMode Input
 
 ; INFO: you can hold down both ALT keys if you want to easily toggle this script on and off.
 
+; This is a slightly modified version of Taran Van Hemert's code: https://www.youtube.com/channel/UCd0ZD4iCXRXf18p3cA7EQfg
 
 ; THEY ALL SAID IT COULD NOT BE DONE
 ; THEY ALL HAD SHITTY SOLUTIONS THAT DIDN'T WORK
