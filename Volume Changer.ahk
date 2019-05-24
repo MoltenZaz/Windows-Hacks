@@ -1,5 +1,7 @@
 Menu, Tray, Icon, ddores.dll, 89
 
+; Created by Mitchell Thomas
+
 ; change spotift volume with ctrl num - or + this one works
 ^NumpadAdd::
 { 
