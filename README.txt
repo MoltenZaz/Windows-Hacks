@@ -10,8 +10,7 @@ In just about any Windows application, pressing (and releasing!) the ALT key wil
 So, ALT I R will make a new row in excel, and ALT R C will make a new comment in Word... stuff like that. You only have to press one key at a time, and the key combo still works. 
 Because this system allows you to completely release the ALT key before pressing the next keystrokes, it means that ALT is not really a modifier key... it's an obligatory STICKY KEY. https://en.wikipedia.org/wiki/Sticky_keys
 So, in applications that treat the ALT key as a modifier, like Photoshop, you sometimes end up activating the menus when you don't want to! (And there's no reason to use menu acceleration anyway, since Photoshop already allows you to bind those actions to custom shortcuts.)
-      
-      This script disables this unwanted functionality from windows!
+This script disables this unwanted functionality from windows!
 
 Always On Top:
 
