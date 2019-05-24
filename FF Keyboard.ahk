@@ -1,5 +1,26 @@
 Menu, Tray, Icon, pifmgr.dll, 13
 
+; This script enables me to use firefox in the background.
+; If you press the menu/appskey (to the right of the right windows key on a full sized keyboard)
+; as a modifier for another key the key you pressed will be sent to firefox in the background.
+; This means you can fiddle with firefox without tabbing out of a game!
+; When used in conjunction with the "Vimium" extension it enables easy navigation.
+
+; Here are my Vimium custom key mappings (remove the semicolons): 
+;unmapAll
+;map <backspace> goBack
+;map \ LinkHints.activateMode
+;map | LinkHints.activateModeToOpenInNewTab
+
+; This means by pressing \ an overlay appears on all visable links on a webpage, you then type
+; the assigned key combiniation to the link you want to click and vimium shall click it for you!
+
+; I have it setup so that most common hotkey combinations will work (ctrl, alt, shift, ctrl + shift)
+; The numpad is setup to change volume for my headphones when pressed without a hotkey, but when ctrl is used it
+; will change the volume on my xbox and nintendo switch, which is hooked into line in and the audio out from my monitor's hdmi
+
+; If you use find and replace to replace "Firefox" with "Chrome" this code should work in Google Chrome instead of FireFox
+
 AppsKey & a::
 {
 If GetKeyState("Control", "p")
@@ -4097,6 +4118,20 @@ ControlFocus,,ahk_id %outputvar%
 ControlSend, , {home}, Firefox
 return
 }
+}
+
+; The numpad is setup to change volume for my headphones when pressed without a hotkey, but when ctrl is used it
+; will change the volume on my xbox and nintendo switch, which is hooked into line in and the audio out from my monitor's hdmi
+; Numpad period is set to mute my xbox/switch
+
+; YOU NEED TO HAVE NIRCMD AND SOUNDVOLUMEVIEW INSTALLED FOR THIS TO WORK!!!
+
+; It also needs to be adapted for your setup!
+
+Appskey & NumpadDot::
+{
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /Switch "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}"
+return
 }
 
 AppsKey & Numpad1::
