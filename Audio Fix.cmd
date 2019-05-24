@@ -1,4 +1,5 @@
 @echo on
+
 F:\Documents\Nircmd\nircmd.exe setdefaultsounddevice "Consoles" 1
 F:\Documents\Nircmd\nircmd.exe mutesysvolume 1 default_record
 F:\Documents\Nircmd\nircmd.exe setdefaultsounddevice "FiiO DAC-E10" 1
