@@ -1,5 +1,7 @@
 Menu, Tray, Icon, pifmgr.dll, 13
 
+; Proudly Created by Mitchell Thomas
+
 ; This script enables me to use firefox in the background.
 ; If you press the menu/appskey (to the right of the right windows key on a full sized keyboard)
 ; as a modifier for another key the key you pressed will be sent to firefox in the background.
