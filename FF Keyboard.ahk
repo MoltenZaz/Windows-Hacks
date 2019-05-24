@@ -6,6 +6,9 @@ Menu, Tray, Icon, pifmgr.dll, 13
 ; This means you can fiddle with firefox without tabbing out of a game!
 ; When used in conjunction with the "Vimium" extension it enables easy navigation.
 
+; Vimium firefox: https://addons.mozilla.org/en-US/firefox/addon/vimium-ff/
+; Vimium chrome: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
+
 ; Here are my Vimium custom key mappings (remove the semicolons): 
 ;unmapAll
 ;map <backspace> goBack
