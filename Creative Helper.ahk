@@ -1,6 +1,6 @@
 Menu, Tray, Icon, pifmgr.dll, 18
 
-; This scripts adds custom hotkeys to Houdini and Photoshop
+; This script adds custom hotkeys to Houdini and Photoshop
 ; It also enables snipping tool when Windows + s is pressed and immediatly starts a snip
 
 ; This section is for houdini hotkeys
