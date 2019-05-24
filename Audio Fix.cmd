@@ -9,3 +9,4 @@ F:\Documents\Nircmd\nircmd.exe setsysvolume 26214
 F:\Documents\Nircmd\nircmd.exe loop 172800 500 setsysvolume 60292 default_record
 
 :: This code ensures that my default audio devices are correct and it sets the volume to 40%. It also locks the default mic to 92%.
+:: Created by Mitchell Thomas
