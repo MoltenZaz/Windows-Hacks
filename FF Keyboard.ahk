@@ -21,6 +21,8 @@ Menu, Tray, Icon, pifmgr.dll, 13
 
 ; If you use find and replace to replace "Firefox" with "Chrome" this code should work in Google Chrome instead of FireFox
 
+; Rarely a game will require you to reload the script after opening it to work, GTA V is the only example i've come across
+
 AppsKey & a::
 {
 If GetKeyState("Control", "p")
