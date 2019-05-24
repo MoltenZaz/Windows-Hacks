@@ -1,6 +1,6 @@
 These are the scripts I use everyday to make my computer behave exactly how I want it to.
 Some of these scripts have been modified from Taran Van Hemert: https://www.youtube.com/channel/UCd0ZD4iCXRXf18p3cA7EQfg
-Others are original or dramatic modifications of other scripts I have found.
+Others are original or modifications of other scripts I have found.
 
 I will now briefly explain each script:
 
