@@ -1,5 +1,11 @@
-﻿; this attempts to stop the script from working on the desktop but will only be successful
-; if the mouse cursor is over the desktop when the script launches
+; IMPORTANT: WHEN THE SCRIPT STARTS HAVE YOUR CURSOR OVER YOUR DESKTOP
+
+; this attempts to add the desktop to a blacklist, however it only works if the mouse cursor is over the desktop when the script launches
+
+; If your cursor is not over the desktop when the script starts try refreshing the script and trying again
+
+; IF YOUR DESKTOP IS NOT ADDED TO THE BLACKLIST IT IS POSSIBLE TO MINIMIZE AND CLOSE THE DESKTOP!!! BE CAREFUL!!!
+
 WinGet,KDE_Win,MinMax,ahk_id %KDE_id%
 MouseGetPos,,,KDE_id
 DesktopID := KDE_id
@@ -8,6 +14,8 @@ Menu, Tray, Icon, shell32.dll, 300
 ; in the forum. Thanks go out to ck, thinkstorm, Chris,
 ; and aurelian for a job well done.
 
+; This script was modified to a moderate degree by Mitchell Thomas
+
 ; The shortcuts:
 ;  Win + Left Button  : Drag to move a window.
 ;  Win + Right Button : Drag to resize a window.
@@ -15,11 +23,14 @@ Menu, Tray, Icon, shell32.dll, 300
 ;  Win + Mouse Forward: Maximize/Restore a window.
 ;  Win + Middle Button: Close a window.
 
+; If you set F20 on a key or mouse button it will work as the modifier key for this script
+
 SetWinDelay,2
 
 CoordMode,Mouse
 return
 
+; the Windows u shortcut is here for compatibility with the creative helper script, if you dont use houdini you can remove this
 #u::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -31,7 +42,7 @@ send {u UP}
 return
 }
 else
-IfExist "C:\Program Files\Side Effects Software\Houdini 17.5.173\bin\houdinifx.exe"
+#IfWinActive,ahk_exe houdinifx.exe or WinActive ahk_exe mplay.exe or WinActive ahk_exe houdini.exe
 {
     MouseGetPos,,,KDE_id
     if KDE_id != %DesktopID%
@@ -66,6 +77,7 @@ else
 }
 return
 }
+
 #LButton::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -103,6 +115,7 @@ Loop
 return
 }
 
+; the Windows i shortcut is here for compatibility with the creative helper script, if you dont use houdini you can remove this
 #i::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -114,7 +127,7 @@ send {i UP}
 return
 }
 else
-IfExist "C:\Program Files\Side Effects Software\Houdini 17.5.173\bin\houdinifx.exe"
+#IfWinActive,ahk_exe houdinifx.exe or WinActive ahk_exe mplay.exe or WinActive ahk_exe houdini.exe
 {
     MouseGetPos,,,KDE_id
     if KDE_id != %DesktopID%
@@ -155,6 +168,7 @@ else
 }
 return
 }
+
 #RButton::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -207,6 +221,7 @@ Loop
 }
 return
 }
+
 ; "Win + MButton" may be simpler, but I
 ; like an extra measure of security for
 ; an operation like this.
@@ -249,6 +264,9 @@ isWindowFullScreen( winTitle )
 	Return ((style & 0x20800000) or winH < A_ScreenHeight or winW < A_ScreenWidth) ? false : true
 }
 
+; This section is for using the script with my mouse sniper button as the modifier key
+
+; the F20 u shortcut is here for compatibility with the creative helper script, if you dont use houdini you can remove this
 F20 & u::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -260,7 +278,7 @@ send {u UP}
 return
 }
 else
-IfExist "C:\Program Files\Side Effects Software\Houdini 17.5.173\bin\houdinifx.exe"
+#IfWinActive,ahk_exe houdinifx.exe or WinActive ahk_exe mplay.exe or WinActive ahk_exe houdini.exe
 {
     MouseGetPos,,,KDE_id
     if KDE_id != %DesktopID%
@@ -337,6 +355,7 @@ return
 }
 }
 
+; the F20 i shortcut is here for compatibility with the creative helper script, if you dont use houdini you can remove this
 F20 & i::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -349,7 +368,7 @@ return
 }
 else
 {
-IfExist "C:\Program Files\Side Effects Software\Houdini 17.5.173\bin\houdinifx.exe"
+#IfWinActive,ahk_exe houdinifx.exe or WinActive ahk_exe mplay.exe or WinActive ahk_exe houdini.exe
 {
     MouseGetPos,,,KDE_id
     if KDE_id != %DesktopID%
