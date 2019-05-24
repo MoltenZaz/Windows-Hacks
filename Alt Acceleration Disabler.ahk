@@ -19,7 +19,7 @@ SendMode Input
 
 ; INFO: you can hold down both ALT keys if you want to easily toggle this script on and off.
 
-; This is a slightly modified version of Taran Van Hemert's code: https://www.youtube.com/channel/UCd0ZD4iCXRXf18p3cA7EQfg
+; This is a slightly modified version of Taran Van Hemert's code: https://www.youtube.com/channel/UCd0ZD4iCXRXf18p3cA7EQfg by Mitchell Thomas
 ; This version seems to work better in photoshop when rapidly using alt to select colours with the brush tool
 
 ; THEY ALL SAID IT COULD NOT BE DONE
