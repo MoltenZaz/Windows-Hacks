@@ -1,0 +1,1 @@
+F:\Documents\Nircmd\nircmd.exe exec hide "F:\Documents\Audio Fix Script\Audio Fix.cmd"
