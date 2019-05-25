@@ -9,13 +9,13 @@ Menu, Tray, Icon, pifmgr.dll, 18
 #IfWinActive,ahk_exe houdinifx.exe or WinActive ahk_exe mplay.exe or WinActive ahk_exe houdini.exe
 {
 ; Pressing forward and back will set a quick marker
-Xbutton2 & Xbutton1::
+~Xbutton2 & Xbutton1::
 {
 Send, ^1
 return
 }
 ; Pressing forward and back in the opposite order will set a different quick marker
-Xbutton1 & Xbutton2::
+~Xbutton1 & Xbutton2::
 {
 Send, ^2
 return
@@ -41,9 +41,9 @@ Send, {c up}
 return
 }
 ; back is set to dive out of node
-Xbutton1::u
+~Xbutton1::u
 ; back is set to dive into node
-Xbutton2::i
+~Xbutton2::i
 ; disable windows u and windows i (this is for compatibility with the easy window dragging script)
 #u::
 #i::
