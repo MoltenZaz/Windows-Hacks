@@ -30,32 +30,6 @@ SetWinDelay,2
 CoordMode,Mouse
 return
 
-; the Windows u shortcut is here for compatibility with the creative helper script, if you dont use houdini you can remove this
-#u::
-{
-isFullScreen := isWindowFullScreen( "A" )
-if isFullScreen = 1
-{
-send {u DOWN}
-keywait, u
-send {u UP}
-return
-}
-else
-#IfWinActive,ahk_exe houdinifx.exe or WinActive ahk_exe mplay.exe or WinActive ahk_exe houdini.exe
-{
-    MouseGetPos,,,KDE_id
-    if KDE_id != %DesktopID%
-{
-    ; This message is mostly equivalent to WinMinimize,
-    ; but it avoids a bug with PSPad.
-    PostMessage,0x112,0xf020,,,ahk_id %KDE_id%
-    return
-}
-}
-return
-}
-
 #Xbutton1::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -110,35 +84,6 @@ Loop
     KDE_WinX2 := (KDE_WinX1 + KDE_X2) ; Apply this offset to the window position.
     KDE_WinY2 := (KDE_WinY1 + KDE_Y2)
     WinMove,ahk_id %KDE_id%,,%KDE_WinX2%,%KDE_WinY2% ; Move the window to the new position.
-}
-}
-return
-}
-
-; the Windows i shortcut is here for compatibility with the creative helper script, if you dont use houdini you can remove this
-#i::
-{
-isFullScreen := isWindowFullScreen( "A" )
-if isFullScreen = 1
-{
-send {i DOWN}
-keywait, i
-send {i UP}
-return
-}
-else
-#IfWinActive,ahk_exe houdinifx.exe or WinActive ahk_exe mplay.exe or WinActive ahk_exe houdini.exe
-{
-    MouseGetPos,,,KDE_id
-    if KDE_id != %DesktopID%
-{
-    ; Toggle between maximized and restored state.
-    WinGet,KDE_Win,MinMax,ahk_id %KDE_id%
-    If KDE_Win
-        WinRestore,ahk_id %KDE_id%
-    Else
-        WinMaximize,ahk_id %KDE_id%
-    return
 }
 }
 return
@@ -266,32 +211,6 @@ isWindowFullScreen( winTitle )
 
 ; This section is for using the script with my mouse sniper button as the modifier key
 
-; the F20 u shortcut is here for compatibility with the creative helper script, if you dont use houdini you can remove this
-F20 & u::
-{
-isFullScreen := isWindowFullScreen( "A" )
-if isFullScreen = "Full Screen"
-{
-send {u DOWN}
-keywait, u
-send {u UP}
-return
-}
-else
-#IfWinActive,ahk_exe houdinifx.exe or WinActive ahk_exe mplay.exe or WinActive ahk_exe houdini.exe
-{
-    MouseGetPos,,,KDE_id
-    if KDE_id != %DesktopID%
-{
-    ; This message is mostly equivalent to WinMinimize,
-    ; but it avoids a bug with PSPad.
-    PostMessage,0x112,0xf020,,,ahk_id %KDE_id%
-    return
-}
-}
-return
-}
-
 F20 & Xbutton1::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -349,37 +268,6 @@ Loop
     KDE_WinX2 := (KDE_WinX1 + KDE_X2) ; Apply this offset to the window position.
     KDE_WinY2 := (KDE_WinY1 + KDE_Y2)
     WinMove,ahk_id %KDE_id%,,%KDE_WinX2%,%KDE_WinY2% ; Move the window to the new position.
-}
-}
-return
-}
-}
-
-; the F20 i shortcut is here for compatibility with the creative helper script, if you dont use houdini you can remove this
-F20 & i::
-{
-isFullScreen := isWindowFullScreen( "A" )
-if isFullScreen = 1
-{
-send {i DOWN}
-keywait, i
-send {i UP}
-return
-}
-else
-{
-#IfWinActive,ahk_exe houdinifx.exe or WinActive ahk_exe mplay.exe or WinActive ahk_exe houdini.exe
-{
-    MouseGetPos,,,KDE_id
-    if KDE_id != %DesktopID%
-{
-    ; Toggle between maximized and restored state.
-    WinGet,KDE_Win,MinMax,ahk_id %KDE_id%
-    If KDE_Win
-        WinRestore,ahk_id %KDE_id%
-    Else
-        WinMaximize,ahk_id %KDE_id%
-    return
 }
 }
 return
@@ -492,4 +380,5 @@ else
 return
 }
 }
+
 ; modified by Mitchell Thomas
