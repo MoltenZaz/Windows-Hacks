@@ -6,25 +6,16 @@ Menu, Tray, Icon, pifmgr.dll, 18
 ; It also enables snipping tool when Windows + s is pressed and immediatly starts a snip
 
 ; This section is for houdini hotkeys
-#IfWinActive,ahk_exe houdinifx.exe or WinActive ahk_exe mplay.exe or WinActive ahk_exe houdini.exe
+; multiple bindings for houdini, including different hotkeys when two are pressed at once
+#IfWinActive,ahk_exe houdinifx.exe
 {
-; Pressing forward and back will set a quick marker
-~Xbutton2 & Xbutton1::
-{
-Send, ^1
-return
-}
-; Pressing forward and back in the opposite order will set a different quick marker
 ~Xbutton1 & Xbutton2::
 {
 Send, ^2
 return
 }
-; F22 is set to go to the first quick marker (button on my mouse (logitech g502))
 F22::1
-; F23 is set to go to the second quick marker (button on my mouse (logitech g502))
 F23::2
-; When F22 is pressed and held then F23 is pressed it will send the v key to houdini (shader radial menu) until F23 is released
 F22 & F23::
 {
 Send, {v down}
@@ -32,7 +23,11 @@ keywait, F23
 Send, {v up}
 return
 }
-; When F23 is pressed and held then F22 is pressed it will send the c key to houdini (custom radial menu) until F22 is released
+~Xbutton2 & Xbutton1::
+{
+Send, ^1
+return
+}
 F23 & F22::
 {
 Send, {c down}
@@ -40,15 +35,12 @@ keywait, F22
 Send, {c up}
 return
 }
-; back is set to dive out of node
 ~Xbutton1::u
-; back is set to dive into node
 ~Xbutton2::i
-; disable windows u and windows i (this is for compatibility with the easy window dragging script)
 #u::
 #i::
 return
-; make F21 (button on mouse) send up twice then ctrl up on each sequential keypress (play, pause, rewind)
+; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
 F21::
 {
 if b = 1
@@ -72,7 +64,152 @@ b = 0
 keywait, F21
 return
 }
-; make F24 (button on mouse) home the view on a single click or focus the view on a selected object on a double click
+F24::
+{
+If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
+{
+Send, {space}g
+return
+}
+else
+{
+Send, {space}h
+return
+}
+Return
+}
+}
+
+#IfWinActive,ahk_exe houdini.exe
+{
+~Xbutton1 & Xbutton2::
+{
+Send, ^2
+return
+}
+F22::1
+F23::2
+F22 & F23::
+{
+Send, {v down}
+keywait, F23
+Send, {v up}
+return
+}
+~Xbutton2 & Xbutton1::
+{
+Send, ^1
+return
+}
+F23 & F22::
+{
+Send, {c down}
+keywait, F22
+Send, {c up}
+return
+}
+~Xbutton1::u
+~Xbutton2::i
+#u::
+#i::
+return
+; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
+F21::
+{
+if b = 1
+{
+Send ^{Up}
+b = 2
+}
+else
+{
+if b = 0
+{
+Send {Up}
+b = 1
+}
+else
+{
+Send {Up}
+b = 0
+}
+}
+keywait, F21
+return
+}
+F24::
+{
+If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
+{
+Send, {space}g
+return
+}
+else
+{
+Send, {space}h
+return
+}
+Return
+}
+}
+
+#IfWinActive,ahk_exe mplay.exe
+{
+~Xbutton1 & Xbutton2::
+{
+Send, ^2
+return
+}
+F22::1
+F23::2
+F22 & F23::
+{
+Send, {v down}
+keywait, F23
+Send, {v up}
+return
+}
+~Xbutton2 & Xbutton1::
+{
+Send, ^1
+return
+}
+F23 & F22::
+{
+Send, {c down}
+keywait, F22
+Send, {c up}
+return
+}
+~Xbutton1::u
+~Xbutton2::i
+#u::
+#i::
+return
+; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
+F21::
+{
+if b = 1
+{
+Send ^{Up}
+b = 2
+}
+else
+{
+if b = 0
+{
+Send {Up}
+b = 1
+}
+else
+{
+Send {Up}
+b = 0
+}
+}
+keywait, F21
+return
+}
 F24::
 {
 If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
