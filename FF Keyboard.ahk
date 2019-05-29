@@ -36,24 +36,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^A, Firefox
+ControlSend, ahk_parent, ^A, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^a, Firefox
+ControlSend, ahk_parent, ^a, ahk_class MozillaWindowClass
 return
 }
 }
@@ -61,36 +61,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , A, Firefox
+ControlSend, ahk_parent, A, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !a, Firefox
+ControlSend, ahk_parent, !a, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , a, Firefox
+ControlSend, ahk_parent, a, ahk_class MozillaWindowClass
 return
 }
 }
@@ -103,24 +103,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^B, Firefox
+ControlSend, ahk_parent, ^B, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^b, Firefox
+ControlSend, ahk_parent, ^b, ahk_class MozillaWindowClass
 return
 }
 }
@@ -128,36 +128,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , B, Firefox
+ControlSend, ahk_parent, B, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !b, Firefox
+ControlSend, ahk_parent, !b, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , b, Firefox
+ControlSend, ahk_parent, b, ahk_class MozillaWindowClass
 return
 }
 }
@@ -170,24 +170,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^C, Firefox
+ControlSend, ahk_parent, ^C, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^c, Firefox
+ControlSend, ahk_parent, ^c, ahk_class MozillaWindowClass
 return
 }
 }
@@ -195,36 +195,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , C, Firefox
+ControlSend, ahk_parent, C, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !c, Firefox
+ControlSend, ahk_parent, !c, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , c, Firefox
+ControlSend, ahk_parent, c, ahk_class MozillaWindowClass
 return
 }
 }
@@ -237,24 +237,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^D, Firefox
+ControlSend, ahk_parent, ^D, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^d, Firefox
+ControlSend, ahk_parent, ^d, ahk_class MozillaWindowClass
 return
 }
 }
@@ -262,36 +262,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , D, Firefox
+ControlSend, ahk_parent, D, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !d, Firefox
+ControlSend, ahk_parent, !d, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , d, Firefox
+ControlSend, ahk_parent, d, ahk_class MozillaWindowClass
 return
 }
 }
@@ -304,24 +304,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^E, Firefox
+ControlSend, ahk_parent, ^E, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^e, Firefox
+ControlSend, ahk_parent, ^e, ahk_class MozillaWindowClass
 return
 }
 }
@@ -329,36 +329,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , E, Firefox
+ControlSend, ahk_parent, E, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !e, Firefox
+ControlSend, ahk_parent, !e, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , e, Firefox
+ControlSend, ahk_parent, e, ahk_class MozillaWindowClass
 return
 }
 }
@@ -371,24 +371,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^F, Firefox
+ControlSend, ahk_parent, ^F, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^f, Firefox
+ControlSend, ahk_parent, ^f, ahk_class MozillaWindowClass
 return
 }
 }
@@ -396,36 +396,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , F, Firefox
+ControlSend, ahk_parent, F, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !f, Firefox
+ControlSend, ahk_parent, !f, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , f, Firefox
+ControlSend, ahk_parent, f, ahk_class MozillaWindowClass
 return
 }
 }
@@ -438,24 +438,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^G, Firefox
+ControlSend, ahk_parent, ^G, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^g, Firefox
+ControlSend, ahk_parent, ^g, ahk_class MozillaWindowClass
 return
 }
 }
@@ -463,36 +463,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , G, Firefox
+ControlSend, ahk_parent, G, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !g, Firefox
+ControlSend, ahk_parent, !g, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , g, Firefox
+ControlSend, ahk_parent, g, ahk_class MozillaWindowClass
 return
 }
 }
@@ -505,24 +505,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^H, Firefox
+ControlSend, ahk_parent, ^H, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^h, Firefox
+ControlSend, ahk_parent, ^h, ahk_class MozillaWindowClass
 return
 }
 }
@@ -530,36 +530,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , H, Firefox
+ControlSend, ahk_parent, H, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !h, Firefox
+ControlSend, ahk_parent, !h, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , h, Firefox
+ControlSend, ahk_parent, h, ahk_class MozillaWindowClass
 return
 }
 }
@@ -572,24 +572,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^I, Firefox
+ControlSend, ahk_parent, ^I, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^i, Firefox
+ControlSend, ahk_parent, ^i, ahk_class MozillaWindowClass
 return
 }
 }
@@ -597,36 +597,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , I, Firefox
+ControlSend, ahk_parent, I, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !i, Firefox
+ControlSend, ahk_parent, !i, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , i, Firefox
+ControlSend, ahk_parent, i, ahk_class MozillaWindowClass
 return
 }
 }
@@ -639,24 +639,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^J, Firefox
+ControlSend, ahk_parent, ^J, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^j, Firefox
+ControlSend, ahk_parent, ^j, ahk_class MozillaWindowClass
 return
 }
 }
@@ -664,36 +664,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , J, Firefox
+ControlSend, ahk_parent, J, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !j, Firefox
+ControlSend, ahk_parent, !j, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , j, Firefox
+ControlSend, ahk_parent, j, ahk_class MozillaWindowClass
 return
 }
 }
@@ -706,24 +706,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^K, Firefox
+ControlSend, ahk_parent, ^K, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^k, Firefox
+ControlSend, ahk_parent, ^k, ahk_class MozillaWindowClass
 return
 }
 }
@@ -731,36 +731,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , K, Firefox
+ControlSend, ahk_parent, K, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !k, Firefox
+ControlSend, ahk_parent, !k, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , k, Firefox
+ControlSend, ahk_parent, k, ahk_class MozillaWindowClass
 return
 }
 }
@@ -773,24 +773,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^L, Firefox
+ControlSend, ahk_parent, ^L, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^l, Firefox
+ControlSend, ahk_parent, ^l, ahk_class MozillaWindowClass
 return
 }
 }
@@ -798,36 +798,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , L, Firefox
+ControlSend, ahk_parent, L, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !l, Firefox
+ControlSend, ahk_parent, !l, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , l, Firefox
+ControlSend, ahk_parent, l, ahk_class MozillaWindowClass
 return
 }
 }
@@ -840,24 +840,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^M, Firefox
+ControlSend, ahk_parent, ^M, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^m, Firefox
+ControlSend, ahk_parent, ^m, ahk_class MozillaWindowClass
 return
 }
 }
@@ -865,36 +865,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , M, Firefox
+ControlSend, ahk_parent, M, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !m, Firefox
+ControlSend, ahk_parent, !m, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , m, Firefox
+ControlSend, ahk_parent, m, ahk_class MozillaWindowClass
 return
 }
 }
@@ -907,24 +907,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^N, Firefox
+ControlSend, ahk_parent, ^N, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^n, Firefox
+ControlSend, ahk_parent, ^n, ahk_class MozillaWindowClass
 return
 }
 }
@@ -932,36 +932,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , N, Firefox
+ControlSend, ahk_parent, N, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !n, Firefox
+ControlSend, ahk_parent, !n, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , n, Firefox
+ControlSend, ahk_parent, n, ahk_class MozillaWindowClass
 return
 }
 }
@@ -974,24 +974,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^O, Firefox
+ControlSend, ahk_parent, ^O, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^o, Firefox
+ControlSend, ahk_parent, ^o, ahk_class MozillaWindowClass
 return
 }
 }
@@ -999,36 +999,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , O, Firefox
+ControlSend, ahk_parent, O, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !o, Firefox
+ControlSend, ahk_parent, !o, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , o, Firefox
+ControlSend, ahk_parent, o, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1041,24 +1041,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^P, Firefox
+ControlSend, ahk_parent, ^P, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^p, Firefox
+ControlSend, ahk_parent, ^p, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1066,36 +1066,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , P, Firefox
+ControlSend, ahk_parent, P, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !p, Firefox
+ControlSend, ahk_parent, !p, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , p, Firefox
+ControlSend, ahk_parent, p, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1108,24 +1108,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^Q, Firefox
+ControlSend, ahk_parent, ^Q, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^q, Firefox
+ControlSend, ahk_parent, ^q, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1133,36 +1133,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , Q, Firefox
+ControlSend, ahk_parent, Q, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !q, Firefox
+ControlSend, ahk_parent, !q, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , q, Firefox
+ControlSend, ahk_parent, q, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1175,24 +1175,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^R, Firefox
+ControlSend, ahk_parent, ^R, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^r, Firefox
+ControlSend, ahk_parent, ^r, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1200,36 +1200,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , R, Firefox
+ControlSend, ahk_parent, R, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !r, Firefox
+ControlSend, ahk_parent, !r, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , r, Firefox
+ControlSend, ahk_parent, r, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1242,24 +1242,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^S, Firefox
+ControlSend, ahk_parent, ^S, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^s, Firefox
+ControlSend, ahk_parent, ^s, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1267,36 +1267,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , S, Firefox
+ControlSend, ahk_parent, S, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !s, Firefox
+ControlSend, ahk_parent, !s, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , s, Firefox
+ControlSend, ahk_parent, s, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1309,24 +1309,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^T, Firefox
+ControlSend, ahk_parent, ^T, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^t, Firefox
+ControlSend, ahk_parent, ^t, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1334,36 +1334,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , T, Firefox
+ControlSend, ahk_parent, T, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !t, Firefox
+ControlSend, ahk_parent, !t, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , t, Firefox
+ControlSend, ahk_parent, t, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1376,24 +1376,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^U, Firefox
+ControlSend, ahk_parent, ^U, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^u, Firefox
+ControlSend, ahk_parent, ^u, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1401,36 +1401,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , U, Firefox
+ControlSend, ahk_parent, U, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !u, Firefox
+ControlSend, ahk_parent, !u, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , u, Firefox
+ControlSend, ahk_parent, u, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1443,24 +1443,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^V, Firefox
+ControlSend, ahk_parent, ^V, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^v, Firefox
+ControlSend, ahk_parent, ^v, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1468,36 +1468,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , V, Firefox
+ControlSend, ahk_parent, V, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !v, Firefox
+ControlSend, ahk_parent, !v, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , v, Firefox
+ControlSend, ahk_parent, v, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1510,24 +1510,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^W, Firefox
+ControlSend, ahk_parent, ^W, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^w, Firefox
+ControlSend, ahk_parent, ^w, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1535,36 +1535,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , W, Firefox
+ControlSend, ahk_parent, W, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !w, Firefox
+ControlSend, ahk_parent, !w, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , w, Firefox
+ControlSend, ahk_parent, w, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1577,24 +1577,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^X, Firefox
+ControlSend, ahk_parent, ^X, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^x, Firefox
+ControlSend, ahk_parent, ^x, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1602,36 +1602,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , X, Firefox
+ControlSend, ahk_parent, X, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !x, Firefox
+ControlSend, ahk_parent, !x, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , x, Firefox
+ControlSend, ahk_parent, x, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1644,24 +1644,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^Y, Firefox
+ControlSend, ahk_parent, ^Y, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^y, Firefox
+ControlSend, ahk_parent, ^y, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1669,36 +1669,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , Y, Firefox
+ControlSend, ahk_parent, Y, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !y, Firefox
+ControlSend, ahk_parent, !y, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , y, Firefox
+ControlSend, ahk_parent, y, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1711,24 +1711,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^Z, Firefox
+ControlSend, ahk_parent, ^Z, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^z, Firefox
+ControlSend, ahk_parent, ^z, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1736,36 +1736,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , Z, Firefox
+ControlSend, ahk_parent, Z, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !z, Firefox
+ControlSend, ahk_parent, !z, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , z, Firefox
+ControlSend, ahk_parent, z, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1776,48 +1776,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^``, Firefox
+ControlSend, ahk_parent, ^``, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ~, Firefox
+ControlSend, ahk_parent, ~, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !``, Firefox
+ControlSend, ahk_parent, !``, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ``, Firefox
+ControlSend, ahk_parent, ``, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1828,48 +1828,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^1, Firefox
+ControlSend, ahk_parent, ^1, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {!}, Firefox
+ControlSend, ahk_parent, {!}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !1, Firefox
+ControlSend, ahk_parent, !1, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , 1, Firefox
+ControlSend, ahk_parent, 1, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1880,48 +1880,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^2, Firefox
+ControlSend, ahk_parent, ^2, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , @, Firefox
+ControlSend, ahk_parent, @, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !2, Firefox
+ControlSend, ahk_parent, !2, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , 2, Firefox
+ControlSend, ahk_parent, 2, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1932,48 +1932,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^3, Firefox
+ControlSend, ahk_parent, ^3, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {#}, Firefox
+ControlSend, ahk_parent, {#}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !3, Firefox
+ControlSend, ahk_parent, !3, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , 3, Firefox
+ControlSend, ahk_parent, 3, ahk_class MozillaWindowClass
 return
 }
 }
@@ -1984,48 +1984,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^4, Firefox
+ControlSend, ahk_parent, ^4, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , $, Firefox
+ControlSend, ahk_parent, $, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !4, Firefox
+ControlSend, ahk_parent, !4, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , 4, Firefox
+ControlSend, ahk_parent, 4, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2036,48 +2036,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^5, Firefox
+ControlSend, ahk_parent, ^5, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , `%, Firefox
+ControlSend, ahk_parent, `%, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !5, Firefox
+ControlSend, ahk_parent, !5, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , 5, Firefox
+ControlSend, ahk_parent, 5, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2088,48 +2088,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^6, Firefox
+ControlSend, ahk_parent, ^6, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {^}, Firefox
+ControlSend, ahk_parent, {^}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !6, Firefox
+ControlSend, ahk_parent, !6, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , 6, Firefox
+ControlSend, ahk_parent, 6, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2140,48 +2140,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^7, Firefox
+ControlSend, ahk_parent, ^7, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , &, Firefox
+ControlSend, ahk_parent, &, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !7, Firefox
+ControlSend, ahk_parent, !7, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , 7, Firefox
+ControlSend, ahk_parent, 7, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2192,48 +2192,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^8, Firefox
+ControlSend, ahk_parent, ^8, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , *, Firefox
+ControlSend, ahk_parent, *, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !8, Firefox
+ControlSend, ahk_parent, !8, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , 8, Firefox
+ControlSend, ahk_parent, 8, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2244,48 +2244,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^9, Firefox
+ControlSend, ahk_parent, ^9, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , (, Firefox
+ControlSend, ahk_parent, (, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !9, Firefox
+ControlSend, ahk_parent, !9, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , 9, Firefox
+ControlSend, ahk_parent, 9, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2296,48 +2296,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^0, Firefox
+ControlSend, ahk_parent, ^0, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ), Firefox
+ControlSend, ahk_parent, ), ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !0, Firefox
+ControlSend, ahk_parent, !0, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , 0, Firefox
+ControlSend, ahk_parent, 0, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2348,48 +2348,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^-, Firefox
+ControlSend, ahk_parent, ^-, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , _, Firefox
+ControlSend, ahk_parent, _, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !-, Firefox
+ControlSend, ahk_parent, !-, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , -, Firefox
+ControlSend, ahk_parent, -, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2400,48 +2400,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^=, Firefox
+ControlSend, ahk_parent, ^=, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {+}, Firefox
+ControlSend, ahk_parent, {+}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !=, Firefox
+ControlSend, ahk_parent, !=, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , =, Firefox
+ControlSend, ahk_parent, =, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2452,48 +2452,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^[, Firefox
+ControlSend, ahk_parent, ^[, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {, Firefox
+ControlSend, ahk_parent, {, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ![, Firefox
+ControlSend, ahk_parent, ![, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , [, Firefox
+ControlSend, ahk_parent, [, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2505,48 +2505,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^], Firefox
+ControlSend, ahk_parent, ^], ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , }, Firefox
+ControlSend, ahk_parent, }, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !], Firefox
+ControlSend, ahk_parent, !], ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ], Firefox
+ControlSend, ahk_parent, ], ahk_class MozillaWindowClass
 return
 }
 }
@@ -2557,48 +2557,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^\, Firefox
+ControlSend, ahk_parent, ^\, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , |, Firefox
+ControlSend, ahk_parent, |, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !\, Firefox
+ControlSend, ahk_parent, !\, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , \, Firefox
+ControlSend, ahk_parent, \, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2609,48 +2609,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^;, Firefox
+ControlSend, ahk_parent, ^;, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , :, Firefox
+ControlSend, ahk_parent, :, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !;, Firefox
+ControlSend, ahk_parent, !;, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , `;, Firefox
+ControlSend, ahk_parent, `;, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2661,48 +2661,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^', Firefox
+ControlSend, ahk_parent, ^', ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ", Firefox
+ControlSend, ahk_parent, ", ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !', Firefox
+ControlSend, ahk_parent, !', ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ', Firefox
+ControlSend, ahk_parent, ', ahk_class MozillaWindowClass
 return
 }
 }
@@ -2713,48 +2713,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^,, Firefox
+ControlSend, ahk_parent, ^,, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , <, Firefox
+ControlSend, ahk_parent, <, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !,, Firefox
+ControlSend, ahk_parent, !,, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , `,, Firefox
+ControlSend, ahk_parent, `,, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2765,48 +2765,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^., Firefox
+ControlSend, ahk_parent, ^., ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , >, Firefox
+ControlSend, ahk_parent, >, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !., Firefox
+ControlSend, ahk_parent, !., ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ., Firefox
+ControlSend, ahk_parent, ., ahk_class MozillaWindowClass
 return
 }
 }
@@ -2817,48 +2817,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^/, Firefox
+ControlSend, ahk_parent, ^/, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ?, Firefox
+ControlSend, ahk_parent, ?, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !/, Firefox
+ControlSend, ahk_parent, !/, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , /, Firefox
+ControlSend, ahk_parent, /, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2869,48 +2869,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F1}, Firefox
+ControlSend, ahk_parent, ^{F1}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F1}, Firefox
+ControlSend, ahk_parent, +{F1}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F1}, Firefox
+ControlSend, ahk_parent, !{F1}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F1}, Firefox
+ControlSend, ahk_parent, {F1}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2921,48 +2921,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F2}, Firefox
+ControlSend, ahk_parent, ^{F2}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F2}, Firefox
+ControlSend, ahk_parent, +{F2}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F2}, Firefox
+ControlSend, ahk_parent, !{F2}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F2}, Firefox
+ControlSend, ahk_parent, {F2}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -2973,48 +2973,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F3}, Firefox
+ControlSend, ahk_parent, ^{F3}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F3}, Firefox
+ControlSend, ahk_parent, +{F3}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F3}, Firefox
+ControlSend, ahk_parent, !{F3}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F3}, Firefox
+ControlSend, ahk_parent, {F3}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3025,48 +3025,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F4}, Firefox
+ControlSend, ahk_parent, ^{F4}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F4}, Firefox
+ControlSend, ahk_parent, +{F4}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F4}, Firefox
+ControlSend, ahk_parent, !{F4}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F4}, Firefox
+ControlSend, ahk_parent, {F4}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3077,48 +3077,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F5}, Firefox
+ControlSend, ahk_parent, ^{F5}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F5}, Firefox
+ControlSend, ahk_parent, +{F5}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F5}, Firefox
+ControlSend, ahk_parent, !{F5}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F5}, Firefox
+ControlSend, ahk_parent, {F5}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3129,48 +3129,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F6}, Firefox
+ControlSend, ahk_parent, ^{F6}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F6}, Firefox
+ControlSend, ahk_parent, +{F6}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F6}, Firefox
+ControlSend, ahk_parent, !{F6}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F6}, Firefox
+ControlSend, ahk_parent, {F6}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3181,48 +3181,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F7}, Firefox
+ControlSend, ahk_parent, ^{F7}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F7}, Firefox
+ControlSend, ahk_parent, +{F7}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F7}, Firefox
+ControlSend, ahk_parent, !{F7}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F7}, Firefox
+ControlSend, ahk_parent, {F7}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3233,48 +3233,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F8}, Firefox
+ControlSend, ahk_parent, ^{F8}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F8}, Firefox
+ControlSend, ahk_parent, +{F8}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F8}, Firefox
+ControlSend, ahk_parent, !{F8}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F8}, Firefox
+ControlSend, ahk_parent, {F8}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3285,48 +3285,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F9}, Firefox
+ControlSend, ahk_parent, ^{F9}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F9}, Firefox
+ControlSend, ahk_parent, +{F9}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F9}, Firefox
+ControlSend, ahk_parent, !{F9}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F9}, Firefox
+ControlSend, ahk_parent, {F9}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3337,48 +3337,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F10}, Firefox
+ControlSend, ahk_parent, ^{F10}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F10}, Firefox
+ControlSend, ahk_parent, +{F10}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F10}, Firefox
+ControlSend, ahk_parent, !{F10}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F10}, Firefox
+ControlSend, ahk_parent, {F10}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3389,48 +3389,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F11}, Firefox
+ControlSend, ahk_parent, ^{F11}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F11}, Firefox
+ControlSend, ahk_parent, +{F11}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F11}, Firefox
+ControlSend, ahk_parent, !{F11}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F11}, Firefox
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3441,48 +3441,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{F12}, Firefox
+ControlSend, ahk_parent, ^{F12}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{F12}, Firefox
+ControlSend, ahk_parent, +{F12}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{F12}, Firefox
+ControlSend, ahk_parent, !{F12}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {F12}, Firefox
+ControlSend, ahk_parent, {F12}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3493,48 +3493,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{Enter}, Firefox
+ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{Enter}, Firefox
+ControlSend, ahk_parent, +{Enter}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{Enter}, Firefox
+ControlSend, ahk_parent, !{Enter}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {Enter}, Firefox
+ControlSend, ahk_parent, {Enter}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3547,24 +3547,24 @@ If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^+{tab}, Firefox
+ControlSend, ahk_parent, ^+{tab}, ahk_class MozillaWindowClass
 return
 }
 Else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{tab}, Firefox
+ControlSend, ahk_parent, ^{tab}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3572,36 +3572,36 @@ else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{tab}, Firefox
+ControlSend, ahk_parent, +{tab}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{tab}, Firefox
+ControlSend, ahk_parent, !{tab}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {tab}, Firefox
+ControlSend, ahk_parent, {tab}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3612,48 +3612,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{left}, Firefox
+ControlSend, ahk_parent, ^{left}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{left}, Firefox
+ControlSend, ahk_parent, +{left}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{left}, Firefox
+ControlSend, ahk_parent, !{left}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {left}, Firefox
+ControlSend, ahk_parent, {left}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3664,48 +3664,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{right}, Firefox
+ControlSend, ahk_parent, ^{right}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{right}, Firefox
+ControlSend, ahk_parent, +{right}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{right}, Firefox
+ControlSend, ahk_parent, !{right}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {right}, Firefox
+ControlSend, ahk_parent, {right}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3716,48 +3716,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{up}, Firefox
+ControlSend, ahk_parent, ^{up}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{up}, Firefox
+ControlSend, ahk_parent, +{up}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{up}, Firefox
+ControlSend, ahk_parent, !{up}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {up}, Firefox
+ControlSend, ahk_parent, {up}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3768,48 +3768,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{down}, Firefox
+ControlSend, ahk_parent, ^{down}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{down}, Firefox
+ControlSend, ahk_parent, +{down}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{down}, Firefox
+ControlSend, ahk_parent, !{down}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {down}, Firefox
+ControlSend, ahk_parent, {down}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3820,48 +3820,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{backspace}, Firefox
+ControlSend, ahk_parent, ^{backspace}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{backspace}, Firefox
+ControlSend, ahk_parent, +{backspace}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{backspace}, Firefox
+ControlSend, ahk_parent, !{backspace}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {backspace}, Firefox
+ControlSend, ahk_parent, {backspace}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3872,48 +3872,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{delete}, Firefox
+ControlSend, ahk_parent, ^{delete}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{delete}, Firefox
+ControlSend, ahk_parent, +{delete}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{delete}, Firefox
+ControlSend, ahk_parent, !{delete}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {delete}, Firefox
+ControlSend, ahk_parent, {delete}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3925,48 +3925,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{pgup}, Firefox
+ControlSend, ahk_parent, ^{pgup}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{pgup}, Firefox
+ControlSend, ahk_parent, +{pgup}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{pgup}, Firefox
+ControlSend, ahk_parent, !{pgup}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {pgup}, Firefox
+ControlSend, ahk_parent, {pgup}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -3977,48 +3977,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{pgdn}, Firefox
+ControlSend, ahk_parent, ^{pgdn}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{pgdn}, Firefox
+ControlSend, ahk_parent, +{pgdn}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{pgdn}, Firefox
+ControlSend, ahk_parent, !{pgdn}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {pgdn}, Firefox
+ControlSend, ahk_parent, {pgdn}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -4029,48 +4029,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {Ctrl down}{space}{Ctrl up}, Firefox
+ControlSend, ahk_parent, {Ctrl down}{space}{Ctrl up}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {Shift down}{space}{Shift up}, Firefox
+ControlSend, ahk_parent, {Shift down}{space}{Shift up}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {Alt down}{space}{Alt up}, Firefox
+ControlSend, ahk_parent, {Alt down}{space}{Alt up}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {space}, Firefox
+ControlSend, ahk_parent, {space}, ahk_class MozillaWindowClass
 return
 }
 }
@@ -4081,48 +4081,48 @@ If GetKeyState("Control", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , ^{home}, Firefox
+ControlSend, ahk_parent, ^{home}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Shift", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , +{home}, Firefox
+ControlSend, ahk_parent, +{home}, ahk_class MozillaWindowClass
 return
 }
 else If GetKeyState("Alt", "p")
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , !{home}, Firefox
+ControlSend, ahk_parent, !{home}, ahk_class MozillaWindowClass
 return
 }
 else
 {
 SetTitleMatchMode, 2
 
-ControlGet, OutputVar, Hwnd,,Firefox_RenderWidgetHostHWND1, Firefox
+;ControlGet, OutputVar, Hwnd,,MozillaCompositorWindowClass1, Firefox
 
-ControlFocus,,ahk_id %outputvar%
+;ControlFocus,,ahk_id %outputvar%
 
 
-ControlSend, , {home}, Firefox
+ControlSend, ahk_parent, {home}, ahk_class MozillaWindowClass
 return
 }
 }
