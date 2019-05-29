@@ -10,7 +10,7 @@ Menu, Tray, Icon, pifmgr.dll, 13
 ; This means you can fiddle with Chrome without tabbing out of a game!
 ; When used in conjunction with the "Vimium" extension it enables easy navigation.
 
-; Vimium Chrome: https://addons.mozilla.org/en-US/Chrome/addon/vimium-ff/
+; Vimium Firefox: https://addons.mozilla.org/en-US/Chrome/addon/vimium-ff/
 ; Vimium chrome: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
 
 ; Here are my Vimium custom key mappings (remove the semicolons): 
