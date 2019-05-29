@@ -2,6 +2,8 @@ Menu, Tray, Icon, pifmgr.dll, 13
 
 ; Proudly Created by Mitchell Thomas
 
+; This is the Chrome version of my Firefox keyboard.
+
 ; This script enables me to use Chrome in the background.
 ; If you press the menu/appskey (to the right of the right windows key on a full sized keyboard)
 ; as a modifier for another key the key you pressed will be sent to Chrome in the background.
@@ -23,8 +25,6 @@ Menu, Tray, Icon, pifmgr.dll, 13
 ; I have it setup so that most common hotkey combinations will work (ctrl, alt, shift, ctrl + shift)
 ; The numpad is setup to change volume for my headphones when pressed without a hotkey, but when ctrl is used it
 ; will change the volume on my xbox and nintendo switch, which is hooked into line in and the audio out from my monitor's hdmi
-
-; If you use find and replace to replace "Chrome" with "Chrome" this code should work in Google Chrome instead of Chrome
 
 ; Rarely a game will require you to reload the script after opening it to work, GTA V is the only example i've come across
 
