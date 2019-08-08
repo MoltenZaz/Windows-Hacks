@@ -4135,9 +4135,12 @@ return
 
 ; It also needs to be adapted for your setup!
 
+CDisabled:=1
+
 Appskey & NumpadDot::
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /Switch "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}"
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /Switch "Consoles"
+SoundBeep, 250, 250
 return
 }
 
@@ -4145,12 +4148,12 @@ AppsKey & Numpad1::
 {
 If GetKeyState("Control", "p")
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}" 10
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 10
 return
 }
 else
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.0.00000000}.{0e6a17a9-ac6b-4b41-85f7-71053bac6851}" 10
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 10
 return
 }
 }
@@ -4159,12 +4162,12 @@ AppsKey & Numpad2::
 {
 If GetKeyState("Control", "p")
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}" 20
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 20
 return
 }
 else
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.0.00000000}.{0e6a17a9-ac6b-4b41-85f7-71053bac6851}" 20
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 20
 return
 }
 }
@@ -4173,12 +4176,12 @@ AppsKey & Numpad3::
 {
 If GetKeyState("Control", "p")
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}" 30
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 30
 return
 }
 else
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.0.00000000}.{0e6a17a9-ac6b-4b41-85f7-71053bac6851}" 30
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 30
 return
 }
 }
@@ -4187,12 +4190,12 @@ AppsKey & Numpad4::
 {
 If GetKeyState("Control", "p")
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}" 40
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
 return
 }
 else
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.0.00000000}.{0e6a17a9-ac6b-4b41-85f7-71053bac6851}" 40
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 40
 return
 }
 }
@@ -4201,12 +4204,12 @@ AppsKey & Numpad5::
 {
 If GetKeyState("Control", "p")
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}" 50
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 50
 return
 }
 else
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.0.00000000}.{0e6a17a9-ac6b-4b41-85f7-71053bac6851}" 50
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 50
 return
 }
 }
@@ -4215,12 +4218,12 @@ AppsKey & Numpad6::
 {
 If GetKeyState("Control", "p")
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}" 60
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 60
 return
 }
 else
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.0.00000000}.{0e6a17a9-ac6b-4b41-85f7-71053bac6851}" 60
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 60
 return
 }
 }
@@ -4229,12 +4232,12 @@ AppsKey & Numpad7::
 {
 If GetKeyState("Control", "p")
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}" 70
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 70
 return
 }
 else
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.0.00000000}.{0e6a17a9-ac6b-4b41-85f7-71053bac6851}" 70
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 70
 return
 }
 }
@@ -4243,12 +4246,12 @@ AppsKey & Numpad8::
 {
 If GetKeyState("Control", "p")
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}" 80
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 80
 return
 }
 else
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.0.00000000}.{0e6a17a9-ac6b-4b41-85f7-71053bac6851}" 80
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 80
 return
 }
 }
@@ -4257,12 +4260,12 @@ AppsKey & Numpad9::
 {
 If GetKeyState("Control", "p")
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}" 90
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 90
 return
 }
 else
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.0.00000000}.{0e6a17a9-ac6b-4b41-85f7-71053bac6851}" 90
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 90
 return
 }
 }
@@ -4271,12 +4274,12 @@ AppsKey & Numpad0::
 {
 If GetKeyState("Control", "p")
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.1.00000000}.{4d37a526-5c16-47ee-8e4e-47a0eb2d3f8d}" 100
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 100
 return
 }
 else
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "{0.0.0.00000000}.{0e6a17a9-ac6b-4b41-85f7-71053bac6851}" 100
+run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 100
 return
 }
 }
