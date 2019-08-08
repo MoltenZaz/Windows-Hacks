@@ -4,8 +4,10 @@
 
 ; If your cursor is not over the desktop when the script starts try refreshing the script and trying again
 
-; IF YOUR DESKTOP IS NOT ADDED TO THE BLACKLIST IT IS POSSIBLE TO MINIMIZE AND CLOSE THE DESKTOP!!! BE CAREFUL!!!
+; IF YOUR DESKTOP IS NOT ADDED TO THE BLACKLIST IT IS POSSIBLE TO MINIMIZE AND CLOSE THE DESKTOP!!!
 
+; this attempts to stop the script from working on the desktop but will only be successful
+; if the mouse cursor is over the desktop when the script launches
 WinGet,KDE_Win,MinMax,ahk_id %KDE_id%
 MouseGetPos,,,KDE_id
 DesktopID := KDE_id
@@ -14,16 +16,12 @@ Menu, Tray, Icon, shell32.dll, 300
 ; in the forum. Thanks go out to ck, thinkstorm, Chris,
 ; and aurelian for a job well done.
 
-; This script was modified to a moderate degree by Mitchell Thomas
-
 ; The shortcuts:
 ;  Win + Left Button  : Drag to move a window.
 ;  Win + Right Button : Drag to resize a window.
 ;  Win + Mouse Back   : Minimize a window.
 ;  Win + Mouse Forward: Maximize/Restore a window.
 ;  Win + Middle Button: Close a window.
-
-; If you set F20 on a key or mouse button it will work as the modifier key for this script
 
 SetWinDelay,2
 
@@ -51,7 +49,6 @@ else
 }
 return
 }
-
 #LButton::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -113,7 +110,6 @@ else
 }
 return
 }
-
 #RButton::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -166,7 +162,6 @@ Loop
 }
 return
 }
-
 ; "Win + MButton" may be simpler, but I
 ; like an extra measure of security for
 ; an operation like this.
@@ -209,9 +204,123 @@ isWindowFullScreen( winTitle )
 	Return ((style & 0x20800000) or winH < A_ScreenHeight or winW < A_ScreenWidth) ? false : true
 }
 
-; This section is for using the script with my mouse sniper button as the modifier key
 
-F20 & Xbutton1::
+; make g8 and g7 forward and back when not in fullscreen
+F18::
+MouseGetPos,,,KDE_id
+if KDE_id != %DesktopID%
+{
+{
+isFullScreen := isWindowFullScreen( "A" )
+if isFullScreen = 1
+{
+F18::1
+return
+}
+else
+{
+send {Xbutton2 DOWN}
+keywait, Xbutton2
+send {Xbutton2 UP}
+return
+}
+}
+}
+
+F17::
+MouseGetPos,,,KDE_id
+if KDE_id != %DesktopID%
+{
+{
+isFullScreen := isWindowFullScreen( "A" )
+if isFullScreen = 1
+{
+F17::2
+return
+}
+else
+{
+send {Xbutton1 DOWN}
+keywait, Xbutton1
+send {Xbutton1 UP}
+return
+}
+}
+}
+
+#F20::
+
+~F20::
+MouseGetPos,,,KDE_id
+if KDE_id != %DesktopID%
+{
+{
+isFullScreen := isWindowFullScreen( "A" )
+if isFullScreen = 1
+{
+F20::3
+}
+else
+{
+return
+}
+}
+}
+
+~F20 & F17::
+{
+isFullScreen := isWindowFullScreen( "A" )
+if isFullScreen = 1
+{
+send {2 DOWN}
+keywait, 2
+send {2 UP}
+return
+}
+else
+{
+    MouseGetPos,,,KDE_id
+    if KDE_id != %DesktopID%
+{
+    ; This message is mostly equivalent to WinMinimize,
+    ; but it avoids a bug with PSPad.
+    PostMessage,0x112,0xf020,,,ahk_id %KDE_id%
+    send, {F20, UP}
+    return
+}
+return
+}
+}
+
+~F20 & F18::
+{
+isFullScreen := isWindowFullScreen( "A" )
+if isFullScreen = 1
+{
+send {1 DOWN}
+keywait, 1
+send {1 UP}
+return
+}
+else
+{
+    MouseGetPos,,,KDE_id
+    if KDE_id != %DesktopID%
+{
+    ; Toggle between maximized and restored state.
+    WinGet,KDE_Win,MinMax,ahk_id %KDE_id%
+    If KDE_Win
+        WinRestore,ahk_id %KDE_id%
+    Else
+        WinMaximize,ahk_id %KDE_id%
+    send, {F20, UP}
+    return
+}
+return
+}
+}
+
+~F20 & Xbutton1::
 {
 isFullScreen := isWindowFullScreen( "A" )
 if isFullScreen = 1
@@ -229,13 +338,14 @@ else
     ; This message is mostly equivalent to WinMinimize,
     ; but it avoids a bug with PSPad.
     PostMessage,0x112,0xf020,,,ahk_id %KDE_id%
+    send, {F20, UP}
     return
 }
 return
 }
 }
 
-F20 & LButton::
+~F20 & LButton::
 {
 isFullScreen := isWindowFullScreen( "A" )
 if isFullScreen = 1
@@ -274,7 +384,7 @@ return
 }
 }
 
-F20 & Xbutton2::
+~F20 & Xbutton2::
 {
 isFullScreen := isWindowFullScreen( "A" )
 if isFullScreen = 1
@@ -295,13 +405,14 @@ else
         WinRestore,ahk_id %KDE_id%
     Else
         WinMaximize,ahk_id %KDE_id%
+    send, {F20, UP}
     return
 }
 return
 }
 }
 
-F20 & RButton::
+~F20 & RButton::
 {
 isFullScreen := isWindowFullScreen( "A" )
 if isFullScreen = 1
@@ -359,7 +470,7 @@ return
 ; "Win + MButton" may be simpler, but I
 ; like an extra measure of security for
 ; an operation like this.
-F20 & MButton::
+~F20 & MButton::
 {
 isFullScreen := isWindowFullScreen( "A" )
 if isFullScreen = 1
@@ -375,10 +486,57 @@ else
     if KDE_id != %DesktopID%
 {
     WinClose,ahk_id %KDE_id%
+    send, {F20, UP}
     return
 }
 return
 }
 }
 
-; modified by Mitchell Thomas
+LWin::
+{
+MouseGetPos,,,KDE_id
+if KDE_id = %DesktopID%
+{
+send {LWin DOWN}
+keywait, LWin
+send {LWin UP}
+return
+}
+isFullScreen := isWindowFullScreen( "A" )
+if isFullScreen = 1
+{
+	return
+}
+else
+{
+send {LWin DOWN}
+keywait, LWin
+send {LWin UP}
+return
+}
+}
+
+RWin::
+{
+MouseGetPos,,,KDE_id
+if KDE_id = %DesktopID%
+{
+send {RWin DOWN}
+keywait, RWin
+send {RWin UP}
+return
+}
+isFullScreen := isWindowFullScreen( "A" )
+if isFullScreen = 1
+{
+	return
+}
+else
+{
+send {RWin DOWN}
+keywait, RWin
+send {RWin UP}
+return
+}
+}
