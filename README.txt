@@ -36,7 +36,11 @@ Win/F20 + Right Button : Drag to resize a window.
 Win/F20 + Mouse Back   : Minimize a window.
 Win/F20 + Mouse Forward: Maximize/Restore a window.
 Win/F20 + Middle Button: Close a window.
-  
+
+Easy Window Organiser:
+
+The same as Easy Window Dragging but it also adds moving and resizing windows to preset locations though hotkeys on the numpad. This script will need to be highly adapted if you dont use a 3440x1440 monitor.
+
 FF Keyboard:
 
 My magnum opus and the script I use the most. FF Keyboard enables you to use FireFox (or can be modified to Chrome) in the background!
