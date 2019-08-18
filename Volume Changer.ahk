@@ -53,11 +53,11 @@ return
 GetKeyState, state, ScrollLock, T ; state will be 'D' if ScrollLock is on or 'U' if it is off
 if ( state = "D" )
 {
-      run "F:\Documents\Nircmd\SoundVolumeView.exe" /Mute "{0.0.1.00000000}.{01abf31a-21e9-47c4-b44e-280e72126504}"
+      run "F:\Documents\Nircmd\SoundVolumeView.exe" /Mute "RODE Microphone"
 }
    Else
 {
-      run "F:\Documents\Nircmd\SoundVolumeView.exe" /Unmute "{0.0.1.00000000}.{01abf31a-21e9-47c4-b44e-280e72126504}"
+      run "F:\Documents\Nircmd\SoundVolumeView.exe" /Unmute "RODE Microphone"
 }
 return
 }
