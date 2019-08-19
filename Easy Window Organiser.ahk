@@ -2986,6 +2986,7 @@ If KDE_Win
     return
 ; Get the initial window position.
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+WinActivate, ahk_id %hParentGUI%
 Loop
 {
 	WinGet,KDE_Win,MinMax,ahk_id %KDE2_id%
