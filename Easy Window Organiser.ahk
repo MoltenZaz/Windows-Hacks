@@ -2973,33 +2973,30 @@ return
 
 ~F20 & F18::
 {
-isFullScreen := isWindowFullScreen( "A" )
+isfullscreen := iswindowfullscreen( "a" )
 IfWinNotActive, ahk_class WorkerW
 {
 if isFullScreen = 1
 {
-send {1 DOWN}
+send {1 down}
 keywait, 1
-send {1 UP}
+send {1 up}
 return
 }
 }
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+    mousegetpos,,,kde_id
+    if kde_id != %desktopid%
 {
-    MouseGetPos,,,hParentGUI
-    if hParentGUI != %DesktopID%
-{
-    ; Toggle between maximized and restored state.
-    WinGet,KDE_Win,MinMax,ahk_id %hParentGUI%
-    If KDE_Win
-        WinRestore,ahk_id %hParentGUI%
-    Else
-        WinMaximize,ahk_id %hParentGUI%
-    send, {F20, UP}
+    ; toggle between maximized and restored state.
+    winget,kde_win,minmax,ahk_id %kde_id%
+    if kde_win
+        winrestore,ahk_id %kde_id%
+    else
+        winmaximize,ahk_id %kde_id%
     return
 }
 return
-}
 }
 
 ~F20 & LButton::
@@ -3016,18 +3013,16 @@ return
 }
 }
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
-{
 ; Get the initial mouse position and window id, and
 ; abort if the window is maximized.
 MouseGetPos,KDE_X1,KDE_Y1,hParentGUI
+WinGet,KDE_Win,MinMax,ahk_id %hParentGUI%
+if hParentGUI != %DesktopID%
 {
 If KDE_Win
     return
 ; Get the initial window position.
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinGet,KDE_Win,MinMax,ahk_id %hParentGUI%
-if hParentGUI != %DesktopID%
-WinActivate, ahk_id %hParentGUI%
 Loop
 {
 	WinGet,KDE_Win,MinMax,ahk_id %KDE2_id%
@@ -3045,7 +3040,6 @@ Loop
 }
 }
 return
-}
 }
 
 ~F20 & RButton::
