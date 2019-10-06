@@ -57,11 +57,12 @@ This simply opens audio fix while hiding the command prompt window.
 Volume Changer:
 
 This enables hotkeys to change the volume for spotify, enables the media keys to work in vlc and makes scroll lock work as a mute toggle.
-If modified it will work for chrome but not firefox for some reason. But I only use this script for vlc and the mute toggle so I didn't really look into it.
+If modified it will work for chrome but not firefox for some reason. But I only use this script for vlc and the mute toggle so I didn't really look into it. I don't use this script anymore.
   
 Volume Equaliser:
   
 This script resets the windows volume mixer, making all applications audio back to full. I don't recommend running on startup.
+I have it setup as an app in the start menu and whenever I need to reset the mixer I'll run it.
   
 Thank you for looking at my scripts, I hope they are useful.
 
