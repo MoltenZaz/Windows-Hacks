@@ -19,6 +19,8 @@ Menu, Tray, Icon, shell32.dll, 300
 ;  Win + Mouse Forward: Maximize/Restore a window.
 ;  Win + Middle Button: Close a window.
 
+; YOU MAY NEED TO FIND AND REPLACE WorkerW with Progman FOR THE DESKTOP BLACKLIST TO WORK
+
 ;SetWinDelay,0
 
 #Numpad1::
