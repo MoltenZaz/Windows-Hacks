@@ -11,13 +11,12 @@ Menu, Tray, Icon, shell32.dll, 300
 ;  Win + Mouse Forward: Maximize/Restore a window.
 ;  Win + Middle Button: Close a window.
 
-; YOU MAY NEED TO FIND AND REPLACE WorkerW with Progman FOR THE DESKTOP BLACKLIST TO WORK
-
 SetWinDelay,0
 
 #Xbutton1::
 {
 isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class Progman
 IfWinNotActive, ahk_class WorkerW
 {
 if isFullScreen = 1
@@ -28,10 +27,11 @@ send {XButton1 UP}
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class Progman
     MouseGetPos,,,hParentGUI
     MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
+if dclass != Progman
 if dclass != WorkerW
 {
     ; This message is mostly equivalent to WinMinimize,
@@ -44,6 +44,7 @@ return
 #LButton::
 {
 isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class Progman
 IfWinNotActive, ahk_class WorkerW
 {
 if isFullScreen = 1
@@ -54,13 +55,14 @@ send {LButton UP}
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class Progman
 ;; Get the initial mouse position and window id, and
 ;; abort if the window is maximized.
 MouseGetPos,MOV_X1,MOV_Y1,moveID
 WinGet,MOV_Win,MinMax,ahk_id %moveID%
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
+if dclass != Progman
 if dclass != WorkerW
 {
 If MOV_Win
@@ -72,6 +74,8 @@ Loop
 	WinGet,MOV_Win,MinMax,ahk_id %MOV2_id%
 	MouseGetPos, , , id, control 
 	WinGetClass, dclass, ahk_id %id% 
+	if dclass = Progman
+		break
 	if dclass = WorkerW
 		break
     GetKeyState,MOV_Button,LButton,P ; Break if button has been released.
@@ -91,6 +95,7 @@ return
 #xbutton2::
 {
 isfullscreen := iswindowfullscreen( "a" )
+IfWinNotActive, ahk_class Progman
 IfWinNotActive, ahk_class WorkerW
 {
 if isFullScreen = 1
@@ -101,9 +106,11 @@ send {xbutton2 up}
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
-    mousegetpos,,,kde_id
-    if kde_id != %desktopid%
+if isFullScreen != 1 or IfWinActive, ahk_class Progman
+	MouseGetPos, , , kde_id, control
+	WinGetClass, dclass, ahk_id %kde_id% 
+    if dclass != Progman
+if dclass != WorkerW 
 {
     ; toggle between maximized and restored state.
     winget,kde_win,minmax,ahk_id %kde_id%
@@ -119,6 +126,7 @@ return
 #RButton::
 {
 isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class Progman
 IfWinNotActive, ahk_class WorkerW
 {
 if isFullScreen = 1
@@ -129,13 +137,14 @@ send {RButton UP}
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class Progman or IfWinActive, ahk_class WorkerW
 ; Get the initial mouse position and window id, and
 ; abort if the window is maximized.
 MouseGetPos,KDE_X1,KDE_Y1,hParentGUI
 WinGet,KDE_Win,MinMax,ahk_id %hParentGUI%
     MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
+if dclass != Progman
 if dclass != WorkerW
 {
 If KDE_Win
@@ -159,6 +168,8 @@ Loop
         break
 	MouseGetPos, , , id, control 
 	WinGetClass, dclass, ahk_id %id% 
+	if dclass = Progman
+		break
 	if dclass = WorkerW
 		break
     MouseGetPos,KDE_X2,KDE_Y2 ; Get the current mouse position.
@@ -183,6 +194,7 @@ return
 #MButton::
 {
 isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class Progman
 IfWinNotActive, ahk_class WorkerW
 {
 if isFullScreen = 1
@@ -193,10 +205,11 @@ send {MButton UP}
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class Progman or IfWinActive, ahk_class WorkerW
     MouseGetPos,,,hParentGUI
     MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
+if dclass != Progman
 if dclass != WorkerW
 {
     WinClose,ahk_id %hParentGUI%
