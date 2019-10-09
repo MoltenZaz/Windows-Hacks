@@ -1,9 +1,11 @@
 ; this attempts to stop the script from working on the desktop but will only be successful
 ; if the mouse cursor is over the desktop when the script launches
 #NoEnv
-#SingleInstance Force
 Coordmode, Mouse, Screen
 Menu, Tray, Icon, shell32.dll, 300
+
+#SingleInstance force
+
 ; This script was inspired by and built on many like it
 ; in the forum. Thanks go out to ck, thinkstorm, Chris,
 ; and aurelian for a job well done.
@@ -16,8 +18,6 @@ Menu, Tray, Icon, shell32.dll, 300
 ;  Win + Mouse Back   : Minimize a window.
 ;  Win + Mouse Forward: Maximize/Restore a window.
 ;  Win + Middle Button: Close a window.
-
-; YOU MAY NEED TO FIND AND REPLACE WorkerW with Progman FOR THE DESKTOP BLACKLIST TO WORK
 
 SetWinDelay,0
 
@@ -1986,6 +1986,16 @@ WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
 WinRestore,ahk_id %hParentGUI%
 WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
 ;Reload
+MouseGetPos, , , id, control 
+WinGetClass, dclass, ahk_id %id% 
+if dclass = Chrome_WidgetWin_1
+{
+Reload
+}
+if dclass = Qt5QWindowOwnDCIcon
+{
+Reload
+}
 return
 }
 return
@@ -2423,7 +2433,7 @@ return
 return
 }
 
-#F13::
+#F1::
 {
 IfWinNotActive, ahk_class WorkerW
 {
@@ -2616,13 +2626,12 @@ Loop
     GetKeyState,KDE_Button,RButton,P ; Break if button has been released.
     If KDE_Button = U
         break
-	MouseGetPos, , , id, control 
-	WinGetClass, dclass, ahk_id %id% 
-	if dclass = WorkerW
-		break
     MouseGetPos,KDE_X2,KDE_Y2 ; Get the current mouse position.
     ; Get the current window position and size.
     WinGetPos,KDE_WinX1,KDE_WinY1,KDE_WinW,KDE_WinH,ahk_id %hParentGUI%
+	WinGetClass, dclass, ahk_id %hParentGUI% 
+	if dclass = WorkerW
+		break
     KDE_X2 -= KDE_X1 ; Obtain an offset from the initial mouse position.
     KDE_Y2 -= KDE_Y1
     ; Then, act according to the defined region.
@@ -2741,10 +2750,9 @@ return
 
 ~F20::
 {
-MouseGetPos,,,hParentGUI
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
+MouseGetPos,,,FGUI
+WinGetClass, desclass, ahk_id %FGUI% 
+if desclass != WorkerW
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
@@ -2886,8 +2894,7 @@ if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
 ; abort if the window is maximized.
 MouseGetPos,KDE_X1,KDE_Y1,hParentGUI
 WinGet,KDE_Win,MinMax,ahk_id %hParentGUI%
-    MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
+WinGetClass, dclass, ahk_id %hParentGUI% 
 if dclass != WorkerW
 {
 If KDE_Win
@@ -2906,16 +2913,15 @@ Else
     KDE_WinUp := -1
 Loop
 {
-    GetKeyState,KDE_Button,RButton,P ; Break if button has been released.
+	GetKeyState,KDE_Button,RButton,P ; Break if button has been released.
     If KDE_Button = U
         break
-	MouseGetPos, , , id, control 
-	WinGetClass, dclass, ahk_id %id% 
-	if dclass = WorkerW
-		break
     MouseGetPos,KDE_X2,KDE_Y2 ; Get the current mouse position.
     ; Get the current window position and size.
     WinGetPos,KDE_WinX1,KDE_WinY1,KDE_WinW,KDE_WinH,ahk_id %hParentGUI%
+	WinGetClass, dclass, ahk_id %hParentGUI% 
+	if dclass = WorkerW
+		break
     KDE_X2 -= KDE_X1 ; Obtain an offset from the initial mouse position.
     KDE_Y2 -= KDE_Y1
     ; Then, act according to the defined region.
@@ -2951,8 +2957,7 @@ isFullScreen := isWindowFullScreen( "A" )
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
 {
     MouseGetPos,,,hParentGUI
-    MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
+WinGetClass, dclass, ahk_id %hParentGUI% 
 if dclass != WorkerW
 {
     WinClose,ahk_id %hParentGUI%
@@ -3008,6 +3013,7 @@ winmaximize, ahk_exe firefox.exe
 }
 return
 }
+return
 }
 
 #include WinGetPosEx.ahk
