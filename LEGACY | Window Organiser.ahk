@@ -1,5 +1,3 @@
-; this attempts to stop the script from working on the desktop but will only be successful
-; if the mouse cursor is over the desktop when the script launches
 #NoEnv
 Coordmode, Mouse, Screen
 Menu, Tray, Icon, shell32.dll, 300
@@ -19,25 +17,27 @@ Menu, Tray, Icon, shell32.dll, 300
 ;  Win + Mouse Forward: Maximize/Restore a window.
 ;  Win + Middle Button: Close a window.
 
-; YOU MAY NEED TO FIND AND REPLACE WorkerW with Progman FOR THE DESKTOP BLACKLIST TO WORK
+SetWinDelay,0
 
-;SetWinDelay,0
+fffirst = 1
 
 #Numpad1::
 {
 MouseGetPos, , , id, control
 WinGetClass, dclass, ahk_id %id%
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -79,16 +79,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -128,16 +130,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -178,16 +182,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -228,16 +234,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,Width,Height,ahk_id %hParentGUI%
@@ -258,16 +266,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -308,16 +318,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -358,16 +370,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -408,16 +422,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -458,16 +474,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -508,16 +526,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -558,16 +578,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -608,16 +630,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -658,16 +682,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -708,16 +734,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -759,16 +787,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -809,16 +839,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -859,16 +891,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -909,16 +943,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -959,16 +995,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1009,16 +1047,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1059,16 +1099,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1109,16 +1151,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1159,16 +1203,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1209,16 +1255,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1258,18 +1306,20 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 If GetKeyState("XButton2", "p")
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1303,13 +1353,14 @@ else
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1350,18 +1401,20 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 If GetKeyState("XButton2", "p")
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1395,13 +1448,14 @@ else
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1442,18 +1496,20 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 If GetKeyState("XButton2", "p")
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1490,13 +1546,14 @@ else
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1537,18 +1594,20 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 If GetKeyState("XButton2", "p")
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1585,13 +1644,14 @@ else
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1632,18 +1692,20 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 If GetKeyState("XButton2", "p")
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1680,13 +1742,14 @@ else
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,Width,Height,ahk_id %hParentGUI%
@@ -1707,18 +1770,20 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 If GetKeyState("XButton2", "p")
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1755,13 +1820,14 @@ else
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1802,16 +1868,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1851,18 +1919,20 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 If GetKeyState("XButton2", "p")
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1899,13 +1969,14 @@ else
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -1946,18 +2017,20 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 If GetKeyState("XButton2", "p")
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -2004,13 +2077,14 @@ else
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -2051,16 +2125,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -2100,16 +2176,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -2149,16 +2227,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -2198,18 +2278,20 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 If GetKeyState("XButton2", "p")
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -2246,13 +2328,14 @@ else
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -2293,18 +2376,20 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 If GetKeyState("XButton2", "p")
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -2341,13 +2426,14 @@ else
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -2388,16 +2474,18 @@ return
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
@@ -2436,13 +2524,14 @@ return
 #F1::
 {
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseMove, 1720, 700, 10
 return
@@ -2453,13 +2542,14 @@ return
 #F2::
 {
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseMove, 4400, 1118, 10
 return
@@ -2470,18 +2560,38 @@ return
 #F3::
 {
 IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
 return
 }
 }
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 MouseMove, 6300, 2800, 10
 return
 }
 return
+}
+
+isFullScreen := isWindowFullScreen( "A" )
+;MsgBox % isFullScreen ? "Full Screen" : "Windowed"
+isWindowFullScreen( winTitle )
+{
+	;checks if the specified window is full screen
+	
+	winID := WinExist( winTitle )
+
+	If ( !winID )
+		Return false
+
+	WinGet style, Style, ahk_id %WinID%
+	WinGetPos ,,,winW,winH, %winTitle%
+	; 0x800000 is WS_BORDER.
+	; 0x20000000 is WS_MINIMIZE.
+	; no border and not minimized
+	Return ((style & 0x20800000) or winH < A_ScreenHeight or winW < A_ScreenWidth) ? false : true
 }
 
 #include WinGetPosEx.ahk
