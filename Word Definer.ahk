@@ -5,25 +5,14 @@ Menu, Tray, Icon, shell32.dll, 23
 SendMode Input              ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
+;Select a word or phrase and press a hotkey to search it on the internet.
+;Win+G searches on google.
+;Win+Shift+D defines on google.
+;Win+T searches on thesaurus.com.
+;Win+U searches on urban dictionary.
+;Win+W opens the wikipedia article.
+;Win+Shift+W searches on wikipedia.
 
-;================================================================================================
-;  CapsLock processing.  Must double tap CapsLock to toggle CapsLock mode on or off.
-;================================================================================================
-; Must double tap CapsLock to toggle CapsLock mode on or off.
-;CapsLock::
- ;   KeyWait, CapsLock                                                   ; Wait forever until Capslock is released.
-  ;  KeyWait, CapsLock, D T0.2                                           ; ErrorLevel = 1 if CapsLock not down within 0.2 seconds.
-   ; if ((ErrorLevel = 0) && (A_PriorKey = "CapsLock") )                 ; Is a double tap on CapsLock?
-    ;    {
-     ;  SetCapsLockState, % GetKeyState("CapsLock","T") ? "Off" : "On"  ; Toggle the state of CapsLock LED
-      ;  }
-;return
-
-
-
-;================================================================================================
-; Hot keys with CapsLock modifier.  See https://autohotkey.com/docs/Hotkeys.htm#combo
-;================================================================================================
 ; Get DEFINITION of selected word.    
 #+d::
 {
@@ -164,6 +153,42 @@ if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class
 	if noclip = false
 	{
     Run, https://en.wikipedia.org/wiki/%clipboard%              ; Launch with contents of clipboard
+	}
+    ClipboardRestore()
+	KeyWait, CapsLock
+	SetCapsLockState, Off
+}	
+Return
+}
+
+#+w::
+{
+MouseGetPos, , , id, control
+WinGetClass, dclass, ahk_id %id%
+isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
+{
+if isFullScreen = 1
+{
+return
+}
+}
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
+{
+    noclip = false
+    OldClipboard:= ClipboardAll                         ;Save existing clipboard.
+    Clipboard:= ""
+    Send, ^c                                            ;Copy selected test to clipboard
+    ClipWait 0
+    If ErrorLevel
+        {
+		noclip = true
+        ;Return
+        }
+	if noclip = false
+	{
+    Run, https://en.wikipedia.org/w/index.php?search=%clipboard%              ; Launch with contents of clipboard
 	}
     ClipboardRestore()
 	KeyWait, CapsLock
