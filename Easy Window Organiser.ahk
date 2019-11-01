@@ -3125,6 +3125,34 @@ If (ahk_exe = Explorer.EXE)
 return
 }
 
+LWin::
+{
+MouseGetPos, , , id, control
+WinGetClass, dclass, ahk_id %id%
+if dclass = WorkerW or dclass = Progman
+{
+Send, {LWin Down}
+KeyWait, LWin
+Send, {LWin Up}
+}
+isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
+{
+if isFullScreen = 1
+{
+return
+}
+}
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
+{
+Send, {LWin Down}
+KeyWait, LWin
+Send, {LWin Up}
+}
+return
+}
+
 #IfWinActive, ahk_exe firefox.exe
 {
 ~Lbutton::
