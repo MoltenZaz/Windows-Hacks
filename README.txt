@@ -63,7 +63,17 @@ Volume Equaliser:
   
 This script resets the windows volume mixer, making all applications audio back to full. I don't recommend running on startup.
 I have it setup as an app in the start menu and whenever I need to reset the mixer I'll run it.
-  
+
+Word Definer:
+
+Select a word or phrase and press a hotkey to search it on the internet.
+Win+G searches on google.
+Win+Shift+D defines on google.
+Win+T searches on thesaurus.com.
+Win+U searches on urban dictionary.
+Win+W opens the wikipedia article.
+Win+Shift+W searches on wikipedia.
+
 Thank you for looking at my scripts, I hope they are useful.
 
 Mitchell Thomas.
