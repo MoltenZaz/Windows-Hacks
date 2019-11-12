@@ -49,6 +49,10 @@ sent to FireFox or Chrome! This enables you to browse the interenet, change YouT
 (Rarely a game will require you to reload the script after opening it to work, GTA V is the only example i've come across)
 When used in conjunction with the Vimium browser extension (firefox: https://addons.mozilla.org/en-US/firefox/addon/vimium-ff/ chrome: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
 it becomes extremely easy to use and much more convinient than tabbing out!
+
+Firefox/Chrome Keyboard Barebones:
+
+This version of the script has hotkeys specific to my computer removed, such as using the numpad to change volume. This stuff can work on your pc but requires you to customize the script for your pc and also needs extra programs such as nircmd.
   
 Launch Audio Fix:
 
