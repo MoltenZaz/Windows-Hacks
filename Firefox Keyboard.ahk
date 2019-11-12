@@ -230,7 +230,6 @@ Numpad7::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10"
 Numpad8::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 80
 Numpad9::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 90
 Numpad0::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 100
-
 }
 
 #if (ctrltoggle = 1 && shifttoggle = 0 && alttoggle = 0 && mastertoggle = 1)
@@ -325,7 +324,6 @@ Numpad7::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 70
 Numpad8::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 80
 Numpad9::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 90
 Numpad0::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 100
-^a::return
 }
 #if (ctrltoggle = 1 && shifttoggle = 1 && alttoggle = 0 && mastertoggle = 1)
 {
