@@ -28,9 +28,7 @@ SetTitleMatchMode, 2
 ; The numpad is setup to change volume for my headphones when pressed without a hotkey, but when ctrl is used it
 ; will change the volume on my xbox and nintendo switch, which is hooked into line in and the audio out from my monitor's hdmi
 
-; This script could be adapted to work with Google Chrome, 
-; I have an older version that works on my github: https://github.com/MoltenZaz/Windows-Hacks/blob/master/Chrome%20Keyboard.ahk
-; I think chrome needs the controlfocus command in order for it to work.
+; Google Chrome version on my github: https://github.com/MoltenZaz/Windows-Hacks/blob/master/Chrome%20Keyboard.ahk
 
 ; Rarely a game will require you to reload the script after opening it to work, GTA V is the only example i've come across
 
