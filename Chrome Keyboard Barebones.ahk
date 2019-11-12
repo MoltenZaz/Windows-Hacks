@@ -202,14 +202,6 @@ PgDn::ControlSend, ahk_parent, {PgDn}, Chrome
 Space::ControlSend, ahk_parent, {Space}, Chrome
 Home::ControlSend, ahk_parent, {Home}, Chrome
 End::ControlSend, ahk_parent, {End}, Chrome
-; The numpad is setup to change volume for my headphones when pressed without a hotkey, but when ctrl is used it
-; will change the volume on my xbox and nintendo switch, which is hooked into line in and the audio out from my monitor's hdmi
-; Numpad period is set to mute my xbox/switch
-
-; YOU NEED TO HAVE NIRCMD AND SOUNDVOLUMEVIEW INSTALLED FOR THIS TO WORK!!!
-
-; It also needs to be adapted for your setup!
-
 }
 
 #if (ctrltoggle = 1 && shifttoggle = 0 && alttoggle = 0 && mastertoggle = 1)
