@@ -41,11 +41,11 @@ Easy Window Organiser:
 
 The same as Easy Window Dragging but it also adds moving and resizing windows to preset locations though hotkeys on the numpad. This script will need to be highly adapted if you dont use a 3440x1440 monitor.
 
-FF Keyboard:
+Firefox/Chrome Keyboard:
 
 My magnum opus and the script I use the most. FF Keyboard enables you to use FireFox (or can be modified to Chrome) in the background!
-Holding down the menu/appskey (key to the right of the right windows key (https://en.wikipedia.org/wiki/Menu_key)) you can press any key and have it
-sent to FireFox! This enables you to browse the interenet, change YouTube videos and much more without tabbing out of fullsceen applications such as games!
+Holding down the menu/appskey (key to the right of the right windows key (https://en.wikipedia.org/wiki/Menu_key) press appskey + capslock to toggle) you can press any key and have it
+sent to FireFox or Chrome! This enables you to browse the interenet, change YouTube videos and much more without tabbing out of fullsceen applications such as games!
 (Rarely a game will require you to reload the script after opening it to work, GTA V is the only example i've come across)
 When used in conjunction with the Vimium browser extension (firefox: https://addons.mozilla.org/en-US/firefox/addon/vimium-ff/ chrome: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
 it becomes extremely easy to use and much more convinient than tabbing out!
