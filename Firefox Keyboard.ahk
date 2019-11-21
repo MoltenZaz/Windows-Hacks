@@ -200,6 +200,7 @@ PgDn::ControlSend, ahk_parent, {PgDn}, ahk_class MozillaWindowClass
 Space::ControlSend, ahk_parent, {Space}, ahk_class MozillaWindowClass
 Home::ControlSend, ahk_parent, {Home}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {End}, ahk_class MozillaWindowClass
+Esc::ControlSend, ahk_parent, {Esc}, ahk_class MozillaWindowClass
 ; The numpad is setup to change volume for my headphones when pressed without a hotkey, but when ctrl is used it
 ; will change the volume on my xbox and nintendo switch, which is hooked into line in and the audio out from my monitor's hdmi
 ; Numpad period is set to mute my xbox/switch
