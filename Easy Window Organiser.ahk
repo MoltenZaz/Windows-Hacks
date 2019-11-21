@@ -36,17 +36,21 @@ IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
-~F20::3
+Send, {F20, Up}
 toggle := 0
+F20::3
 }
 }
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 keywait F20
 toggle := 0
+Send, {F20, Up}
 return
 }
 }
+toggle := 0
+Send, {F20, Up}
 return
 }
 
@@ -87,446 +91,88 @@ return
 toggle3 := 1
 keywait RWin
 toggle3 := 0
+return
 }
 
 #If (toggle = 1 or toggle2 = 1 or toggle3 = 1)
 {
-Numpad1::
+LCtrl::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
-{
-If (GetKeyState("XButton2", "p") or GetKeyState("Ctrl", "p"))
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
+ctrltoggle := 1
+keywait LCtrl
+ctrltoggle := 0
 return
 }
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
 
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
+RCtrl::
 {
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
+ctrltoggle := 1
+keywait RCtrl
+ctrltoggle := 0
+return
 }
-XPos=0
-YPos=700
-WPos=1146
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-}
+
+Numpad1::
+{
+If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+{
+ResizeWindow(0, 700, 1146, 700)
 }
 else
 {
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
+ResizeWindow(0, 0, 1146, 1400)
 return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=0
-YPos=0
-WPos=1146
-WPos-=WPosO
-HPos=1400
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
 }
 return
 }
 
 Numpad2::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
+If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
-If (GetKeyState("XButton2", "p") or GetKeyState("Ctrl", "p"))
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=1146
-YPos=700
-WPos=1148
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-}
+ResizeWindow(1146, 700, 1148, 700)
 }
 else
 {
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
+ResizeWindow(1146, 0, 1148, 1400)
 return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=1146
-YPos=0
-WPos=1148
-WPos-=WPosO
-HPos=1400
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
 }
 return
 }
 
 Numpad3::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
+If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
-If (GetKeyState("XButton2", "p") or GetKeyState("Ctrl", "p"))
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=2294
-YPos=700
-WPos=1146
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-return
+ResizeWindow(2294, 700, 1146, 700)
 }
 else
 {
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
+ResizeWindow(2294, 0, 1146, 1400)
 return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=2294
-YPos=0
-WPos=1146
-WPos-=WPosO
-HPos=1400
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
 }
 return
 }
 
 Numpad4::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
+If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
-If (GetKeyState("XButton2", "p") or GetKeyState("Ctrl", "p"))
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=0
-YPos=0
-WPos=1146
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-return
+ResizeWindow(0, 0, 1146, 700)
 }
 else
 {
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
+ResizeWindow(0, 0, 880, 1400)
 return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=0
-YPos=0
-WPos=880
-WPos-=WPosO
-HPos=1400
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
 }
 return
 }
 
 Numpad5::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
+If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
-If (GetKeyState("XButton2", "p") or GetKeyState("Ctrl", "p"))
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=1146
-YPos=0
-WPos=1148
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-return
+ResizeWindow(1146, 0, 1148, 700)
 }
 else
 {
@@ -537,7 +183,6 @@ IfWinNotActive, ahk_class Progman
 if isFullScreen = 1
 {
 return
-}
 }
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
@@ -547,9 +192,9 @@ gui Submit,NoHide
 MouseGetPos,,,hParentGUI
 WinRestore,ahk_id %hParentGUI%
 WinMove,ahk_id %hParentGUI%,, (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2)
-;Reload
 return
 }
+return
 }
 }
 return
@@ -557,98 +202,14 @@ return
 
 Numpad6::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
+If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
-If (GetKeyState("XButton2", "p") or GetKeyState("Ctrl", "p"))
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=2294
-YPos=0
-WPos=1146
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-return
+ResizeWindow(2294, 0, 1146, 700)
 }
 else
 {
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
+ResizeWindow(0, 700, 880, 700)
 return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=0
-YPos=700
-WPos=880
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
 }
 return
 }
@@ -706,555 +267,74 @@ return
 
 Numpad8::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
+If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
-If (GetKeyState("XButton2", "p") or GetKeyState("Ctrl", "p"))
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=0
-YPos=700
-WPos=1720
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-return
+ResizeWindow(0, 700, 1720, 700)
 }
 else
 {
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
+ResizeWindow(0, 0, 1920, 1076)
 return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=0
-YPos=0
-WPos=1920
-WPos-=WPosO
-HPos=1076
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,,, WPos, HPos
-;Reload
-return
-}
-}
 }
 return
 }
 
 Numpad9::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
+If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
-If (GetKeyState("XButton2", "p") or GetKeyState("Ctrl", "p"))
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=1720
-YPos=700
-WPos=1720
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass = Chrome_WidgetWin_1
-{
-Reload
-}
-if dclass = Qt5QWindowOwnDCIcon
-{
-Reload
-}
-return
-}
-return
+ResizeWindow(1720, 700, 1720, 700)
 }
 else
 {
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
+ResizeWindow(0, 0, 880, 700)
 return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=0
-YPos=0
-WPos=880
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
 }
 return
 }
 
 Numpad0::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=0
-YPos=0
-WPos=2560
-WPos-=WPosO
-HPos=1400
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
+ResizeWindow(0, 0, 2560, 1400)
 return
 }
 
 NumpadAdd::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=880
-YPos=0
-WPos=2560
-WPos-=WPosO
-HPos=1400
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
+ResizeWindow(880, 0, 2560, 1400)
 return
 }
 
 NumpadDot::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=2560
-YPos=0
-WPos=880
-WPos-=WPosO
-HPos=1400
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
+ResizeWindow(2560, 0, 880, 1400)
 return
 }
 
 NumpadDiv::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
+If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
-If (GetKeyState("XButton2", "p") or GetKeyState("Ctrl", "p"))
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=0
-YPos=0
-WPos=1720
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-return
+ResizeWindow(0, 0, 1720, 700)
 }
 else
 {
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
+ResizeWindow(0, 0, 1720, 1400)
 return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=0
-YPos=0
-WPos=1720
-WPos-=WPosO
-HPos=1400
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
 }
 return
 }
 
 NumpadMult::
 {
-MouseGetPos, , , id, control 
-WinGetClass, dclass, ahk_id %id% 
-if dclass != WorkerW
-if dclass != Progman
+If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
-If (GetKeyState("XButton2", "p") or GetKeyState("Ctrl", "p"))
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=1720
-YPos=0
-WPos=1720
-WPos-=WPosO
-HPos=700
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-return
+ResizeWindow(1720, 0, 1720, 700)
 }
 else
 {
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
+ResizeWindow(1720, 0, 1720, 1400)
 return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-gui Submit,NoHide
-Offset_X :=Offset_Y:=0
-
-    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
-If Offset_X < 0
-{
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
-}
-XPos=1720
-YPos=0
-WPos=1720
-WPos-=WPosO
-HPos=1400
-HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
-MouseGetPos,,,hParentGUI
-WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
-WinRestore,ahk_id %hParentGUI%
-WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
-;Reload
-return
-}
-}
 }
 return
 }
@@ -1304,7 +384,6 @@ WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
 WinRestore,ahk_id %hParentGUI%
 WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
 winmaximize,ahk_id %hParentGUI%
-;Reload
 return
 }
 }
@@ -1598,14 +677,58 @@ return
 }
 #If
 
-; make g8 and g7 forward and back when not in fullscreen
-~F18::
-MouseGetPos,,,hParentGUI
+ResizeWindow(XPos, YPos, WPos, HPos)
+{
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
 if dclass != Progman
 {
+isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
+{
+if isFullScreen = 1
+{
+return
+}
+}
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
+{
+MouseGetPos,,,hParentGUI
+WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+gui Submit,NoHide
+Offset_X :=Offset_Y:=0
+
+    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
+If Offset_X < 0
+{
+Offset_X += -1
+HPosO=-3
+HPosO+=Offset_X
+WPosO=-8
+WPosO+=Offset_X
+}
+WPos-=WPosO
+HPos-=HPosO
+XPos+=Offset_X
+YPos+=Offset_Y
+MouseGetPos,,,hParentGUI
+WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+WinRestore,ahk_id %hParentGUI%
+WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
+}
+}
+}
+
+; make g8 and g7 forward and back when not in fullscreen
+~F18::
+{
+MouseGetPos,,,hParentGUI
+MouseGetPos, , , id, control 
+WinGetClass, dclass, ahk_id %id% 
+if dclass != WorkerW
+if dclass != Progman
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
@@ -1616,7 +739,6 @@ if isFullScreen = 1
 F18::1
 return
 }
-}
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 send {Xbutton2 DOWN}
@@ -1626,14 +748,16 @@ return
 }
 }
 }
+return
+}
 
 ~F17::
+{
 MouseGetPos,,,hParentGUI
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
 if dclass != Progman
-{
 {
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
@@ -1644,7 +768,6 @@ if isFullScreen = 1
 F17::2
 return
 }
-}
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
 send {Xbutton1 DOWN}
@@ -1653,6 +776,8 @@ send {Xbutton1 UP}
 return
 }
 }
+}
+return
 }
 
 #e::
