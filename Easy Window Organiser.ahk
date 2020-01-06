@@ -22,8 +22,6 @@ SetWinDelay,0
 fffirst = 1
 
 toggle = 0
-toggle2 = 0
-toggle3 = 0
 
 #F20::
 
@@ -55,7 +53,25 @@ toggle := 0
 return
 }
 
-#if (toggle2 = 1 or toggle = 1 or toggle3 = 1)
+
+AppsKey & Pause::
+{
+Run "F:\Documents\AHK Current\Firefox Keyboard.ahk"
+Run "F:\Documents\AHK Current\YouTube Play Pause.ahk"
+if (toggle = 1)
+{
+keywait F20
+toggle = 0
+Reload
+}
+else
+{
+Reload
+}
+return
+}
+
+#if (toggle = 1)
 {
 LCtrl::
 {
@@ -245,6 +261,10 @@ Numpad9::
 If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
 ResizeWindow(1720, 700, 1720, 700)
+keywait, F20
+toggle = 0
+;Run "F:\Documents\AHK Current\Easy Window Organiser.ahk"
+Reload
 }
 else
 {
