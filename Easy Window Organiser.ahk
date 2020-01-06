@@ -4,6 +4,8 @@ Menu, Tray, Icon, shell32.dll, 300
 
 #SingleInstance force
 
+; WORKS BEST WHEN RUN AS ADMINISTRATOR
+
 ; This script was inspired by and built on many like it
 ; in the forum. Thanks go out to ck, thinkstorm, Chris,
 ; and aurelian for a job well done.
