@@ -28,7 +28,9 @@ SetTitleMatchMode, 2
 ; The numpad is setup to change volume for my headphones when pressed without a hotkey, but when ctrl is used it
 ; will change the volume on my xbox and nintendo switch, which is hooked into line in and the audio out from my monitor's hdmi
 
-; Google Chrome version on my github: https://github.com/MoltenZaz/Windows-Hacks/blob/master/Chrome%20Keyboard.ahk
+; This script could be adapted to work with Google Chrome, 
+; I have an older version that works on my github: https://github.com/MoltenZaz/Windows-Hacks/blob/master/Chrome%20Keyboard.ahk
+; I think chrome needs the controlfocus command in order for it to work.
 
 ; Rarely a game will require you to reload the script after opening it to work, GTA V is the only example i've come across
 
@@ -216,11 +218,6 @@ SoundBeep, 250, 250
 return
 }
 
-Pause::
-{
-Run "G:/AHK Current/Easy Window Organiser.ahk"
-Reload
-}
 Numpad1::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 10
 Numpad2::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 20
 Numpad3::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 30
@@ -232,7 +229,7 @@ Numpad8::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10"
 Numpad9::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 90
 Numpad0::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 100
 }
-
+#if
 #if (ctrltoggle = 1 && shifttoggle = 0 && alttoggle = 0 && mastertoggle = 1)
 {
 ; ctrl goes here
@@ -326,6 +323,7 @@ Numpad8::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 80
 Numpad9::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 90
 Numpad0::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 100
 }
+#if
 #if (ctrltoggle = 1 && shifttoggle = 1 && alttoggle = 0 && mastertoggle = 1)
 {
 ; ctrl shift goes here
@@ -367,7 +365,7 @@ PgDn::ControlSend, ahk_parent, {Ctrl down}{Shift down}{PgDn}{Ctrl up}{Shift up},
 Home::ControlSend, ahk_parent, {Ctrl down}{Shift down}{Home}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {Ctrl down}{Shift down}{End}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
 }
-
+#if
 #if (ctrltoggle = 0 && shifttoggle = 0 && alttoggle = 1 && mastertoggle = 1)
 {
 ; alt goes here
@@ -444,7 +442,7 @@ Space::ControlSend, ahk_parent, {Alt down}{space}{Alt up}, ahk_class MozillaWind
 Home::ControlSend, ahk_parent, {Alt down}{Home}{Alt up}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {Alt down}{End}{Alt up}, ahk_class MozillaWindowClass
 }
-
+#if
 #if (ctrltoggle = 0 && shifttoggle = 1 && alttoggle = 0 && mastertoggle = 1)
 {
 ; shift goes here
@@ -526,10 +524,30 @@ End::ControlSend, ahk_parent, {Shift down}{End}{Shift up}, ahk_class MozillaWind
 ; These hotkeys don't require the appskey
 
 #if
-Media_Play_Pause::
-{
-ControlSend, ahk_parent, {Media_Play_Pause}, ahk_class MozillaWindowClass
-}
+;Media_Play_Pause::
+;{
+;ControlSend, ahk_parent, {Media_Play_Pause}, ahk_class MozillaWindowClass
+;}
+
+;~Media_Play_Pause::
+;{
+;ControlSend, ahk_parent, {Ctrl down}{t}{Ctrl up}, ahk_class MozillaWindowClass
+;Sleep, 1
+;ControlSend, ahk_parent, {Ctrl down}{w}{Ctrl up}, ahk_class MozillaWindowClass
+;return
+;}
+
+; ~Appskey & Media_Play_Pause::
+; {
+; ControlSend, ahk_parent, {space}, ahk_class Qt5QWindowIcon
+; return
+; }
+
+; !Media_Play_Pause::
+; {
+; ControlSend, ahk_parent, {space}, ahk_class Qt5QWindowIcon
+; return
+; }
 
 #+F1::
 {
