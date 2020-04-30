@@ -27,6 +27,7 @@ Else
 {
 	sarcasmtoggle := 0
 	SoundBeep, 250, 50
+	SetCapsLockState, off
 }
 Return
 }
