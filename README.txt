@@ -53,7 +53,19 @@ it becomes extremely easy to use and much more convinient than tabbing out!
 Firefox/Chrome Keyboard Barebones:
 
 This version of the script has hotkeys specific to my computer removed, such as using the numpad to change volume. This stuff can work on your pc but requires you to customize the script for your pc and also needs extra programs such as nircmd.
-  
+
+Internet Assistant:
+
+Select a word or phrase and press a hotkey to search it on the internet.
+Win+G searches on google.
+Win+Shift+D defines on google.
+Win+T translates on google translate.
+Win+Shift+T searches on thesaurus.com.
+Win+U searches on urban dictionary.
+Win+W opens the wikipedia article.
+Win+Shift+W searches on wikipedia.
+RAlt+Capslock toggles SaRcAsM tExT.
+
 Launch Audio Fix:
 
 This simply opens audio fix while hiding the command prompt window.
@@ -67,16 +79,6 @@ Volume Equaliser:
   
 This script resets the windows volume mixer, making all applications audio back to full. I don't recommend running on startup.
 I have it setup as an app in the start menu and whenever I need to reset the mixer I'll run it.
-
-Word Definer:
-
-Select a word or phrase and press a hotkey to search it on the internet.
-Win+G searches on google.
-Win+Shift+D defines on google.
-Win+T searches on thesaurus.com.
-Win+U searches on urban dictionary.
-Win+W opens the wikipedia article.
-Win+Shift+W searches on wikipedia.
 
 Thank you for looking at my scripts, I hope they are useful.
 
