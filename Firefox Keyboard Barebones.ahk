@@ -268,9 +268,9 @@ F11::ControlSend, ahk_parent, {Ctrl down}{F11}{Ctrl up}, ahk_class MozillaWindow
 F12::ControlSend, ahk_parent, {Ctrl down}{F12}{Ctrl up}, ahk_class MozillaWindowClass
 Enter::
 {
-ControlSend, ahk_parent, {Ctrl down}{t}{Ctrl up}, ahk_class MozillaWindowClass
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
 Sleep, 1
-ControlSend, ahk_parent, {Ctrl down}{w}{Ctrl up}, ahk_class MozillaWindowClass
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
 ;ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
 return
 }
