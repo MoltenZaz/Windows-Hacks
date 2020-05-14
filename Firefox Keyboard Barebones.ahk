@@ -1,7 +1,6 @@
  Menu, Tray, Icon, pifmgr.dll, 13
 #NoEnv
 #SingleInstance force
-#Include VA.ahk
 SendMode Input
 SetTitleMatchMode, 2
 SetWorkingDir %A_ScriptDir%
