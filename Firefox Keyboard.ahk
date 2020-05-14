@@ -1,8 +1,10 @@
-Menu, Tray, Icon, pifmgr.dll, 13
-
+ Menu, Tray, Icon, pifmgr.dll, 13
+#NoEnv
 #SingleInstance force
-
+#Include VA.ahk
+SendMode Input
 SetTitleMatchMode, 2
+SetWorkingDir %A_ScriptDir%
 
 ; Proudly Created by Mitchell Thomas
 
@@ -17,7 +19,7 @@ SetTitleMatchMode, 2
 
 ; Here are my Vimium custom key mappings (remove the semicolons): 
 ;unmapAll
-;map <backspace> goBack
+;map <backspace> goBack2
 ;map \ LinkHints.activateMode
 ;map | LinkHints.activateModeToOpenInNewTab
 
@@ -36,11 +38,70 @@ SetTitleMatchMode, 2
 
 ; You can toggle the script to be always on by pressing appskey + capslock (so that you dont have to keep holding appskey while typing)
 
+DoFocus = 0
 ctrltoggle = 0
 shifttoggle = 0
 alttoggle = 0
 toggle = 0
 toggle2 = 0
+
+Loop
+{
+WinWaitNotActive, Mozilla Firefox
+Focus(DoFocus)
+;ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
+WinWaitActive, Mozilla Firefox
+DoFocus = 1
+;ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
+}
+
+Focus(DoFocus)
+{
+If (DoFocus = 1)
+{
+WinGetPos,,,FFW,FFH,Mozilla Firefox
+If (FFW = 1920 && FFH = 1080)
+{
+return
+}
+If (FFW = 3440 && FFH = 1440)
+{
+return
+}
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+Sleep, 1
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+Sleep, 1
+DoFocus = 0
+}
+return
+}
+
+;oneHanded = 0
+
+;~^!+AppsKey::
+;{
+;If oneHanded = 0
+;{
+;	oneHanded = 1
+;	SoundBeep, 500, 50
+;}
+;Else
+;{
+;	oneHanded = 0
+;	SoundBeep, 250, 50
+;}
+;Return
+;}
+
+;#if (oneHanded = 1)
+;{
+;RAlt::RShift
+;RShift::Backspace
+;}
+;#if
+
+~AppsKey & NumpadEnter::F14
 
 ~AppsKey & ~Capslock::
 {
@@ -65,6 +126,24 @@ Return
 
 AppsKey::
 {
+	; ; ; ;; ------------------------------------------------------------------- ;;
+	; ; ; ; This section remaps appskey to backspace when using left hand dvorak
+	; ; ; SetFormat, Integer, H
+	; ; ; aac1:= % DllCall("GetKeyboardLayout", Int,DllCall("GetWindowThreadProcessId", int,WinActive("A"), Int,0))
+	; ; ; send %aac1%
+	; ; ; SetFormat, Integer, D
+	; ; ; if aac1 = -0xFE5F3F7
+	;if oneHanded = 1
+	;{
+	;SoundBeep, 500, 500
+	; Send {Backspace Down}
+	; keywait AppsKey
+	; ; Send {Backspace Up}
+	;AppsKey::Backspace
+	;mastertoggle := 0
+	;toggle := 0
+	;return
+	;}
 	toggle := 1
 	mastertoggle := 1
 	keywait AppsKey
@@ -203,21 +282,13 @@ Space::ControlSend, ahk_parent, {Space}, ahk_class MozillaWindowClass
 Home::ControlSend, ahk_parent, {Home}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {End}, ahk_class MozillaWindowClass
 Esc::ControlSend, ahk_parent, {Esc}, ahk_class MozillaWindowClass
-; The numpad is setup to change volume for my headphones when pressed without a hotkey, but when ctrl is used it
-; will change the volume on my xbox and nintendo switch, which is hooked into line in and the audio out from my monitor's hdmi
-; Numpad period is set to mute my xbox/switch
-
-; YOU NEED TO HAVE NIRCMD AND SOUNDVOLUMEVIEW INSTALLED FOR THIS TO WORK!!!
-
-; It also needs to be adapted for your setup!
-
+;~Pause::Reload
 NumpadDot::
 {
 run "F:\Documents\Nircmd\SoundVolumeView.exe" /Switch "Consoles"
 SoundBeep, 250, 250
 return
 }
-
 Numpad1::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 10
 Numpad2::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 20
 Numpad3::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 30
@@ -228,8 +299,24 @@ Numpad7::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10"
 Numpad8::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 80
 Numpad9::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 90
 Numpad0::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 100
+
+Volume_Up::
+{
+; AppVolume("EliteDangerous64.exe").AdjustVolume(2)
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(2)
+return
+}
+Volume_Down::
+{
+; AppVolume("EliteDangerous64.exe").AdjustVolume(2)
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(-2)
+return
+}
 }
 #if
+
 #if (ctrltoggle = 1 && shifttoggle = 0 && alttoggle = 0 && mastertoggle = 1)
 {
 ; ctrl goes here
@@ -294,9 +381,10 @@ F11::ControlSend, ahk_parent, {Ctrl down}{F11}{Ctrl up}, ahk_class MozillaWindow
 F12::ControlSend, ahk_parent, {Ctrl down}{F12}{Ctrl up}, ahk_class MozillaWindowClass
 Enter::
 {
-ControlSend, ahk_parent, {Ctrl down}{t}{Ctrl up}, ahk_class MozillaWindowClass
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
 Sleep, 1
-ControlSend, ahk_parent, {Ctrl down}{w}{Ctrl up}, ahk_class MozillaWindowClass
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+Sleep, 1
 ;ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
 return
 }
@@ -312,6 +400,7 @@ PgDn::ControlSend, ahk_parent, {Ctrl down}{PgDn}{Ctrl up}, ahk_class MozillaWind
 Space::ControlSend, ahk_parent, {Ctrl down}{space}{Ctrl up}, ahk_class MozillaWindowClass
 Home::ControlSend, ahk_parent, {Ctrl down}{Home}{Ctrl up}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {Ctrl down}{End}{Ctrl up}, ahk_class MozillaWindowClass
+
 Numpad1::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 10
 Numpad2::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 20
 Numpad3::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 30
@@ -324,6 +413,7 @@ Numpad9::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 90
 Numpad0::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 100
 }
 #if
+
 #if (ctrltoggle = 1 && shifttoggle = 1 && alttoggle = 0 && mastertoggle = 1)
 {
 ; ctrl shift goes here
@@ -366,6 +456,7 @@ Home::ControlSend, ahk_parent, {Ctrl down}{Shift down}{Home}{Ctrl up}{Shift up},
 End::ControlSend, ahk_parent, {Ctrl down}{Shift down}{End}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
 }
 #if
+
 #if (ctrltoggle = 0 && shifttoggle = 0 && alttoggle = 1 && mastertoggle = 1)
 {
 ; alt goes here
@@ -441,12 +532,72 @@ PgDn::ControlSend, ahk_parent, {Alt down}{PgDn}{Alt up}, ahk_class MozillaWindow
 Space::ControlSend, ahk_parent, {Alt down}{space}{Alt up}, ahk_class MozillaWindowClass
 Home::ControlSend, ahk_parent, {Alt down}{Home}{Alt up}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {Alt down}{End}{Alt up}, ahk_class MozillaWindowClass
+Numpad1::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolumeSet(10)
+return
+}
+Numpad2::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolumeSet(20)
+return
+}
+Numpad3::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolumeSet(30)
+return
+}
+Numpad4::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolumeSet(40)
+return
+}
+Numpad5::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolumeSet(50)
+return
+}
+Numpad6::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolumeSet(60)
+return
+}
+Numpad7::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolumeSet(70)
+return
+}
+Numpad8::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolumeSet(80)
+return
+}
+Numpad9::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolumeSet(90)
+return
+}
+Numpad0::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolumeSet(100)
+return
+}
 }
 #if
+
 #if (ctrltoggle = 0 && shifttoggle = 1 && alttoggle = 0 && mastertoggle = 1)
 {
 ; shift goes here
-
 a::ControlSend, ahk_parent, {Shift down}a{Shift up}, ahk_class MozillaWindowClass
 b::ControlSend, ahk_parent, {Shift down}b{Shift up}, ahk_class MozillaWindowClass
 c::ControlSend, ahk_parent, {Shift down}c{Shift up}, ahk_class MozillaWindowClass
@@ -520,10 +671,84 @@ Space::ControlSend, ahk_parent, {Shift down}{space}{Shift up}, ahk_class Mozilla
 Home::ControlSend, ahk_parent, {Shift down}{Home}{Shift up}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {Shift down}{End}{Shift up}, ahk_class MozillaWindowClass
 }
+#if
 
+#If (ctrltoggle = 1 && shifttoggle = 0 && alttoggle = 1 && mastertoggle = 1)
+{
+Numpad1::
+{
+AppVolume("firefox.exe").AdjustVolumeSet(10)
+AppVolume("Plex.exe").AdjustVolumeSet(10)
+AppVolume("vlc.exe").AdjustVolumeSet(10)
+return
+}
+Numpad2::
+{
+AppVolume("firefox.exe").AdjustVolumeSet(20)
+AppVolume("Plex.exe").AdjustVolumeSet(20)
+AppVolume("vlc.exe").AdjustVolumeSet(20)
+return
+}
+Numpad3::
+{
+AppVolume("firefox.exe").AdjustVolumeSet(30)
+AppVolume("Plex.exe").AdjustVolumeSet(30)
+AppVolume("vlc.exe").AdjustVolumeSet(30)
+return
+}
+Numpad4::
+{
+AppVolume("firefox.exe").AdjustVolumeSet(40)
+AppVolume("Plex.exe").AdjustVolumeSet(40)
+AppVolume("vlc.exe").AdjustVolumeSet(40)
+return
+}
+Numpad5::
+{
+AppVolume("firefox.exe").AdjustVolumeSet(50)
+AppVolume("Plex.exe").AdjustVolumeSet(50)
+AppVolume("vlc.exe").AdjustVolumeSet(50)
+return
+}
+Numpad6::
+{
+AppVolume("firefox.exe").AdjustVolumeSet(60)
+AppVolume("Plex.exe").AdjustVolumeSet(60)
+AppVolume("vlc.exe").AdjustVolumeSet(60)
+return
+}
+Numpad7::
+{
+AppVolume("firefox.exe").AdjustVolumeSet(70)
+AppVolume("Plex.exe").AdjustVolumeSet(70)
+AppVolume("vlc.exe").AdjustVolumeSet(70)
+return
+}
+Numpad8::
+{
+AppVolume("firefox.exe").AdjustVolumeSet(80)
+AppVolume("Plex.exe").AdjustVolumeSet(80)
+AppVolume("vlc.exe").AdjustVolumeSet(80)
+return
+}
+Numpad9::
+{
+AppVolume("firefox.exe").AdjustVolumeSet(90)
+AppVolume("Plex.exe").AdjustVolumeSet(90)
+AppVolume("vlc.exe").AdjustVolumeSet(90)
+return
+}
+Numpad0::
+{
+AppVolume("firefox.exe").AdjustVolumeSet(100)
+AppVolume("Plex.exe").AdjustVolumeSet(100)
+AppVolume("vlc.exe").AdjustVolumeSet(100)
+return
+}
+}
+#if
 ; These hotkeys don't require the appskey
 
-#if
 ;Media_Play_Pause::
 ;{
 ;ControlSend, ahk_parent, {Media_Play_Pause}, ahk_class MozillaWindowClass
@@ -549,6 +774,23 @@ End::ControlSend, ahk_parent, {Shift down}{End}{Shift up}, ahk_class MozillaWind
 ; return
 ; }
 
+^Volume_Up::
+{
+; AppVolume("EliteDangerous64.exe").AdjustVolume(2)
+AppVolume("firefox.exe").AdjustVolume(3)
+AppVolume("Plex.exe").AdjustVolume(3)
+AppVolume("vlc.exe").AdjustVolume(3)
+return
+}
+^Volume_Down::
+{
+; AppVolume("EliteDangerous64.exe").AdjustVolume(2)
+AppVolume("firefox.exe").AdjustVolume(-3)
+AppVolume("Plex.exe").AdjustVolume(-3)
+AppVolume("vlc.exe").AdjustVolume(-3)
+return
+}
+
 #+F1::
 {
 ;run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput mDP /Exit
@@ -570,16 +812,155 @@ run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput
 return
 }
 
-~Scrolllock::
+; ~Scrolllock::
+; {
+; ;GetKeyState, state, ScrollLock, T ; state will be 'D' if ScrollLock is on or 'U' if it is off
+; state := GetKeyState("ScrollLock", "T")
+; if state = 1
+; {
+      ; run "F:\Documents\Nircmd\SoundVolumeView.exe" /Mute "RODE Microphone"
+; }
+   ; Else
+; {
+      ; run "F:\Documents\Nircmd\SoundVolumeView.exe" /Unmute "RODE Microphone"
+; }
+; return
+; }
+
+
+AppVolume(app:="", device:="")
 {
-GetKeyState, state, ScrollLock, T ; state will be 'D' if ScrollLock is on or 'U' if it is off
-if ( state = "D" )
-{
-      run "F:\Documents\Nircmd\SoundVolumeView.exe" /Mute "RODE Microphone"
+	return new AppVolume(app, device)
 }
-   Else
+
+class AppVolume
 {
-      run "F:\Documents\Nircmd\SoundVolumeView.exe" /Unmute "RODE Microphone"
+	ISAVs := []
+	
+	__New(app:="", device:="")
+	{
+		static IID_IASM2 := "{77AA99A0-1BD6-484F-8BC7-2C654C9A9B6F}"
+		, IID_IASC2 := "{BFB7FF88-7239-4FC9-8FA2-07C950BE9C6D}"
+		, IID_ISAV := "{87CE5498-68D6-44E5-9215-6DA47EF883D8}"
+		
+		; Activate the session manager of the given device
+		pIMMD := VA_GetDevice(device)
+		VA_IMMDevice_Activate(pIMMD, IID_IASM2, 0, 0, pIASM2)
+		ObjRelease(pIMMD)
+		
+		; Enumerate sessions for on this device
+		VA_IAudioSessionManager2_GetSessionEnumerator(pIASM2, pIASE)
+		ObjRelease(pIASM2)
+		
+		; Search for audio sessions with a matching process ID or Name
+		VA_IAudioSessionEnumerator_GetCount(pIASE, Count)
+		Loop, % Count
+		{
+			; Get this session's IAudioSessionControl2 via its IAudioSessionControl
+			VA_IAudioSessionEnumerator_GetSession(pIASE, A_Index-1, pIASC)
+			pIASC2 := ComObjQuery(pIASC, IID_IASC2)
+			ObjRelease(pIASC)
+			
+			; If its PID matches save its ISimpleAudioVolume pointer
+			VA_IAudioSessionControl2_GetProcessID(pIASC2, PID)
+			if (PID == app || this.GetProcessName(PID) == app)
+				this.ISAVs.Push(ComObjQuery(pIASC2, IID_ISAV))
+			
+			ObjRelease(pIASC2)
+		}
+		
+		; Release the IAudioSessionEnumerator
+		ObjRelease(pIASE)
+	}
+	
+	__Delete()
+	{
+		for k, pISAV in this.ISAVs
+			ObjRelease(pISAV)
+	}
+	
+	AdjustVolume(Amount)
+	{
+		return this.SetVolume(this.GetVolume() + Amount)
+	}
+	
+	AdjustVolumeSet(Amount)
+	{
+		return this.SetVolume(Amount)
+	}
+	
+	GetVolume()
+	{
+		for k, pISAV in this.ISAVs
+		{
+			VA_ISimpleAudioVolume_GetMasterVolume(pISAV, fLevel)
+			return fLevel * 100
+		}
+	}
+	
+	SetVolume(level)
+	{
+		level := level>100 ? 100 : level<0 ? 0 : level ; Limit to range 0-100
+		for k, pISAV in this.ISAVs
+			VA_ISimpleAudioVolume_SetMasterVolume(pISAV, level / 100)
+		return level
+	}
+	
+	GetMute()
+	{
+		for k, pISAV in this.ISAVs
+		{
+			VA_ISimpleAudioVolume_GetMute(pISAV, bMute)
+			return bMute
+		}
+	}
+	
+	SetMute(bMute)
+	{
+		for k, pISAV in this.ISAVs
+			VA_ISimpleAudioVolume_SetMute(pISAV, bMute)
+		return bMute
+	}
+	
+	ToggleMute()
+	{
+		return this.SetMute(!this.GetMute())
+	}
+	
+	GetProcessName(PID) {
+		hProcess := DllCall("OpenProcess"
+		, "UInt", 0x1000 ; DWORD dwDesiredAccess (PROCESS_QUERY_LIMITED_INFORMATION)
+		, "UInt", False  ; BOOL  bInheritHandle
+		, "UInt", PID    ; DWORD dwProcessId
+		, "UPtr")
+		dwSize := VarSetCapacity(strExeName, 512 * A_IsUnicode, 0) // A_IsUnicode
+		DllCall("QueryFullProcessImageName"
+		, "UPtr", hProcess  ; HANDLE hProcess
+		, "UInt", 0         ; DWORD  dwFlags
+		, "Str", strExeName ; LPSTR  lpExeName
+		, "UInt*", dwSize   ; PDWORD lpdwSize
+		, "UInt")
+		DllCall("CloseHandle", "UPtr", hProcess, "UInt")
+		SplitPath, strExeName, strExeName
+		return strExeName
+	}
 }
-return
+
+
+; --- Vista Audio Additions ---
+
+;
+; ISimpleAudioVolume : {87CE5498-68D6-44E5-9215-6DA47EF883D8}
+;
+VA_ISimpleAudioVolume_SetMasterVolume(this, ByRef fLevel, GuidEventContext="") {
+	return DllCall(NumGet(NumGet(this+0)+3*A_PtrSize), "ptr", this, "float", fLevel, "ptr", VA_GUID(GuidEventContext))
+}
+VA_ISimpleAudioVolume_GetMasterVolume(this, ByRef fLevel) {
+	return DllCall(NumGet(NumGet(this+0)+4*A_PtrSize), "ptr", this, "float*", fLevel)
+}
+VA_ISimpleAudioVolume_SetMute(this, ByRef Muted, GuidEventContext="") {
+	return DllCall(NumGet(NumGet(this+0)+5*A_PtrSize), "ptr", this, "int", Muted, "ptr", VA_GUID(GuidEventContext))
+}
+VA_ISimpleAudioVolume_GetMute(this, ByRef Muted) {
+	return DllCall(NumGet(NumGet(this+0)+6*A_PtrSize), "ptr", this, "int*", Muted)
 }
