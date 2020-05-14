@@ -43,8 +43,6 @@ The same as Easy Window Dragging but it also adds moving and resizing windows to
 
 Firefox/Chrome Keyboard:
 
-Press F11 twice to gain firefox focus (this won't minimize any fullscreen apps). Firefox needs to think it's in focus to do certain tasks, like open a video in fullscreen. Pressing F11 makes firefox think it's in focus, opening a new tab (ctrl t) also does this.
-
 My magnum opus and the script I use the most. FF Keyboard enables you to use FireFox (or can be modified to Chrome) in the background!
 Holding down the menu/appskey (key to the right of the right windows key (https://en.wikipedia.org/wiki/Menu_key) press appskey + capslock to toggle) you can press any key and have it
 sent to FireFox or Chrome! This enables you to browse the interenet, change YouTube videos and much more without tabbing out of fullsceen applications such as games!
@@ -53,8 +51,6 @@ When used in conjunction with the Vimium browser extension (firefox: https://add
 it becomes extremely easy to use and much more convinient than tabbing out!
 
 Firefox/Chrome Keyboard Barebones:
-
-Press F11 twice to gain firefox focus (this won't minimize any fullscreen apps). Firefox needs to think it's in focus to do certain tasks, like open a video in fullscreen. Pressing F11 makes firefox think it's in focus, opening a new tab (ctrl t) also does this.
 
 This version of the script has hotkeys specific to my computer removed, such as using the numpad to change volume. This stuff can work on your pc but requires you to customize the script for your pc and also needs extra programs such as nircmd.
 
