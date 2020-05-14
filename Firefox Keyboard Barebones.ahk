@@ -100,8 +100,6 @@ return
 ;}
 ;#if
 
-~AppsKey & NumpadEnter::F14
-
 ~AppsKey & ~Capslock::
 {
 KeyDown := !KeyDown
