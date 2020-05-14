@@ -79,8 +79,6 @@ DoFocus = 0
 return
 }
 
-~AppsKey & NumpadEnter::F14
-
 ~AppsKey & ~Capslock::
 {
 KeyDown := !KeyDown
