@@ -49,6 +49,8 @@ sent to FireFox or Chrome! This enables you to browse the interenet, change YouT
 (Rarely a game will require you to reload the script after opening it to work, GTA V is the only example i've come across)
 When used in conjunction with the Vimium browser extension (firefox: https://addons.mozilla.org/en-US/firefox/addon/vimium-ff/ chrome: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
 it becomes extremely easy to use and much more convinient than tabbing out!
+NEW FEATURE: Hold ctrl and use the volume keys/wheel to change the volume of firefox/vlc/plex in the windows mixer. Hold AppsKey and use the volume keys/wheel to control the volume of the application that is currently focused in the same way, including games!
+Use the AppsKey with the numpad to set to a specific volume ie AppsKey+Numpad1 = 10% volume.
 
 Firefox/Chrome Keyboard Barebones:
 
