@@ -39,6 +39,8 @@ Win/F20 + Middle Button: Close a window.
 
 Easy Window Organiser:
 
+--------> WinGetPosEx.ahk IS REQUIRED FOR THIS SCRIPT TO RUN. <--------
+
 The same as Easy Window Dragging but it also adds moving and resizing windows to preset locations though hotkeys on the numpad. This script will need to be highly adapted if you dont use a 3440x1440 monitor.
 
 Firefox/Chrome Keyboard:
