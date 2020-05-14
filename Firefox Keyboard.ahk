@@ -289,16 +289,16 @@ run "F:\Documents\Nircmd\SoundVolumeView.exe" /Switch "Consoles"
 SoundBeep, 250, 250
 return
 }
-Numpad1::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 10
-Numpad2::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 20
-Numpad3::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 30
-Numpad4::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 40
-Numpad5::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 50
-Numpad6::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 60
-Numpad7::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 70
-Numpad8::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 80
-Numpad9::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 90
-Numpad0::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "FiiO DAC-E10" 100
+Numpad1::SoundSet, 10, Master
+Numpad2::SoundSet, 20, Master
+Numpad3::SoundSet, 30, Master
+Numpad4::SoundSet, 40, Master
+Numpad5::SoundSet, 50, Master
+Numpad6::SoundSet, 60, Master
+Numpad7::SoundSet, 70, Master
+Numpad8::SoundSet, 80, Master
+Numpad9::SoundSet, 90, Master
+Numpad0::SoundSet, 100, Master
 
 Volume_Up::
 {
