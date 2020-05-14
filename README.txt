@@ -43,6 +43,8 @@ The same as Easy Window Dragging but it also adds moving and resizing windows to
 
 Firefox/Chrome Keyboard:
 
+--------> VA.ahk IS REQUIRED FOR THIS SCRIPT TO RUN. <--------
+
 My magnum opus and the script I use the most. FF Keyboard enables you to use FireFox (or can be modified to Chrome) in the background!
 Holding down the menu/appskey (key to the right of the right windows key (https://en.wikipedia.org/wiki/Menu_key) press appskey + capslock to toggle) you can press any key and have it
 sent to FireFox or Chrome! This enables you to browse the interenet, change YouTube videos and much more without tabbing out of fullsceen applications such as games!
@@ -54,6 +56,7 @@ Use the AppsKey with the numpad to set to a specific volume ie AppsKey+Numpad1 =
 
 Firefox/Chrome Keyboard Barebones:
 
+VA.ahk is NOT required for this version of the script.
 This version of the script has hotkeys specific to my computer removed, such as using the numpad to change volume. This stuff can work on your pc but requires you to customize the script for your pc and also needs extra programs such as nircmd.
 
 Internet Assistant:
