@@ -143,3 +143,4 @@ WinGetPosEx(hWindow,ByRef X="",ByRef Y="",ByRef Width="",ByRef Height="",ByRef O
     NumPut(Offset_Y:=(Height-GWR_Height)//2,RECTPlus,20,"Int")
     Return &RECTPlus
     }
+
