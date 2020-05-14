@@ -2,13 +2,9 @@
 Coordmode, Mouse, Screen
 Menu, Tray, Icon, shell32.dll, 300
 
-#SingleInstance force
-
 #include WinGetPosEx.ahk
 
-; WORKS BEST WHEN RUN AS ADMINISTRATOR
-
-; THIS SCRIPT REQUIRES WinGetPosEx.ahk TO BE IN THE SAME FOLDER AS IT
+#SingleInstance force
 
 ; This script was inspired by and built on many like it
 ; in the forum. Thanks go out to ck, thinkstorm, Chris,
@@ -56,24 +52,6 @@ return
 }
 }
 toggle := 0
-return
-}
-
-
-AppsKey & Pause::
-{
-Run "F:\Documents\AHK Current\Firefox Keyboard.ahk"
-Run "F:\Documents\AHK Current\YouTube Play Pause.ahk"
-if (toggle = 1)
-{
-keywait F20
-toggle = 0
-Reload
-}
-else
-{
-Reload
-}
 return
 }
 
@@ -241,7 +219,6 @@ MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
 WinRestore,ahk_id %hParentGUI%
 WinMove,ahk_id %hParentGUI%,,,, WPos, HPos
-;Reload
 return
 }
 }
@@ -267,10 +244,6 @@ Numpad9::
 If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
 ResizeWindow(1720, 700, 1720, 700)
-keywait, F20
-toggle = 0
-;Run "F:\Documents\AHK Current\Easy Window Organiser.ahk"
-Reload
 }
 else
 {
@@ -1256,8 +1229,47 @@ IfWinExist %currentWindow%
 If (ahk_exe = Explorer.EXE)
 {
 	MouseGetPos, XPos, YPos
+	if (XPos > 3440)
+	{
+	XPos -= 500
+	YPos -= 300
+	if (XPos <3440)
+	{
+	XPos = 3432
+	}
+	if (YPos < 473)
+	{
+	YPos = 471
+	}
+	if (XPos > 4368)
+	{
+	XPos = 4368
+	}
+	if (YPos > 960)
+	{
+	YPos = 960
+	}
+	WinMove,This PC,,XPos, YPos, 1000, 600
+	return
+	}
 	XPos -= 648
 	YPos -= 363
+	if (XPos <0)
+	{
+	XPos = -8
+	}
+	if (YPos <0)
+	{
+	YPos = -2
+	}
+	if (XPos > 2152)
+	{
+	XPos = 2152
+	}
+	if (YPos > 682)
+	{
+	YPos = 682
+	}
    WinMove,This PC,,XPos, YPos, 1296, 727
    return
 }
