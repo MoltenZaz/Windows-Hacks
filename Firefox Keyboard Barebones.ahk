@@ -1,8 +1,10 @@
-Menu, Tray, Icon, pifmgr.dll, 13
-
+ Menu, Tray, Icon, pifmgr.dll, 13
+#NoEnv
 #SingleInstance force
-
+#Include VA.ahk
+SendMode Input
 SetTitleMatchMode, 2
+SetWorkingDir %A_ScriptDir%
 
 ; Proudly Created by Mitchell Thomas
 
@@ -17,7 +19,7 @@ SetTitleMatchMode, 2
 
 ; Here are my Vimium custom key mappings (remove the semicolons): 
 ;unmapAll
-;map <backspace> goBack
+;map <backspace> goBack2
 ;map \ LinkHints.activateMode
 ;map | LinkHints.activateModeToOpenInNewTab
 
@@ -36,11 +38,70 @@ SetTitleMatchMode, 2
 
 ; You can toggle the script to be always on by pressing appskey + capslock (so that you dont have to keep holding appskey while typing)
 
+DoFocus = 0
 ctrltoggle = 0
 shifttoggle = 0
 alttoggle = 0
 toggle = 0
 toggle2 = 0
+
+Loop
+{
+WinWaitNotActive, Mozilla Firefox
+Focus(DoFocus)
+;ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
+WinWaitActive, Mozilla Firefox
+DoFocus = 1
+;ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
+}
+
+Focus(DoFocus)
+{
+If (DoFocus = 1)
+{
+WinGetPos,,,FFW,FFH,Mozilla Firefox
+If (FFW = 1920 && FFH = 1080)
+{
+return
+}
+If (FFW = 3440 && FFH = 1440)
+{
+return
+}
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+Sleep, 1
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+Sleep, 1
+DoFocus = 0
+}
+return
+}
+
+;oneHanded = 0
+
+;~^!+AppsKey::
+;{
+;If oneHanded = 0
+;{
+;	oneHanded = 1
+;	SoundBeep, 500, 50
+;}
+;Else
+;{
+;	oneHanded = 0
+;	SoundBeep, 250, 50
+;}
+;Return
+;}
+
+;#if (oneHanded = 1)
+;{
+;RAlt::RShift
+;RShift::Backspace
+;}
+;#if
+
+~AppsKey & NumpadEnter::F14
 
 ~AppsKey & ~Capslock::
 {
@@ -65,6 +126,24 @@ Return
 
 AppsKey::
 {
+	; ; ; ;; ------------------------------------------------------------------- ;;
+	; ; ; ; This section remaps appskey to backspace when using left hand dvorak
+	; ; ; SetFormat, Integer, H
+	; ; ; aac1:= % DllCall("GetKeyboardLayout", Int,DllCall("GetWindowThreadProcessId", int,WinActive("A"), Int,0))
+	; ; ; send %aac1%
+	; ; ; SetFormat, Integer, D
+	; ; ; if aac1 = -0xFE5F3F7
+	;if oneHanded = 1
+	;{
+	;SoundBeep, 500, 500
+	; Send {Backspace Down}
+	; keywait AppsKey
+	; ; Send {Backspace Up}
+	;AppsKey::Backspace
+	;mastertoggle := 0
+	;toggle := 0
+	;return
+	;}
 	toggle := 1
 	mastertoggle := 1
 	keywait AppsKey
@@ -202,7 +281,10 @@ PgDn::ControlSend, ahk_parent, {PgDn}, ahk_class MozillaWindowClass
 Space::ControlSend, ahk_parent, {Space}, ahk_class MozillaWindowClass
 Home::ControlSend, ahk_parent, {Home}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {End}, ahk_class MozillaWindowClass
+Esc::ControlSend, ahk_parent, {Esc}, ahk_class MozillaWindowClass
+;~Pause::Reload
 }
+#if
 
 #if (ctrltoggle = 1 && shifttoggle = 0 && alttoggle = 0 && mastertoggle = 1)
 {
@@ -266,14 +348,7 @@ F9::ControlSend, ahk_parent, {Ctrl down}{F9}{Ctrl up}, ahk_class MozillaWindowCl
 F10::ControlSend, ahk_parent, {Ctrl down}{F10}{Ctrl up}, ahk_class MozillaWindowClass
 F11::ControlSend, ahk_parent, {Ctrl down}{F11}{Ctrl up}, ahk_class MozillaWindowClass
 F12::ControlSend, ahk_parent, {Ctrl down}{F12}{Ctrl up}, ahk_class MozillaWindowClass
-Enter::
-{
-ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-Sleep, 1
-ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-;ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
-return
-}
+Enter::ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
 Tab::ControlSend, ahk_parent, {Ctrl down}{Tab}{Ctrl up}, ahk_class MozillaWindowClass
 Left::ControlSend, ahk_parent, {Ctrl down}{Left}{Ctrl up}, ahk_class MozillaWindowClass
 Right::ControlSend, ahk_parent, {Ctrl down}{Right}{Ctrl up}, ahk_class MozillaWindowClass
@@ -287,6 +362,8 @@ Space::ControlSend, ahk_parent, {Ctrl down}{space}{Ctrl up}, ahk_class MozillaWi
 Home::ControlSend, ahk_parent, {Ctrl down}{Home}{Ctrl up}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {Ctrl down}{End}{Ctrl up}, ahk_class MozillaWindowClass
 }
+#if
+
 #if (ctrltoggle = 1 && shifttoggle = 1 && alttoggle = 0 && mastertoggle = 1)
 {
 ; ctrl shift goes here
@@ -328,6 +405,7 @@ PgDn::ControlSend, ahk_parent, {Ctrl down}{Shift down}{PgDn}{Ctrl up}{Shift up},
 Home::ControlSend, ahk_parent, {Ctrl down}{Shift down}{Home}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {Ctrl down}{Shift down}{End}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
 }
+#if
 
 #if (ctrltoggle = 0 && shifttoggle = 0 && alttoggle = 1 && mastertoggle = 1)
 {
@@ -405,11 +483,11 @@ Space::ControlSend, ahk_parent, {Alt down}{space}{Alt up}, ahk_class MozillaWind
 Home::ControlSend, ahk_parent, {Alt down}{Home}{Alt up}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {Alt down}{End}{Alt up}, ahk_class MozillaWindowClass
 }
+#if
 
 #if (ctrltoggle = 0 && shifttoggle = 1 && alttoggle = 0 && mastertoggle = 1)
 {
 ; shift goes here
-
 a::ControlSend, ahk_parent, {Shift down}a{Shift up}, ahk_class MozillaWindowClass
 b::ControlSend, ahk_parent, {Shift down}b{Shift up}, ahk_class MozillaWindowClass
 c::ControlSend, ahk_parent, {Shift down}c{Shift up}, ahk_class MozillaWindowClass
@@ -483,5 +561,4 @@ Space::ControlSend, ahk_parent, {Shift down}{space}{Shift up}, ahk_class Mozilla
 Home::ControlSend, ahk_parent, {Shift down}{Home}{Shift up}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {Shift down}{End}{Shift up}, ahk_class MozillaWindowClass
 }
-
 #if
