@@ -30,6 +30,10 @@ SetWorkingDir %A_ScriptDir%
 ; The numpad is setup to change volume for my headphones when pressed without a hotkey, but when ctrl is used it
 ; will change the volume on my xbox and nintendo switch, which is hooked into line in and the audio out from my monitor's hdmi
 
+; Hold ctrl and use the volume keys/wheel to change the volume of firefox/vlc/plex in the windows mixer. 
+; Hold AppsKey and use the volume keys/wheel to control the volume of the application that is currently focused in the same way, including games!
+; Use the AppsKey with the numpad to set to a specific volume ie AppsKey+Numpad1 = 10% volume.
+
 ; This script could be adapted to work with Google Chrome, 
 ; I have an older version that works on my github: https://github.com/MoltenZaz/Windows-Hacks/blob/master/Chrome%20Keyboard.ahk
 ; I think chrome needs the controlfocus command in order for it to work.
@@ -49,10 +53,8 @@ Loop
 {
 WinWaitNotActive, Mozilla Firefox
 Focus(DoFocus)
-;ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
 WinWaitActive, Mozilla Firefox
 DoFocus = 1
-;ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
 }
 
 Focus(DoFocus)
@@ -76,30 +78,6 @@ DoFocus = 0
 }
 return
 }
-
-;oneHanded = 0
-
-;~^!+AppsKey::
-;{
-;If oneHanded = 0
-;{
-;	oneHanded = 1
-;	SoundBeep, 500, 50
-;}
-;Else
-;{
-;	oneHanded = 0
-;	SoundBeep, 250, 50
-;}
-;Return
-;}
-
-;#if (oneHanded = 1)
-;{
-;RAlt::RShift
-;RShift::Backspace
-;}
-;#if
 
 ~AppsKey & NumpadEnter::F14
 
@@ -126,24 +104,6 @@ Return
 
 AppsKey::
 {
-	; ; ; ;; ------------------------------------------------------------------- ;;
-	; ; ; ; This section remaps appskey to backspace when using left hand dvorak
-	; ; ; SetFormat, Integer, H
-	; ; ; aac1:= % DllCall("GetKeyboardLayout", Int,DllCall("GetWindowThreadProcessId", int,WinActive("A"), Int,0))
-	; ; ; send %aac1%
-	; ; ; SetFormat, Integer, D
-	; ; ; if aac1 = -0xFE5F3F7
-	;if oneHanded = 1
-	;{
-	;SoundBeep, 500, 500
-	; Send {Backspace Down}
-	; keywait AppsKey
-	; ; Send {Backspace Up}
-	;AppsKey::Backspace
-	;mastertoggle := 0
-	;toggle := 0
-	;return
-	;}
 	toggle := 1
 	mastertoggle := 1
 	keywait AppsKey
@@ -282,10 +242,9 @@ Space::ControlSend, ahk_parent, {Space}, ahk_class MozillaWindowClass
 Home::ControlSend, ahk_parent, {Home}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {End}, ahk_class MozillaWindowClass
 Esc::ControlSend, ahk_parent, {Esc}, ahk_class MozillaWindowClass
-;~Pause::Reload
 NumpadDot::
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /Switch "Consoles"
+run "Nircmd\SoundVolumeView.exe" /Switch "Consoles"
 SoundBeep, 250, 250
 return
 }
@@ -302,14 +261,12 @@ Numpad0::SoundSet, 100, Master
 
 Volume_Up::
 {
-; AppVolume("EliteDangerous64.exe").AdjustVolume(2)
 WinGet, ProcessName, ProcessName, A
 AppVolume(ProcessName).AdjustVolume(2)
 return
 }
 Volume_Down::
 {
-; AppVolume("EliteDangerous64.exe").AdjustVolume(2)
 WinGet, ProcessName, ProcessName, A
 AppVolume(ProcessName).AdjustVolume(-2)
 return
@@ -401,16 +358,16 @@ Space::ControlSend, ahk_parent, {Ctrl down}{space}{Ctrl up}, ahk_class MozillaWi
 Home::ControlSend, ahk_parent, {Ctrl down}{Home}{Ctrl up}, ahk_class MozillaWindowClass
 End::ControlSend, ahk_parent, {Ctrl down}{End}{Ctrl up}, ahk_class MozillaWindowClass
 
-Numpad1::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 10
-Numpad2::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 20
-Numpad3::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 30
-Numpad4::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
-Numpad5::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 50
-Numpad6::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 60
-Numpad7::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 70
-Numpad8::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 80
-Numpad9::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 90
-Numpad0::run "F:\Documents\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 100
+Numpad1::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 10
+Numpad2::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 20
+Numpad3::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 30
+Numpad4::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
+Numpad5::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 50
+Numpad6::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 60
+Numpad7::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 70
+Numpad8::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 80
+Numpad9::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 90
+Numpad0::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 100
 }
 #if
 
@@ -747,36 +704,11 @@ return
 }
 }
 #if
+
 ; These hotkeys don't require the appskey
-
-;Media_Play_Pause::
-;{
-;ControlSend, ahk_parent, {Media_Play_Pause}, ahk_class MozillaWindowClass
-;}
-
-;~Media_Play_Pause::
-;{
-;ControlSend, ahk_parent, {Ctrl down}{t}{Ctrl up}, ahk_class MozillaWindowClass
-;Sleep, 1
-;ControlSend, ahk_parent, {Ctrl down}{w}{Ctrl up}, ahk_class MozillaWindowClass
-;return
-;}
-
-; ~Appskey & Media_Play_Pause::
-; {
-; ControlSend, ahk_parent, {space}, ahk_class Qt5QWindowIcon
-; return
-; }
-
-; !Media_Play_Pause::
-; {
-; ControlSend, ahk_parent, {space}, ahk_class Qt5QWindowIcon
-; return
-; }
 
 ^Volume_Up::
 {
-; AppVolume("EliteDangerous64.exe").AdjustVolume(2)
 AppVolume("firefox.exe").AdjustVolume(3)
 AppVolume("Plex.exe").AdjustVolume(3)
 AppVolume("vlc.exe").AdjustVolume(3)
@@ -784,7 +716,6 @@ return
 }
 ^Volume_Down::
 {
-; AppVolume("EliteDangerous64.exe").AdjustVolume(2)
 AppVolume("firefox.exe").AdjustVolume(-3)
 AppVolume("Plex.exe").AdjustVolume(-3)
 AppVolume("vlc.exe").AdjustVolume(-3)
@@ -794,39 +725,23 @@ return
 #+F1::
 {
 ;run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput mDP /Exit
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+run "Nircmd\SoundVolumeView.exe" /Mute "Consoles"
 return
 }
 
 #+F2::
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI /Exit
 return
 }
 
 #+F3::
 {
-run "F:\Documents\Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI2 /Exit
 return
 }
-
-; ~Scrolllock::
-; {
-; ;GetKeyState, state, ScrollLock, T ; state will be 'D' if ScrollLock is on or 'U' if it is off
-; state := GetKeyState("ScrollLock", "T")
-; if state = 1
-; {
-      ; run "F:\Documents\Nircmd\SoundVolumeView.exe" /Mute "RODE Microphone"
-; }
-   ; Else
-; {
-      ; run "F:\Documents\Nircmd\SoundVolumeView.exe" /Unmute "RODE Microphone"
-; }
-; return
-; }
-
 
 AppVolume(app:="", device:="")
 {
