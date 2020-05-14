@@ -8,6 +8,8 @@ Menu, Tray, Icon, shell32.dll, 300
 
 ; WORKS BEST WHEN RUN AS ADMINISTRATOR
 
+; THIS SCRIPT REQUIRES WinGetPosEx.ahk TO BE IN THE SAME FOLDER AS IT
+
 ; This script was inspired by and built on many like it
 ; in the forum. Thanks go out to ck, thinkstorm, Chris,
 ; and aurelian for a job well done.
