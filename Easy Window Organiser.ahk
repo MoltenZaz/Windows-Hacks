@@ -4,6 +4,8 @@ Menu, Tray, Icon, shell32.dll, 300
 
 #SingleInstance force
 
+#include WinGetPosEx.ahk
+
 ; WORKS BEST WHEN RUN AS ADMINISTRATOR
 
 ; This script was inspired by and built on many like it
@@ -1275,5 +1277,3 @@ return
 }
 return
 }
-
-#include WinGetPosEx.ahk
