@@ -17,7 +17,7 @@ Menu, Tray, Icon, shell32.dll, 300
 ;  Win + Right Button : Drag to resize a window.
 ;  Win + Mouse Back   : Minimize a window.
 ;  Win + Mouse Forward: Maximize/Restore a window.
-;  Win + Middle Button: Close a window.
+;  Win + Middle Button: Close a window.S
 
 SetWinDelay,0
 
@@ -52,6 +52,15 @@ return
 }
 }
 toggle := 0
+return
+}
+
+Refresh:
+{
+SoundBeep, 300, 50
+Run "F:\Documents\AHK Current\Firefox Keyboard.ahk"
+Run "F:\Documents\AHK Current\YouTube Play Pause.ahk"
+Reload
 return
 }
 
@@ -244,6 +253,9 @@ Numpad9::
 If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
 {
 ResizeWindow(1720, 700, 1720, 700)
+keywait, F20
+toggle = 0
+Reload
 }
 else
 {
@@ -1205,78 +1217,78 @@ return
 return
 }
 
-#e::
-{
-isFullScreen := isWindowFullScreen( "A" )
-IfWinNotActive, ahk_class WorkerW
-IfWinNotActive, ahk_class Progman
-{
-if isFullScreen = 1
-{
-send {e DOWN}
-keywait, e
-send {e UP}
-return
-}
-}
-if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
-{
-run explorer.exe
-WinWait, currentWindow, , -1
-WinGetTitle, currentWindow, A
-IfWinExist %currentWindow%
- {
-If (ahk_exe = Explorer.EXE)
-{
-	MouseGetPos, XPos, YPos
-	if (XPos > 3440)
-	{
-	XPos -= 500
-	YPos -= 300
-	if (XPos <3440)
-	{
-	XPos = 3432
-	}
-	if (YPos < 473)
-	{
-	YPos = 471
-	}
-	if (XPos > 4368)
-	{
-	XPos = 4368
-	}
-	if (YPos > 960)
-	{
-	YPos = 960
-	}
-	WinMove,This PC,,XPos, YPos, 1000, 600
-	return
-	}
-	XPos -= 648
-	YPos -= 363
-	if (XPos <0)
-	{
-	XPos = -8
-	}
-	if (YPos <0)
-	{
-	YPos = -2
-	}
-	if (XPos > 2152)
-	{
-	XPos = 2152
-	}
-	if (YPos > 682)
-	{
-	YPos = 682
-	}
-   WinMove,This PC,,XPos, YPos, 1296, 727
-   return
-}
- }
-}
-return
-}
+; #e::
+; {
+; isFullScreen := isWindowFullScreen( "A" )
+; IfWinNotActive, ahk_class WorkerW
+; IfWinNotActive, ahk_class Progman
+; {
+; if isFullScreen = 1
+; {
+; send {e DOWN}
+; keywait, e
+; send {e UP}
+; return
+; }
+; }
+; if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
+; {
+; run explorer.exe
+; WinWait, currentWindow, , -1
+; WinGetTitle, currentWindow, A
+; IfWinExist %currentWindow%
+ ; {
+; If (ahk_exe = Explorer.EXE)
+; {
+	; MouseGetPos, XPos, YPos
+	; if (XPos > 3440)
+	; {
+	; XPos -= 500
+	; YPos -= 300
+	; if (XPos <3440)
+	; {
+	; XPos = 3432
+	; }
+	; if (YPos < 473)
+	; {
+	; YPos = 471
+	; }
+	; if (XPos > 4368)
+	; {
+	; XPos = 4368
+	; }
+	; if (YPos > 960)
+	; {
+	; YPos = 960
+	; }
+	; WinMove,This PC,,XPos, YPos, 1000, 600
+	; return
+	; }
+	; XPos -= 648
+	; YPos -= 363
+	; if (XPos <0)
+	; {
+	; XPos = -8
+	; }
+	; if (YPos <0)
+	; {
+	; YPos = -2
+	; }
+	; if (XPos > 2152)
+	; {
+	; XPos = 2152
+	; }
+	; if (YPos > 682)
+	; {
+	; YPos = 682
+	; }
+   ; WinMove,This PC,,XPos, YPos, 1296, 727
+   ; return
+; }
+ ; }
+; }
+; return
+; }
 
 #IfWinActive, ahk_exe firefox.exe
 {
