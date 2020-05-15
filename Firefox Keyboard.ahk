@@ -70,11 +70,22 @@ If (FFW = 3440 && FFH = 1440)
 {
 return
 }
+If (FFW = 1936 && FFH = 1096)
+{
 ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
 Sleep, 1
 ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
 Sleep, 1
 DoFocus = 0
+}
+If (FFW = 3456 && FFH = 1416)
+{
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+Sleep, 1
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+Sleep, 1
+DoFocus = 0
+}
 }
 return
 }
@@ -740,6 +751,8 @@ run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI2 /Exit
 return
 }
+
+~Media_Prev::Reload
 
 AppVolume(app:="", device:="")
 {
