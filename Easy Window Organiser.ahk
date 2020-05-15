@@ -634,13 +634,30 @@ isFullScreen := isWindowFullScreen( "A" )
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
     MouseGetPos,,,hParentGUI
-WinGetClass, dclass, ahk_id %hParentGUI% 
+WinGetClass, dclass, ahk_id %hParentGUI%
 if dclass != WorkerW
 if dclass != Progman
 {
+	If(dclass != "MozillaWindowClass")
+	{
     WinClose,ahk_id %hParentGUI%
     send, {F20, UP}
     return
+	}
+	else
+	{
+	WinClose,ahk_id %hParentGUI%	
+    send, {F20, UP}
+	WinGet, FF, Count, Mozilla Firefox
+	If (FF = 0)
+	{
+	ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+	Sleep, 1
+	ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+	Sleep, 1
+	}
+    return
+	}
 }
 return
 }
