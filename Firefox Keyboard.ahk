@@ -60,26 +60,25 @@ WinGet, FFList, List, Mozilla Firefox
 ; Loop, %FFList%
 If (FFList = 1)
 {
-	; this_id := "ahk_id " . FFList%A_Index%
-	; WinGetTitle,this_title,%this_id%
-	;MsgBox %this_title% %this_id% %DoFocus%
+	;this_id := "ahk_id " . FFList%A_Index%
+	WinGetTitle,this_title, Mozilla Firefox
+	;MsgBox %this_title% %DoFocus%
 	; Focus(DoFocus, this_title, this_id)
-	If (WinNotExist, Opening && WinNotExist, Enter name of)
+	If (WinNotExist, ahk_class MozillaDialogClass && WinNotExist, ahk_class #32770)
 	{
-	;MsgBox, success
-	Focus(DoFocus)
+	Focus(DoFocus, this_title)
 	}
 }
 WinWaitActive, Mozilla Firefox
 DoFocus = 1
 }
 
-; Focus(DoFocus, this_title, this_id)
-Focus(DoFocus)
+Focus(DoFocus, this_title)
+;Focus(DoFocus)
 {
 If (DoFocus > 0)
 {
-WinGetPos,,,FFW,FFH,%this_id%
+WinGetPos,,,FFW,FFH,%this_title%
 If (FFW = 1920 && FFH = 1080)
 {
 return
@@ -90,18 +89,18 @@ return
 }
 If (FFW = 1936 && FFH = 1096)
 {
-; WinRestore, %this_id%
-; WinMaximize, %this_id%
-WinRestore, ahk_exe firefox.exe
-WinMaximize, ahk_exe firefox.exe
+WinRestore, %this_title%
+WinMaximize, %this_title%
+;WinRestore, ahk_exe firefox.exe
+;WinMaximize, ahk_exe firefox.exe
 DoFocus = 0
 }
 If (FFW = 3456 && FFH = 1416)
 {
-; WinRestore, %this_id%
-; WinMaximize, %this_id%
-WinRestore, ahk_exe firefox.exe
-WinMaximize, ahk_exe firefox.exe
+WinRestore, %this_title%
+WinMaximize, %this_title%
+;WinRestore, ahk_exe firefox.exe
+;WinMaximize, ahk_exe firefox.exe
 DoFocus = 0
 }
 }
