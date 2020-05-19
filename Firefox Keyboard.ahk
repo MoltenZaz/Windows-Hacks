@@ -64,10 +64,17 @@ If (FFList = 1)
 	WinGetTitle,this_title, Mozilla Firefox
 	;MsgBox %this_title% %DoFocus%
 	; Focus(DoFocus, this_title, this_id)
-	If (WinNotExist, ahk_class MozillaDialogClass && WinNotExist, ahk_class #32770)
+	WinGetTitle, title, A
+	;MsgBox, %title%
+	If title not contains Opening
+	{
+	If title not contains Enter name of file to save to
 	{
 	Focus(DoFocus, this_title)
+	;MsgBox, ok
 	}
+	}
+	title = "zero"
 }
 WinWaitActive, Mozilla Firefox
 DoFocus = 1
