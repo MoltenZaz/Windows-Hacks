@@ -42,26 +42,44 @@ SetWorkingDir %A_ScriptDir%
 
 ; You can toggle the script to be always on by pressing appskey + capslock (so that you dont have to keep holding appskey while typing)
 
-DoFocus = 0
+DoFocus = 1
 ctrltoggle = 0
 shifttoggle = 0
 alttoggle = 0
 toggle = 0
 toggle2 = 0
 
+; ; I was on the verge of greatness, the edge of glory but it is not quite what it needs to be
+; ; in order to replace simply pressing appskey+f11 twice when firefox is not in focus.
+
 Loop
 {
 WinWaitNotActive, Mozilla Firefox
-Focus(DoFocus)
+WinGet, FFList, List, Mozilla Firefox
+; DoFocus := FFList
+; Loop, %FFList%
+If (FFList = 1)
+{
+	; this_id := "ahk_id " . FFList%A_Index%
+	; WinGetTitle,this_title,%this_id%
+	;MsgBox %this_title% %this_id% %DoFocus%
+	; Focus(DoFocus, this_title, this_id)
+	If (WinNotExist, Opening && WinNotExist, Enter name of)
+	{
+	;MsgBox, success
+	Focus(DoFocus)
+	}
+}
 WinWaitActive, Mozilla Firefox
 DoFocus = 1
 }
 
+; Focus(DoFocus, this_title, this_id)
 Focus(DoFocus)
 {
-If (DoFocus = 1)
+If (DoFocus > 0)
 {
-WinGetPos,,,FFW,FFH,Mozilla Firefox
+WinGetPos,,,FFW,FFH,%this_id%
 If (FFW = 1920 && FFH = 1080)
 {
 return
@@ -72,18 +90,18 @@ return
 }
 If (FFW = 1936 && FFH = 1096)
 {
-ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-Sleep, 1
-ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-Sleep, 1
+; WinRestore, %this_id%
+; WinMaximize, %this_id%
+WinRestore, ahk_exe firefox.exe
+WinMaximize, ahk_exe firefox.exe
 DoFocus = 0
 }
 If (FFW = 3456 && FFH = 1416)
 {
-ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-Sleep, 1
-ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-Sleep, 1
+; WinRestore, %this_id%
+; WinMaximize, %this_id%
+WinRestore, ahk_exe firefox.exe
+WinMaximize, ahk_exe firefox.exe
 DoFocus = 0
 }
 }
@@ -646,6 +664,7 @@ Numpad1::
 AppVolume("firefox.exe").AdjustVolumeSet(10)
 AppVolume("Plex.exe").AdjustVolumeSet(10)
 AppVolume("vlc.exe").AdjustVolumeSet(10)
+AppVolume("Spotify.exe").AdjustVolumeSet(10)
 return
 }
 Numpad2::
@@ -653,6 +672,7 @@ Numpad2::
 AppVolume("firefox.exe").AdjustVolumeSet(20)
 AppVolume("Plex.exe").AdjustVolumeSet(20)
 AppVolume("vlc.exe").AdjustVolumeSet(20)
+AppVolume("Spotify.exe").AdjustVolumeSet(20)
 return
 }
 Numpad3::
@@ -660,6 +680,7 @@ Numpad3::
 AppVolume("firefox.exe").AdjustVolumeSet(30)
 AppVolume("Plex.exe").AdjustVolumeSet(30)
 AppVolume("vlc.exe").AdjustVolumeSet(30)
+AppVolume("Spotify.exe").AdjustVolumeSet(30)
 return
 }
 Numpad4::
@@ -667,6 +688,7 @@ Numpad4::
 AppVolume("firefox.exe").AdjustVolumeSet(40)
 AppVolume("Plex.exe").AdjustVolumeSet(40)
 AppVolume("vlc.exe").AdjustVolumeSet(40)
+AppVolume("Spotify.exe").AdjustVolumeSet(40)
 return
 }
 Numpad5::
@@ -674,6 +696,7 @@ Numpad5::
 AppVolume("firefox.exe").AdjustVolumeSet(50)
 AppVolume("Plex.exe").AdjustVolumeSet(50)
 AppVolume("vlc.exe").AdjustVolumeSet(50)
+AppVolume("Spotify.exe").AdjustVolumeSet(50)
 return
 }
 Numpad6::
@@ -681,6 +704,7 @@ Numpad6::
 AppVolume("firefox.exe").AdjustVolumeSet(60)
 AppVolume("Plex.exe").AdjustVolumeSet(60)
 AppVolume("vlc.exe").AdjustVolumeSet(60)
+AppVolume("Spotify.exe").AdjustVolumeSet(60)
 return
 }
 Numpad7::
@@ -688,6 +712,7 @@ Numpad7::
 AppVolume("firefox.exe").AdjustVolumeSet(70)
 AppVolume("Plex.exe").AdjustVolumeSet(70)
 AppVolume("vlc.exe").AdjustVolumeSet(70)
+AppVolume("Spotify.exe").AdjustVolumeSet(70)
 return
 }
 Numpad8::
@@ -695,6 +720,7 @@ Numpad8::
 AppVolume("firefox.exe").AdjustVolumeSet(80)
 AppVolume("Plex.exe").AdjustVolumeSet(80)
 AppVolume("vlc.exe").AdjustVolumeSet(80)
+AppVolume("Spotify.exe").AdjustVolumeSet(80)
 return
 }
 Numpad9::
@@ -702,6 +728,7 @@ Numpad9::
 AppVolume("firefox.exe").AdjustVolumeSet(90)
 AppVolume("Plex.exe").AdjustVolumeSet(90)
 AppVolume("vlc.exe").AdjustVolumeSet(90)
+AppVolume("Spotify.exe").AdjustVolumeSet(90)
 return
 }
 Numpad0::
@@ -709,6 +736,7 @@ Numpad0::
 AppVolume("firefox.exe").AdjustVolumeSet(100)
 AppVolume("Plex.exe").AdjustVolumeSet(100)
 AppVolume("vlc.exe").AdjustVolumeSet(100)
+AppVolume("Spotify.exe").AdjustVolumeSet(100)
 return
 }
 }
@@ -718,18 +746,23 @@ return
 
 ^Volume_Up::
 {
-AppVolume("firefox.exe").AdjustVolume(3)
-AppVolume("Plex.exe").AdjustVolume(3)
-AppVolume("vlc.exe").AdjustVolume(3)
+AppVolume("firefox.exe").AdjustVolume(2)
+AppVolume("Plex.exe").AdjustVolume(2)
+AppVolume("vlc.exe").AdjustVolume(2)
+AppVolume("Spotify.exe").AdjustVolume(2)
 return
 }
 ^Volume_Down::
 {
-AppVolume("firefox.exe").AdjustVolume(-3)
-AppVolume("Plex.exe").AdjustVolume(-3)
-AppVolume("vlc.exe").AdjustVolume(-3)
+AppVolume("firefox.exe").AdjustVolume(-2)
+AppVolume("Plex.exe").AdjustVolume(-2)
+AppVolume("vlc.exe").AdjustVolume(-2)
+AppVolume("Spotify.exe").AdjustVolume(-2)
 return
 }
+
++Volume_Up::AppVolume("Spotify.exe").AdjustVolume(2)
++Volume_Down::AppVolume("Spotify.exe").AdjustVolume(-2)
 
 #+F1::
 {
@@ -752,7 +785,12 @@ run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput
 return
 }
 
-~Media_Prev::Reload
+~Media_Prev::
+{
+Sleep, 6000
+Reload
+}
+
 
 AppVolume(app:="", device:="")
 {
