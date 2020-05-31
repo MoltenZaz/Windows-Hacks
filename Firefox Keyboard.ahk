@@ -49,71 +49,29 @@ alttoggle = 0
 toggle = 0
 toggle2 = 0
 
-; ; I was on the verge of greatness, the edge of glory but it is not quite what it needs to be
-; ; in order to replace simply pressing appskey+f11 twice when firefox is not in focus.
+#Persistent
+SetTimer, SetVar, 500
+return
 
-Loop
+SetVar:
 {
+IfWinActive, Mozilla Firefox
+{
+DoFocus := 0
 WinWaitNotActive, Mozilla Firefox
-WinGet, FFList, List, Mozilla Firefox
-; DoFocus := FFList
-; Loop, %FFList%
-If (FFList = 1)
-{
-	;this_id := "ahk_id " . FFList%A_Index%
-	WinGetTitle,this_title, Mozilla Firefox
-	;MsgBox %this_title% %DoFocus%
-	; Focus(DoFocus, this_title, this_id)
-	WinGetTitle, title, A
-	;MsgBox, %title%
-	If title not contains Opening
-	{
-	If title not contains Enter name of file to save to
-	{
-	Focus(DoFocus, this_title)
-	;MsgBox, ok
-	}
-	}
-	title = "zero"
-}
-WinWaitActive, Mozilla Firefox
-DoFocus = 1
-}
-
-Focus(DoFocus, this_title)
-;Focus(DoFocus)
-{
-If (DoFocus > 0)
-{
-WinGetPos,,,FFW,FFH,%this_title%
-If (FFW = 1920 && FFH = 1080)
-{
-return
-}
-If (FFW = 3440 && FFH = 1440)
-{
-return
-}
-If (FFW = 1936 && FFH = 1096)
-{
-WinRestore, %this_title%
-WinMaximize, %this_title%
-;WinRestore, ahk_exe firefox.exe
-;WinMaximize, ahk_exe firefox.exe
-DoFocus = 0
-}
-If (FFW = 3456 && FFH = 1416)
-{
-WinRestore, %this_title%
-WinMaximize, %this_title%
-;WinRestore, ahk_exe firefox.exe
-;WinMaximize, ahk_exe firefox.exe
-DoFocus = 0
-}
+DoFocus := 1
 }
 return
 }
 
+#F1::return
+
+^Esc::
+{
+Send, {Ctrl, up}
+Send, {Esc}
+return
+}
 ~AppsKey & ~Capslock::
 {
 KeyDown := !KeyDown
@@ -143,9 +101,47 @@ AppsKey::
 	toggle := 0
 	if toggle2 = 0
 	{
-	mastertoggle := 0
+		mastertoggle := 0
 	}
-	return
+	WinGet, FFList, List, Mozilla Firefox
+	If (FFList = 1)
+	{
+		WinGetTitle,this_title, Mozilla Firefox
+		WinGetTitle, title, A
+		If title not contains Opening
+		{
+			If title not contains Enter name of file to save to
+			{
+				If (DoFocus > 0)
+				{
+					WinGetPos,,,FFW,FFH,%this_title%
+					If (FFW = 1920 && FFH = 1080)
+					{
+						return
+					}
+					If (FFW = 3440 && FFH = 1440)
+					{
+						return
+					}
+					If (FFW = 1936 && FFH = 1096)
+					{
+						WinRestore, %this_title%
+						WinMaximize, %this_title%
+						DoFocus := 0
+					}
+					If (FFW = 3456 && FFH = 1416)
+					{
+						WinRestore, %this_title%
+						WinMaximize, %this_title%
+						DoFocus := 0
+					}
+				}
+				return
+			}
+		}
+		title = "zero"
+	}
+return
 }
 
 #If (mastertoggle = 1)
@@ -371,10 +367,8 @@ F11::ControlSend, ahk_parent, {Ctrl down}{F11}{Ctrl up}, ahk_class MozillaWindow
 F12::ControlSend, ahk_parent, {Ctrl down}{F12}{Ctrl up}, ahk_class MozillaWindowClass
 Enter::
 {
-ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-Sleep, 1
-ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-Sleep, 1
+WinRestore, ahk_exe firefox.exe
+WinMaximize, ahk_exe firefox.exe
 ;ControlSend, ahk_parent, ^{Enter}, ahk_class MozillaWindowClass
 return
 }
@@ -791,10 +785,17 @@ run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput
 return
 }
 
-~Media_Prev::
+~Insert::
 {
-Sleep, 6000
+SetTimer, Refresh, 60000
+return
+}
+
+Refresh:
+{
+SoundBeep, 500, 50
 Reload
+return
 }
 
 
