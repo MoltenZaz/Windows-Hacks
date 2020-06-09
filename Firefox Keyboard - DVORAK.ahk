@@ -17,6 +17,11 @@ SetWorkingDir %A_ScriptDir%
 ; Vimium firefox: https://addons.mozilla.org/en-US/firefox/addon/vimium-ff/
 ; Vimium chrome: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
 
+; -------------------------------------------------------------------------------------------------------------
+; | THIS VERSION OF THE SCRIPT CONVERTS A QWERTY KEYBOARD TO A DVORAK LAYOUT, EXCEPT FOR WHEN USING MODIFIERS |
+; | PRESS CTRL INSERT TO TOGGLE BETWEEN DVORAK AND QWERTY LAYOUT					      |
+; -------------------------------------------------------------------------------------------------------------
+
 ; Here are my Vimium custom key mappings (remove the semicolons): 
 ;unmapAll
 ;map <backspace> goBack2
