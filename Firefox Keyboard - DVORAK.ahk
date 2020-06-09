@@ -20,6 +20,7 @@ SetWorkingDir %A_ScriptDir%
 ; -------------------------------------------------------------------------------------------------------------
 ; | THIS VERSION OF THE SCRIPT CONVERTS A QWERTY KEYBOARD TO A DVORAK LAYOUT, EXCEPT FOR WHEN USING MODIFIERS |
 ; | PRESS CTRL INSERT TO TOGGLE BETWEEN DVORAK AND QWERTY LAYOUT					      |
+; | IT ALSO REMAPS CAPSLOCK INTO BACKSPACE AND REMAPS ALT BACKSPACE INTO CAPSLOCK			      |
 ; -------------------------------------------------------------------------------------------------------------
 
 ; Here are my Vimium custom key mappings (remove the semicolons): 
@@ -101,6 +102,7 @@ Else
 Return
 }
 
+; THIS IS WHERE CAPSLOCK AND ALT BACKSPACE ARE REMAPPED
 CapsLock::Backspace
 !Backspace::CapsLock
 
