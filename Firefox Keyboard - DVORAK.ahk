@@ -5,7 +5,7 @@
 SendMode Input
 SetTitleMatchMode, 2
 SetWorkingDir %A_ScriptDir%
-
+#UseHook
 ; Proudly Created by Mitchell Thomas
 
 ; This script enables me to use firefox in the background.
@@ -16,12 +16,6 @@ SetWorkingDir %A_ScriptDir%
 
 ; Vimium firefox: https://addons.mozilla.org/en-US/firefox/addon/vimium-ff/
 ; Vimium chrome: https://chrome.google.com/webstore/detail/vimium/dbepggeogbaibhgnhhndojpepiihcmeb?hl=en)
-
-; -------------------------------------------------------------------------------------------------------------
-; | THIS VERSION OF THE SCRIPT CONVERTS A QWERTY KEYBOARD TO A DVORAK LAYOUT, EXCEPT FOR WHEN USING MODIFIERS |
-; | PRESS CTRL INSERT TO TOGGLE BETWEEN DVORAK AND QWERTY LAYOUT					      |
-; | IT ALSO REMAPS CAPSLOCK INTO BACKSPACE AND REMAPS ALT BACKSPACE INTO CAPSLOCK			      |
-; -------------------------------------------------------------------------------------------------------------
 
 ; Here are my Vimium custom key mappings (remove the semicolons): 
 ;unmapAll
@@ -49,7 +43,7 @@ SetWorkingDir %A_ScriptDir%
 ; You can toggle the script to be always on by pressing appskey + capslock (so that you dont have to keep holding appskey while typing)
 
 DoFocus = 1
-dvoraktoggle = 1
+dvoraktoggle := 1
 ctrltoggle = 0
 shifttoggle = 0
 alttoggle = 0
@@ -73,14 +67,6 @@ DoFocus := 1
 return
 }
 
-#F1::return
-
-^Esc::
-{
-Send, {Ctrl, up}
-Send, {Esc}
-return
-}
 ~AppsKey & ~Capslock::
 {
 KeyDown := !KeyDown
@@ -102,9 +88,19 @@ Else
 Return
 }
 
-; THIS IS WHERE CAPSLOCK AND ALT BACKSPACE ARE REMAPPED
+#IfWinNotActive, ahk_class UnrealWindow
+{
 CapsLock::Backspace
 !Backspace::CapsLock
+}
+#if
+
+#IfWinActive, ahk_class UnrealWindow
+{
+CapsLock::Delete
+!Backspace::CapsLock
+}
+#if
 
 ^Insert::
 {
@@ -227,6 +223,7 @@ RAlt::
 }
 #if
 
+#If (dvoraktoggle = 1)
 ~LCtrl::
 {
 	ctrltoggle := 1
@@ -290,6 +287,9 @@ RAlt::
 	wintoggle := 0
 	return
 }
+#if
+
+; *F9::MsgBox, %ctrltoggle% %alttoggle% %wintoggle% %dvoraktoggle% %mastertoggle%
 
 #If (ctrltoggle = 0 && shifttoggle = 0 && alttoggle = 0 && wintoggle = 0 && dvoraktoggle = 1 && mastertoggle = 0)
 {
