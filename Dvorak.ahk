@@ -1,4 +1,4 @@
-﻿Menu, Tray, Icon, networkexplorer.dll, 15
+Menu, Tray, Icon, networkexplorer.dll, 15
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
@@ -22,6 +22,8 @@ SetLayout(dv)
 ~RAlt::SetLayout(qw)
 ~RAlt up::SetLayout(dv)
 ~LWin::SetLayout(qw)
+~LWin up::SetLayout(dv)
+~RWin::SetLayout(qw)
 ~RWin up::SetLayout(dv)
 #if
 
