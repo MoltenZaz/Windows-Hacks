@@ -2,9 +2,17 @@
 ; https://gist.github.com/vaindil/a223fe82ec2122e02bf0062c82a20186
 ;#Include "F:\Documents\AHK Current\YoutubeHelper.ahk"
 Menu, Tray, Icon, shell32.dll, 138
-#SingleInstance force
+
 SetTitleMatchMode, 2
 skipVAR = 0
+#NoEnv
+Coordmode, Mouse, Screen
+#include WinGetPosEx.ahk
+#SingleInstance force
+#MaxHotkeysPerInterval 1000
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+SetKeyDelay, -1
 
 ;~AppsKey & ~Pause::Reload
 
@@ -26,7 +34,6 @@ Reload
 return
 }
 ~XButton2 & MButton::Media_Play_Pause
-
 
 ~XButton2 & F15::Media_Prev
 ~XButton2 & F16::Media_Next
