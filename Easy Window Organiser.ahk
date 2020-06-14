@@ -1,11 +1,12 @@
 #NoEnv
 Coordmode, Mouse, Screen
 Menu, Tray, Icon, shell32.dll, 300
-
+#Include VA.ahk
 #include WinGetPosEx.ahk
-
 #SingleInstance force
-
+SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
+SetKeyDelay, -1
 ; This script was inspired by and built on many like it
 ; in the forum. Thanks go out to ck, thinkstorm, Chris,
 ; and aurelian for a job well done.
@@ -25,7 +26,7 @@ fffirst = 1
 
 toggle = 0
 
-#F20::
+#F20::return
 
 F20::
 {
@@ -64,8 +65,27 @@ Reload
 return
 }
 
+~XButton1 & WheelUp::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(4)
+return
+}
+~XButton1 & WheelDown::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(-4)
+return
+}
+
+~XButton2 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
+~XButton2 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
+
 #if (toggle = 1)
 {
+WheelUp::Volume_Up
+WheelDown::Volume_Down
+
 LCtrl::
 {
 ctrltoggle := 1
@@ -443,9 +463,9 @@ IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
-send {2 DOWN}
+SendInput {2 DOWN}
 keywait, 2
-send {2 UP}
+SendInput {2 UP}
 return
 }
 }
@@ -475,9 +495,9 @@ IfWinNotActive, ahk_class Progman
 {
 if isFullScreen = 1
 {
-send {1 down}
+SendInput {1 down}
 keywait, 1
-send {1 up}
+SendInput {1 up}
 return
 }
 }
@@ -485,6 +505,7 @@ if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class
     mousegetpos,,,kde_id
     if kde_id != %desktopid%
 {
+	{
     ; toggle between maximized and restored state.
     winget,kde_win,minmax,ahk_id %kde_id%
     if kde_win
@@ -492,6 +513,7 @@ if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class
     else
         winmaximize,ahk_id %kde_id%
     return
+	}
 }
 return
 }
@@ -646,17 +668,15 @@ if dclass != Progman
 	}
 	else
 	{
-	WinClose,ahk_id %hParentGUI%	
-    send, {F20, UP}
 	WinGet, FF, Count, Mozilla Firefox
-	If (FF = 0)
+	WinClose,ahk_id %hParentGUI%	
+    	send, {F20, UP}
+	If (FF = 1)
 	{
-	ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-	Sleep, 1
-	ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-	Sleep, 1
+	WinRestore, ahk_exe firefox.exe
+	WinMaximize, ahk_exe firefox.exe
 	}
-    return
+    	return
 	}
 }
 return
@@ -1166,9 +1186,24 @@ WinGetClass, dclass, ahk_id %hParentGUI%
 if dclass != WorkerW
 if dclass != Progman
 {
+	If(dclass != "MozillaWindowClass")
+	{
     WinClose,ahk_id %hParentGUI%
     send, {F20, UP}
     return
+	}
+	else
+	{
+	WinGet, FF, Count, Mozilla Firefox
+	WinClose,ahk_id %hParentGUI%	
+    	send, {F20, UP}
+	If (FF = 1)
+	{
+	WinRestore, ahk_exe firefox.exe
+	WinMaximize, ahk_exe firefox.exe
+	}
+    	return
+	}
 }
 return
 }
@@ -1195,10 +1230,19 @@ return
 }
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
+WinGetClass, ID, A
+	if (ID = "CabinetWClass")
+	{
+		Send, !{Up}
+		return
+	}
+else
+{
 send {Xbutton2 DOWN}
 keywait, Xbutton2
 send {Xbutton2 UP}
 return
+}
 }
 }
 }
@@ -1319,4 +1363,141 @@ winmaximize, ahk_exe firefox.exe
 return
 }
 return
+}
+
+AppVolume(app:="", device:="")
+{
+	return new AppVolume(app, device)
+}
+
+class AppVolume
+{
+	ISAVs := []
+	
+	__New(app:="", device:="")
+	{
+		static IID_IASM2 := "{77AA99A0-1BD6-484F-8BC7-2C654C9A9B6F}"
+		, IID_IASC2 := "{BFB7FF88-7239-4FC9-8FA2-07C950BE9C6D}"
+		, IID_ISAV := "{87CE5498-68D6-44E5-9215-6DA47EF883D8}"
+		
+		; Activate the session manager of the given device
+		pIMMD := VA_GetDevice(device)
+		VA_IMMDevice_Activate(pIMMD, IID_IASM2, 0, 0, pIASM2)
+		ObjRelease(pIMMD)
+		
+		; Enumerate sessions for on this device
+		VA_IAudioSessionManager2_GetSessionEnumerator(pIASM2, pIASE)
+		ObjRelease(pIASM2)
+		
+		; Search for audio sessions with a matching process ID or Name
+		VA_IAudioSessionEnumerator_GetCount(pIASE, Count)
+		Loop, % Count
+		{
+			; Get this session's IAudioSessionControl2 via its IAudioSessionControl
+			VA_IAudioSessionEnumerator_GetSession(pIASE, A_Index-1, pIASC)
+			pIASC2 := ComObjQuery(pIASC, IID_IASC2)
+			ObjRelease(pIASC)
+			
+			; If its PID matches save its ISimpleAudioVolume pointer
+			VA_IAudioSessionControl2_GetProcessID(pIASC2, PID)
+			if (PID == app || this.GetProcessName(PID) == app)
+				this.ISAVs.Push(ComObjQuery(pIASC2, IID_ISAV))
+			
+			ObjRelease(pIASC2)
+		}
+		
+		; Release the IAudioSessionEnumerator
+		ObjRelease(pIASE)
+	}
+	
+	__Delete()
+	{
+		for k, pISAV in this.ISAVs
+			ObjRelease(pISAV)
+	}
+	
+	AdjustVolume(Amount)
+	{
+		return this.SetVolume(this.GetVolume() + Amount)
+	}
+	
+	AdjustVolumeSet(Amount)
+	{
+		return this.SetVolume(Amount)
+	}
+	
+	GetVolume()
+	{
+		for k, pISAV in this.ISAVs
+		{
+			VA_ISimpleAudioVolume_GetMasterVolume(pISAV, fLevel)
+			return fLevel * 100
+		}
+	}
+	
+	SetVolume(level)
+	{
+		level := level>100 ? 100 : level<0 ? 0 : level ; Limit to range 0-100
+		for k, pISAV in this.ISAVs
+			VA_ISimpleAudioVolume_SetMasterVolume(pISAV, level / 100)
+		return level
+	}
+	
+	GetMute()
+	{
+		for k, pISAV in this.ISAVs
+		{
+			VA_ISimpleAudioVolume_GetMute(pISAV, bMute)
+			return bMute
+		}
+	}
+	
+	SetMute(bMute)
+	{
+		for k, pISAV in this.ISAVs
+			VA_ISimpleAudioVolume_SetMute(pISAV, bMute)
+		return bMute
+	}
+	
+	ToggleMute()
+	{
+		return this.SetMute(!this.GetMute())
+	}
+	
+	GetProcessName(PID) {
+		hProcess := DllCall("OpenProcess"
+		, "UInt", 0x1000 ; DWORD dwDesiredAccess (PROCESS_QUERY_LIMITED_INFORMATION)
+		, "UInt", False  ; BOOL  bInheritHandle
+		, "UInt", PID    ; DWORD dwProcessId
+		, "UPtr")
+		dwSize := VarSetCapacity(strExeName, 512 * A_IsUnicode, 0) // A_IsUnicode
+		DllCall("QueryFullProcessImageName"
+		, "UPtr", hProcess  ; HANDLE hProcess
+		, "UInt", 0         ; DWORD  dwFlags
+		, "Str", strExeName ; LPSTR  lpExeName
+		, "UInt*", dwSize   ; PDWORD lpdwSize
+		, "UInt")
+		DllCall("CloseHandle", "UPtr", hProcess, "UInt")
+		SplitPath, strExeName, strExeName
+		return strExeName
+	}
+}
+
+
+; --- Vista Audio Additions ---
+
+;
+; ISimpleAudioVolume : {87CE5498-68D6-44E5-9215-6DA47EF883D8}
+;
+VA_ISimpleAudioVolume_SetMasterVolume(this, ByRef fLevel, GuidEventContext="") {
+	return DllCall(NumGet(NumGet(this+0)+3*A_PtrSize), "ptr", this, "float", fLevel, "ptr", VA_GUID(GuidEventContext))
+}
+VA_ISimpleAudioVolume_GetMasterVolume(this, ByRef fLevel) {
+	return DllCall(NumGet(NumGet(this+0)+4*A_PtrSize), "ptr", this, "float*", fLevel)
+}
+VA_ISimpleAudioVolume_SetMute(this, ByRef Muted, GuidEventContext="") {
+	return DllCall(NumGet(NumGet(this+0)+5*A_PtrSize), "ptr", this, "int", Muted, "ptr", VA_GUID(GuidEventContext))
+}
+VA_ISimpleAudioVolume_GetMute(this, ByRef Muted) {
+	return DllCall(NumGet(NumGet(this+0)+6*A_PtrSize), "ptr", this, "int*", Muted)
 }
