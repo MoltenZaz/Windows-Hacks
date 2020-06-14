@@ -4,6 +4,7 @@ Menu, Tray, Icon, shell32.dll, 300
 #Include VA.ahk
 #include WinGetPosEx.ahk
 #SingleInstance force
+#MaxHotkeysPerInterval 1000
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 SetKeyDelay, -1
@@ -78,14 +79,14 @@ AppVolume(ProcessName).AdjustVolume(-4)
 return
 }
 
+~F20 & WheelUp::Volume_Up
+~F20 & WheelDown::Volume_Down
+
 ~XButton2 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
 ~XButton2 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
 
 #if (toggle = 1)
 {
-WheelUp::Volume_Up
-WheelDown::Volume_Down
-
 LCtrl::
 {
 ctrltoggle := 1
