@@ -8,37 +8,156 @@ skipVAR = 0
 
 ;~AppsKey & ~Pause::Reload
 
-~Appskey & Media_Play_Pause::
-{
-ControlSend, ahk_parent, {space}, ahk_class Qt5QWindowIcon
-return
-}
-
 !Media_Play_Pause::
 {
 ControlSend, ahk_parent, {space}, ahk_class Qt5QWindowIcon
 return
 }
 
-~Media_Prev::Reload
+~!Insert::
+{
+SetTimer, Refresh, 60000
+return
+}
 
+Refresh:
+{
+Reload
+return
+}
+~XButton2 & MButton::Media_Play_Pause
+
+
+~XButton2 & F15::Media_Prev
+~XButton2 & F16::Media_Next
+
+#IfWinNotExist, ahk_exe Spotify.exe
+{
+~XButton2 & F15::Gosub Media_Prev
+~XButton2 & F16::Gosub Media_Next
+~XButton2 & MButton::Gosub Media_Play_Pause
 Media_Next::
 {
+; Loop, Parse, Tabs, `n
+  ; {
+    ; If (RegexMatch(A_LoopField, ".*\- YouTube")) {
+      ; TabName := A_LoopField
+      ; break
+    ; }
+  ; }
+; WinGet FF, ID, ahk_exe firefox.exe
+  ; Tabs := JEE_FirefoxGetTabNames(FF)
+  ; WinGetTitle, CurrentTitle, ahk_id %FF%
+  ; SubstrPos := InStr(CurrentTitle, " - Firefox Developer Edition")
+  ; ;CurrentTitle := SubStr(CurrentTitle, 1, SubstrPos - 1)
+  ; TabName = ""
+  ; IfInString, CurrentTitle, YouTube
+  ; {
+  ; ControlSend, ahk_parent, {Shift down}n{Shift up}, ahk_class MozillaWindowClass
+  ; }
+; return
 WinGet FF, ID, ahk_exe firefox.exe
   Tabs := JEE_FirefoxGetTabNames(FF)
   WinGetTitle, CurrentTitle, ahk_id %FF%
   SubstrPos := InStr(CurrentTitle, " - Firefox Developer Edition")
   ;CurrentTitle := SubStr(CurrentTitle, 1, SubstrPos - 1)
   TabName = ""
+
+  Loop, Parse, Tabs, `n
+  {
+    If (RegexMatch(A_LoopField, ".*\- YouTube")) 
+	{
+      TabName := A_LoopField
+      break
+    }
+  }
+  If (TabName = "") 
+  {
+    return
+  }
+  JEE_FirefoxFocusTabByName(FF, TabName)
   IfInString, CurrentTitle, YouTube
   {
-  ControlSend, ahk_parent, {Shift down}n{Shift up}, ahk_class MozillaWindowClass
+	ControlSend, ahk_parent, {Shift down}n{Shift up}, ahk_class MozillaWindowClass
   }
   else
   {
-  Send, {Media_Next}
+	  ;ControlSend, ahk_parent, {Ctrl Down}{t}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {Ctrl Down}{w}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {Ctrl Down}{Shift Down}{o}{Shift Up}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;Sleep, 500
+	  ;ControlSend, ahk_parent, {Media_Play_Pause}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+	  ;Sleep, 100
+	  ;ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+	  ;Sleep, 100
+	  ControlSend, ahk_parent, {Shift down}n{Shift up}, ahk_class MozillaWindowClass
+	  ControlSend, ahk_parent, {Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}, ahk_class MozillaWindowClass
+	  ;Send, {Media_Play_Pause}
   }
-return
+  return
+}
+
+Media_Prev::
+{
+; Loop, Parse, Tabs, `n
+  ; {
+    ; If (RegexMatch(A_LoopField, ".*\- YouTube")) {
+      ; TabName := A_LoopField
+      ; break
+    ; }
+  ; }
+; WinGet FF, ID, ahk_exe firefox.exe
+  ; Tabs := JEE_FirefoxGetTabNames(FF)
+  ; WinGetTitle, CurrentTitle, ahk_id %FF%
+  ; SubstrPos := InStr(CurrentTitle, " - Firefox Developer Edition")
+  ; ;CurrentTitle := SubStr(CurrentTitle, 1, SubstrPos - 1)
+  ; TabName = ""
+  ; IfInString, CurrentTitle, YouTube
+  ; {
+  ; ControlSend, ahk_parent, {Shift down}n{Shift up}, ahk_class MozillaWindowClass
+  ; }
+; return
+WinGet FF, ID, ahk_exe firefox.exe
+  Tabs := JEE_FirefoxGetTabNames(FF)
+  WinGetTitle, CurrentTitle, ahk_id %FF%
+  SubstrPos := InStr(CurrentTitle, " - Firefox Developer Edition")
+  ;CurrentTitle := SubStr(CurrentTitle, 1, SubstrPos - 1)
+  TabName = ""
+
+  Loop, Parse, Tabs, `n
+  {
+    If (RegexMatch(A_LoopField, ".*\- YouTube")) 
+	{
+      TabName := A_LoopField
+      break
+    }
+  }
+  If (TabName = "") 
+  {
+    return
+  }
+  JEE_FirefoxFocusTabByName(FF, TabName)
+  IfInString, CurrentTitle, YouTube
+  {
+	ControlSend, ahk_parent, {Alt down}{Left}{Alt up}, ahk_class MozillaWindowClass
+  }
+  else
+  {
+	  ;ControlSend, ahk_parent, {Ctrl Down}{t}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {Ctrl Down}{w}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {Ctrl Down}{Shift Down}{o}{Shift Up}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;Sleep, 500
+	  ;ControlSend, ahk_parent, {Media_Play_Pause}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+	  ;Sleep, 100
+	  ;ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+	  ;Sleep, 100
+	  ControlSend, ahk_parent, {Alt down}{Left}{Alt up}, ahk_class MozillaWindowClass
+	  ControlSend, ahk_parent, {Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}, ahk_class MozillaWindowClass
+	  ;Send, {Media_Play_Pause}
+  }
+  return
 }
 
 Media_Play_Pause::
@@ -59,10 +178,150 @@ HandleKey("Media_Play_Pause", 0)
 }
 return
 }
+}
+#if
 
-^Media_Play_Pause::
+~Appskey & Media_Next::
 {
-HandleKey("Media_Play_Pause", 1)
+; Loop, Parse, Tabs, `n
+  ; {
+    ; If (RegexMatch(A_LoopField, ".*\- YouTube")) {
+      ; TabName := A_LoopField
+      ; break
+    ; }
+  ; }
+; WinGet FF, ID, ahk_exe firefox.exe
+  ; Tabs := JEE_FirefoxGetTabNames(FF)
+  ; WinGetTitle, CurrentTitle, ahk_id %FF%
+  ; SubstrPos := InStr(CurrentTitle, " - Firefox Developer Edition")
+  ; ;CurrentTitle := SubStr(CurrentTitle, 1, SubstrPos - 1)
+  ; TabName = ""
+  ; IfInString, CurrentTitle, YouTube
+  ; {
+  ; ControlSend, ahk_parent, {Shift down}n{Shift up}, ahk_class MozillaWindowClass
+  ; }
+; return
+WinGet FF, ID, ahk_exe firefox.exe
+  Tabs := JEE_FirefoxGetTabNames(FF)
+  WinGetTitle, CurrentTitle, ahk_id %FF%
+  SubstrPos := InStr(CurrentTitle, " - Firefox Developer Edition")
+  ;CurrentTitle := SubStr(CurrentTitle, 1, SubstrPos - 1)
+  TabName = ""
+
+  Loop, Parse, Tabs, `n
+  {
+    If (RegexMatch(A_LoopField, ".*\- YouTube")) 
+	{
+      TabName := A_LoopField
+      break
+    }
+  }
+  If (TabName = "") 
+  {
+    return
+  }
+  JEE_FirefoxFocusTabByName(FF, TabName)
+  IfInString, CurrentTitle, YouTube
+  {
+	ControlSend, ahk_parent, {Shift down}n{Shift up}, ahk_class MozillaWindowClass
+  }
+  else
+  {
+	  ;ControlSend, ahk_parent, {Ctrl Down}{t}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {Ctrl Down}{w}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {Ctrl Down}{Shift Down}{o}{Shift Up}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;Sleep, 500
+	  ;ControlSend, ahk_parent, {Media_Play_Pause}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+	  ;Sleep, 100
+	  ;ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+	  ;Sleep, 100
+	  ControlSend, ahk_parent, {Ctrl up}, ahk_class MozillaWindowClass
+	  ControlSend, ahk_parent, {Shift down}n{Shift up}, ahk_class MozillaWindowClass
+	  ControlSend, ahk_parent, {Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}, ahk_class MozillaWindowClass
+	  ;Send, {Media_Play_Pause}
+  }
+  return
+}
+
+AppsKey & Media_Prev::
+{
+; Loop, Parse, Tabs, `n
+  ; {
+    ; If (RegexMatch(A_LoopField, ".*\- YouTube")) {
+      ; TabName := A_LoopField
+      ; break
+    ; }
+  ; }
+; WinGet FF, ID, ahk_exe firefox.exe
+  ; Tabs := JEE_FirefoxGetTabNames(FF)
+  ; WinGetTitle, CurrentTitle, ahk_id %FF%
+  ; SubstrPos := InStr(CurrentTitle, " - Firefox Developer Edition")
+  ; ;CurrentTitle := SubStr(CurrentTitle, 1, SubstrPos - 1)
+  ; TabName = ""
+  ; IfInString, CurrentTitle, YouTube
+  ; {
+  ; ControlSend, ahk_parent, {Shift down}n{Shift up}, ahk_class MozillaWindowClass
+  ; }
+; return
+WinGet FF, ID, ahk_exe firefox.exe
+  Tabs := JEE_FirefoxGetTabNames(FF)
+  WinGetTitle, CurrentTitle, ahk_id %FF%
+  SubstrPos := InStr(CurrentTitle, " - Firefox Developer Edition")
+  ;CurrentTitle := SubStr(CurrentTitle, 1, SubstrPos - 1)
+  TabName = ""
+
+  Loop, Parse, Tabs, `n
+  {
+    If (RegexMatch(A_LoopField, ".*\- YouTube")) 
+	{
+      TabName := A_LoopField
+      break
+    }
+  }
+  If (TabName = "") 
+  {
+    return
+  }
+  JEE_FirefoxFocusTabByName(FF, TabName)
+  IfInString, CurrentTitle, YouTube
+  {
+	ControlSend, ahk_parent, {Shift down}p{Shift up}, ahk_class MozillaWindowClass
+  }
+  else
+  {
+	  ;ControlSend, ahk_parent, {Ctrl Down}{t}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {Ctrl Down}{w}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {Ctrl Down}{Shift Down}{o}{Shift Up}{Ctrl Up}, ahk_class MozillaWindowClass
+	  ;Sleep, 500
+	  ;ControlSend, ahk_parent, {Media_Play_Pause}, ahk_class MozillaWindowClass
+	  ;ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+	  ;Sleep, 100
+	  ;ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+	  ;Sleep, 100
+	  ControlSend, ahk_parent, {Shift down}p{Shift up}, ahk_class MozillaWindowClass
+	  ControlSend, ahk_parent, {Alt Down}{Shift Down}{Left}{Shift Up}{Alt Up}, ahk_class MozillaWindowClass
+	  ;Send, {Media_Play_Pause}
+  }
+  return
+}
+
+~Appskey & Media_Play_Pause::
+{
+#InstallKeybdHook
+KeyWait, Media_Play_Pause, T0.5 L
+If errorlevel=1
+{
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+Sleep, 1
+ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
+Sleep, 1
+HandleKey("Media_Play_Pause", 0)
+}
+else
+{
+HandleKey("Media_Play_Pause", 0)
+}
 return
 }
 
@@ -119,6 +378,7 @@ HandleKey(Key, skipVAR) {
   IfInString, CurrentTitle, Netflix
   {
   ;ControlSend, ahk_parent, {Ctrl Down}{Shift Down}{o}{Shift Up}{Ctrl Up}, ahk_class MozillaWindowClass
+  ControlSend, ahk_parent, {Ctrl up}, ahk_class MozillaWindowClass
   ControlSend, ahk_parent, k, ahk_class MozillaWindowClass
   ;ControlSend, ahk_parent, {Media_Play_Pause}, ahk_class MozillaWindowClass
   }
