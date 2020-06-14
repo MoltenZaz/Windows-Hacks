@@ -66,24 +66,24 @@ Reload
 return
 }
 
-~XButton1 & WheelUp::
+~RAlt & WheelUp::
 {
 WinGet, ProcessName, ProcessName, A
 AppVolume(ProcessName).AdjustVolume(4)
 return
 }
-~XButton1 & WheelDown::
+~RAlt & WheelDown::
 {
 WinGet, ProcessName, ProcessName, A
 AppVolume(ProcessName).AdjustVolume(-4)
 return
 }
 
-~F20 & WheelUp::Volume_Up
-~F20 & WheelDown::Volume_Down
+~XButton2 & WheelUp::Volume_Up
+~XButton2 & WheelDown::Volume_Down
 
-~XButton2 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
-~XButton2 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
+~XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
+~XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
 
 #if (toggle = 1)
 {
