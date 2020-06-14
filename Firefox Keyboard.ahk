@@ -793,7 +793,6 @@ return
 
 Refresh:
 {
-SoundBeep, 500, 50
 Reload
 return
 }
