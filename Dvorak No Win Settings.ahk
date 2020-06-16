@@ -1,4 +1,4 @@
-﻿Menu, Tray, Icon, networkexplorer.dll, 15
+Menu, Tray, Icon, networkexplorer.dll, 15
 
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
@@ -9,7 +9,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ; and do not let Control, Alt, or Win modifiers act on Dvorak
 TargetScriptTitle := "Firefox Keyboard - WD.ahk ahk_class AutoHotkey"
 dvorak = 1
-;Run autohotkey.exe "F:\Documents\AHK Current\Firefox Keyboard - WD.ahk" %dvorak%
+Run autohotkey.exe "F:\Documents\AHK Current\Firefox Keyboard - WD.ahk" %dvorak%
 
 Loop {
    If (dvorak = 1)
@@ -20,7 +20,7 @@ Loop {
       Suspend, Off
    } else {
       Suspend, On
-   }
+   }asdf
    Sleep, 50
 }
 
@@ -42,7 +42,7 @@ SoundBeep, 300, 50
 dvorak := 1
 }
 ; SendMessage, 0x5555, wParam, lParam, , ahk_id 0xFFFF
-;Run autohotkey.exe "F:\Documents\AHK Current\Firefox Keyboard - WD.ahk" %dvorak%
+Run autohotkey.exe "F:\Documents\AHK Current\Firefox Keyboard - WD.ahk" %dvorak%
 return
 
 ~!Insert::
@@ -55,24 +55,6 @@ Refresh:
 Reload
 return
 }
-
-; {
-	; ;Send, {Insert}
-	; dvorak := 0
-	; SoundBeep, 300, 150
-	; SoundBeep, 300, 150
-	; Suspend
-	; return
-; }
-
-; ^Insert::
-; {
-	; dvorak := 1
-	; SoundBeep, 300, 50
-	; SoundBeep, 300, 50
-	; SoundBeep, 300, 50
-	; return
-; }
 
 ; QWERTY to Dvorak mapping
 -::[
