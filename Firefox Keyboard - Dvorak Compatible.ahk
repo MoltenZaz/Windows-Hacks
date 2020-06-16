@@ -9,6 +9,10 @@ SetWorkingDir %A_ScriptDir%
 #UseHook
 ; Proudly Created by Mitchell Thomas
 
+; ------------------------------------------------------------------
+; USE THIS VERSION OF THE SCRIPT IF YOU ARE USING THE DVORAK SCRIPT
+; ------------------------------------------------------------------
+
 ; This script enables me to use firefox in the background.
 ; If you press the menu/appskey (to the right of the right windows key on a full sized keyboard)
 ; as a modifier for another key the key you pressed will be sent to firefox in the background.
