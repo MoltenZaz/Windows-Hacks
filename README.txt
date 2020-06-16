@@ -29,8 +29,6 @@ It also enables snipping tool when Windows + s is pressed and immediatly starts 
 Dvorak:
 Changes the input to Dvorak except when holding ctrl alt or win. It also sets CapsLock to backspace.
 To toggle back to qwerty press Insert.
-For this script to work you need to have australian english with qwerty and us english with dvorak in your windows
-language settings or modify the script.
 
 Easy Window Dragging:
 
