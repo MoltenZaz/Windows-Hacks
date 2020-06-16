@@ -4,7 +4,7 @@ Menu, Tray, Icon, networkexplorer.dll, 15
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-
+#MaxHotkeysPerInterval, 10000
 ; Use insert to swap keyboard layouts
 ; and do not let Control, Alt, or Win modifiers act on Dvorak
 TargetScriptTitle := "Firefox Keyboard - WD.ahk ahk_class AutoHotkey"
@@ -20,7 +20,7 @@ Loop {
       Suspend, Off
    } else {
       Suspend, On
-   }asdf
+   }
    Sleep, 50
 }
 
