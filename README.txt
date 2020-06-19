@@ -26,6 +26,12 @@ Creative Helper:
 This script adds custom hotkeys to Houdini and Photoshop
 It also enables snipping tool when Windows + s is pressed and immediatly starts a snip
 
+Desktop Modes:
+When you change between virtual desktops using the ctrl win left or ctrl win right hotkeys this script changes the wallpaper
+and also changes what programs are pinned to the taskbar. You will have to modify the paths for the program shortcuts and
+the wallpapers. Also if you have multiple monitors, like me, you will have to have your wallpapers combined as one big image.
+To easily make a wallpaper templated for yourself take a screenshot with printscreen and paste it into something like photoshop.
+
 Dvorak:
 Changes the input to Dvorak except when holding ctrl alt or win. It also sets CapsLock to backspace.
 To toggle back to qwerty press Insert.
