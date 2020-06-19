@@ -18,7 +18,7 @@ This allows you to keep a window always above the others (even when deselected) 
   
 Audio Fix:
 
-This script changes the default audio devices and locks the recording device to a specific volume (92% by default)
+This script changes the default audio devices and sets the volume (95% Microphone, 40% Speakers)
 The paths and audio device names in this script will need to be modified to fit your setup, Nircmd is also required to be installed.
   
 Creative Helper:
