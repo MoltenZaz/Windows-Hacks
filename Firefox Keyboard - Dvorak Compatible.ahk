@@ -7,6 +7,7 @@ SendMode Input
 SetTitleMatchMode, 2
 SetWorkingDir %A_ScriptDir%
 #UseHook
+
 ; Proudly Created by Mitchell Thomas
 
 ; ------------------------------------------------------------------
@@ -45,7 +46,7 @@ SetWorkingDir %A_ScriptDir%
 
 ; Rarely a game will require you to reload the script after opening it to work, GTA V is the only example i've come across
 
-; You can toggle the script to be always on by pressing appskey + capslock (so that you dont have to keep holding appskey while typing)
+; You can toggle the script to be always on by double pressing appskey (so that you dont have to keep holding appskey while typing)
 
 DoFocus = 1
 dvoraktoggle = %1%
@@ -76,26 +77,26 @@ DoFocus := 1
 return
 }
 
-~AppsKey & ~Capslock::
-{
-KeyDown := !KeyDown
-If KeyDown
-{
-	toggle2 := 1
-	mastertoggle := 1
-	SoundBeep, 500, 50
-}
-Else
-{
-	toggle2 := 0
-	if toggle = 0
-	{
-	mastertoggle := 0
-	}
-	SoundBeep, 250, 50
-}
-Return
-}
+; ~AppsKey & ~Capslock::
+; {
+; KeyDown := !KeyDown
+; If KeyDown
+; {
+	; toggle2 := 1
+	; mastertoggle := 1
+	; SoundBeep, 500, 50
+; }
+; Else
+; {
+	; toggle2 := 0
+	; if toggle = 0
+	; {
+	; mastertoggle := 0
+	; }
+	; SoundBeep, 250, 50
+; }
+; Return
+; }
 
 #IfWinNotActive, ahk_class UnrealWindow
 {
@@ -120,7 +121,28 @@ AppsKey::
 	toggle := 1
 	mastertoggle := 1
 	keywait AppsKey
-	toggle := 0
+	KeyWait, AppsKey, D T0.2
+	if ErrorLevel
+		toggle := 0
+	else
+    {
+		KeyDown := !KeyDown
+		If KeyDown
+		{
+			toggle2 := 1
+			mastertoggle := 1
+			SoundBeep, 500, 50
+		}
+		Else
+		{
+			toggle2 := 0
+			if toggle = 0
+			{
+				mastertoggle := 0
+			}
+			SoundBeep, 250, 50
+		}
+	}
 	if toggle2 = 0
 	{
 		mastertoggle := 0
@@ -1144,20 +1166,23 @@ return
 #+F1::
 {
 ;run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput mDP /Exit
-run "Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+; run "Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+SoundSet, 1, Master, Mute, 10
 return
 }
 
 #+F2::
 {
-run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+SoundSet, 0, Master, Mute, 10
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI /Exit
 return
 }
 
 #+F3::
 {
-run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+SoundSet, 0, Master, Mute, 10
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI2 /Exit
 return
 }
