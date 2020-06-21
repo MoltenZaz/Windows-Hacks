@@ -625,7 +625,7 @@ End::ControlSend, ahk_parent, {End}, ahk_class MozillaWindowClass
 Esc::ControlSend, ahk_parent, {Esc}, ahk_class MozillaWindowClass
 NumpadDot::
 {
-run "Nircmd\SoundVolumeView.exe" /Switch "Consoles"
+SoundSet, +1, Master, Mute, 10
 SoundBeep, 250, 250
 return
 }
