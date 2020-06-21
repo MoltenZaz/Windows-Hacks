@@ -7,12 +7,7 @@ SendMode Input
 SetTitleMatchMode, 2
 SetWorkingDir %A_ScriptDir%
 #UseHook
-
 ; Proudly Created by Mitchell Thomas
-
-; ------------------------------------------------------------------
-; USE THIS VERSION OF THE SCRIPT IF YOU ARE USING THE DVORAK SCRIPT
-; ------------------------------------------------------------------
 
 ; This script enables me to use firefox in the background.
 ; If you press the menu/appskey (to the right of the right windows key on a full sized keyboard)
@@ -62,41 +57,17 @@ mastertoggle = 0
 toggle = 0
 toggle2 = 0
 
-#Persistent
-SetTimer, SetVar, 500
-return
-
-SetVar:
+#IfWinActive, Mozilla Firefox
 {
-IfWinActive, Mozilla Firefox
+~LButton::
 {
 DoFocus := 0
 WinWaitNotActive, Mozilla Firefox
 DoFocus := 1
-}
 return
 }
-
-; ~AppsKey & ~Capslock::
-; {
-; KeyDown := !KeyDown
-; If KeyDown
-; {
-	; toggle2 := 1
-	; mastertoggle := 1
-	; SoundBeep, 500, 50
-; }
-; Else
-; {
-	; toggle2 := 0
-	; if toggle = 0
-	; {
-	; mastertoggle := 0
-	; }
-	; SoundBeep, 250, 50
-; }
-; Return
-; }
+}
+#if
 
 #IfWinNotActive, ahk_class UnrealWindow
 {
