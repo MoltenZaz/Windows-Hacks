@@ -755,16 +755,16 @@ else
 return
 }
 
-Numpad1::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 10
-Numpad2::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 20
-Numpad3::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 30
-Numpad4::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
-Numpad5::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 50
-Numpad6::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 60
-Numpad7::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 70
-Numpad8::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 80
-Numpad9::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 90
-Numpad0::run "Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 100
+Numpad1::SoundSet, 10, Master, Volume, 10
+Numpad2::SoundSet, 20, Master, Volume, 10
+Numpad3::SoundSet, 30, Master, Volume, 10
+Numpad4::SoundSet, 40, Master, Volume, 10
+Numpad5::SoundSet, 50, Master, Volume, 10
+Numpad6::SoundSet, 60, Master, Volume, 10
+Numpad7::SoundSet, 70, Master, Volume, 10
+Numpad8::SoundSet, 80, Master, Volume, 10
+Numpad9::SoundSet, 90, Master, Volume, 10
+Numpad0::SoundSet, 100, Master, Volume, 10
 }
 #if
 
