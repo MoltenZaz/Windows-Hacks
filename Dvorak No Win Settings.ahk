@@ -21,7 +21,7 @@ Loop {
    } else {
       Suspend, On
    }
-   Sleep, 50
+   Sleep, 10
 }
 
 Insert::
