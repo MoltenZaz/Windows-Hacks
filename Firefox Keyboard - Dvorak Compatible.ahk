@@ -5,6 +5,7 @@ Menu, Tray, Icon, pifmgr.dll, 13
 #Include VA.ahk
 SendMode Input
 SetTitleMatchMode, 2
+DetectHiddenWindows On
 SetWorkingDir %A_ScriptDir%
 #UseHook
 ; Proudly Created by Mitchell Thomas
@@ -83,9 +84,25 @@ CapsLock::Delete
 }
 #if
 
-; ~Insert::dvoraktoggle := 0
-
-; ~^Insert::dvoraktoggle := 1
+; Insert::
+; {
+; If(dvoraktoggle = 1)
+; {
+; SoundBeep, 300, 150
+; SoundBeep, 300, 150
+; dvoraktoggle := 0
+; }
+; else
+; {
+; SoundBeep, 300, 50
+; SoundBeep, 300, 50
+; SoundBeep, 300, 50
+; dvoraktoggle := 1
+; }
+; PostMessage, 0x111, 65305,,, Dvorak.ahk - AutoHotkey
+; PostMessage, 0x111, 65306,,, Dvorak.ahk - AutoHotkey
+; return
+; }
 
 AppsKey::
 {
