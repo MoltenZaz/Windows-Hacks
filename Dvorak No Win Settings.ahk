@@ -7,12 +7,8 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #MaxHotkeysPerInterval, 10000
 ; Use insert to swap keyboard layouts
 ; and do not let Control, Alt, or Win modifiers act on Dvorak
-TargetScriptTitle := "Firefox Keyboard - WD.ahk ahk_class AutoHotkey"
-dvorak = 1
-Run autohotkey.exe "F:\Documents\AHK Current\Firefox Keyboard - WD.ahk" %dvorak%
 
 Loop {
-   If (dvorak = 1)
    If !GetKeyState("Control")
    and !GetKeyState("Alt")
    and !GetKeyState("LWin")
@@ -25,24 +21,21 @@ Loop {
 }
 
 Insert::
-suspend, off
+Suspend
+Pause, , 1
 If(dvorak = 1)
 {
-suspend, on
 SoundBeep, 300, 150
 SoundBeep, 300, 150
 dvorak := 0
 }
 else
 {
-suspend, off
 SoundBeep, 300, 50
 SoundBeep, 300, 50
 SoundBeep, 300, 50
 dvorak := 1
 }
-; SendMessage, 0x5555, wParam, lParam, , ahk_id 0xFFFF
-Run autohotkey.exe "F:\Documents\AHK Current\Firefox Keyboard - WD.ahk" %dvorak%
 return
 
 ~!Insert::
