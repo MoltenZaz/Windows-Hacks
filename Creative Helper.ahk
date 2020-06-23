@@ -1,33 +1,53 @@
 Menu, Tray, Icon, pifmgr.dll, 18
 
+#SingleInstance force
+
+^!Space:: Winset, Alwaysontop, , A
+
+^Esc::Send, {Esc}
+
+#f::Send, f
+
+#h::Send, h
+
+#s::Send, s
+
+#+f::Send, F
+
+#^Enter::Send, {Enter}
+
+#^n::Send, n
+
+#^+b::Send, b
+
 ; make forward and back mouse buttons dive in and out of nodes in houdini
 ; multiple other bindings for houdini, including different hotkeys when two are pressed at once
 #IfWinActive,ahk_exe houdinifx.exe
 {
 ~Xbutton1 & Xbutton2::
 {
-Send, ^2
+Send, 3
 return
 }
-F22::1
-F23::2
+F22::v
+F23::c
 F23 & F22::
 {
-Send, {v down}
+Send, {1 down}
 keywait, F22
-Send, {v up}
+Send, {1 up}
 return
 }
 ~Xbutton2 & Xbutton1::
 {
-Send, ^1
+Send, 4
 return
 }
 F22 & F23::
 {
-Send, {c down}
+Send, {2 down}
 keywait, F23
-Send, {c up}
+Send, {2 up}
 return
 }
 ~Xbutton1::u
@@ -74,33 +94,34 @@ return
 Return
 }
 }
+#if
 
 #IfWinActive,ahk_exe happrentice.exe
 {
 ~Xbutton1 & Xbutton2::
 {
-Send, ^2
+Send, 3
 return
 }
-F22::1
-F23::2
+F22::v
+F23::c
 F23 & F22::
 {
-Send, {v down}
+Send, {1 down}
 keywait, F22
-Send, {v up}
+Send, {1 up}
 return
 }
 ~Xbutton2 & Xbutton1::
 {
-Send, ^1
+Send, 4
 return
 }
 F22 & F23::
 {
-Send, {c down}
+Send, {2 down}
 keywait, F23
-Send, {c up}
+Send, {2 up}
 return
 }
 ~Xbutton1::u
@@ -146,34 +167,37 @@ return
 }
 Return
 }
+F19::ControlSend, ahk_parent, {Space}, ahk_class MozillaWindowClass
+F16::ControlSend, ahk_parent, {Left}, ahk_class MozillaWindowClass
 }
+#if
 
 #IfWinActive,ahk_exe houdini.exe
 {
 ~Xbutton1 & Xbutton2::
 {
-Send, ^2
+Send, 3
 return
 }
-F22::1
-F23::2
+F22::v
+F23::c
 F23 & F22::
 {
-Send, {v down}
+Send, {1 down}
 keywait, F22
-Send, {v up}
+Send, {1 up}
 return
 }
 ~Xbutton2 & Xbutton1::
 {
-Send, ^1
+Send, 4
 return
 }
 F22 & F23::
 {
-Send, {c down}
+Send, {2 down}
 keywait, F23
-Send, {c up}
+Send, {2 up}
 return
 }
 ~Xbutton1::u
@@ -220,33 +244,34 @@ return
 Return
 }
 }
+#if
 
 #IfWinActive,ahk_exe mplay.exe
 {
 ~Xbutton1 & Xbutton2::
 {
-Send, ^2
+Send, 3
 return
 }
-F22::1
-F23::2
+F22::v
+F23::c
 F23 & F22::
 {
-Send, {v down}
+Send, {1 down}
 keywait, F22
-Send, {v up}
+Send, {1 up}
 return
 }
 ~Xbutton2 & Xbutton1::
 {
-Send, ^1
+Send, 4
 return
 }
 F22 & F23::
 {
-Send, {c down}
+Send, {2 down}
 keywait, F23
-Send, {c up}
+Send, {2 up}
 return
 }
 ~Xbutton1::u
@@ -293,6 +318,7 @@ return
 Return
 }
 }
+#if
 
 isFullScreen := isWindowFullScreen( "A" )
 ;MsgBox % isFullScreen ? "Full Screen" : "Windowed"
@@ -332,52 +358,26 @@ a = 1
 keywait, F2
 return
 }
+#if
 
 ; Make windows + s open snipping tool and create a new snip
-
-#IfWinExist
-
-AppsKey & NumpadMult::
-{
-isFullScreen := isWindowFullScreen( "A" )
-if isFullScreen = 0
-{
-IfWinExist Snip & Sketch
-{
-	WinActivate
-	WinWait,  Snip & Sketch,,2
-	Send ^n
-}
-else
-{
-	Run "F:\Snip & Sketch.lnk"
-	sleep, 500
-	send, ^n
-}
-}
-return
-}
-
-PrintScreen::
-{
-isFullScreen := isWindowFullScreen( "A" )
-if isFullScreen = 0
-{
-IfWinExist Snipping Tool
-{
-	WinActivate
-	WinWait,  Snipping Tool,,2
-	Send ^n
-}
-else
-{
-	Run "c:\windows\system32\SnippingTool.exe"
-	WinWait,  Snipping Tool,,2
-	ControlClick, x40 y40, Snipping Tool
-}
-}
-return
-}
-
-; make win F1 F13, in displayfusion this puts the mouse cursor on the left most monitor
-#F1::F13
+;PrintScreen::
+;{
+;isFullScreen := isWindowFullScreen( "A" )
+;if isFullScreen = 0
+;{
+;IfWinExist Snipping Tool
+;{
+;	WinActivate
+;	WinWait,  Snipping Tool,,2
+;	Send ^n
+;}
+;else
+;{
+;	Run "c:\windows\system32\SnippingTool.exe"
+;	WinWait,  Snipping Tool,,2
+;	ControlClick, x40 y40, Snipping Tool
+;}
+;}
+;return
+;}
