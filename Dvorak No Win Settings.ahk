@@ -7,8 +7,10 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #MaxHotkeysPerInterval, 10000
 ; Use insert to swap keyboard layouts
 ; and do not let Control, Alt, or Win modifiers act on Dvorak
+dvorak=1
 
 Loop {
+   If(dvorak = 1)
    If !GetKeyState("Control")
    and !GetKeyState("Alt")
    and !GetKeyState("LWin")
