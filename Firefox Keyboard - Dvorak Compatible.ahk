@@ -1,5 +1,5 @@
 Menu, Tray, Icon, pifmgr.dll, 13
-
+#InputLevel 0
 #NoEnv
 #SingleInstance force
 #Include VA.ahk
@@ -8,6 +8,9 @@ SetTitleMatchMode, 2
 DetectHiddenWindows On
 SetWorkingDir %A_ScriptDir%
 #UseHook
+
+Run Dvorak.ahk
+
 ; Proudly Created by Mitchell Thomas
 
 ; This script enables me to use firefox in the background.
@@ -45,11 +48,6 @@ SetWorkingDir %A_ScriptDir%
 ; You can toggle the script to be always on by double pressing appskey (so that you dont have to keep holding appskey while typing)
 
 DoFocus = 1
-dvoraktoggle = %1%
-if (dvoraktoggle != 1 && dvoraktoggle != 0)
-{
-dvoraktoggle := 1
-}
 ctrltoggle = 0
 shifttoggle = 0
 alttoggle = 0
@@ -84,26 +82,6 @@ CapsLock::Delete
 }
 #if
 
-; Insert::
-; {
-; If(dvoraktoggle = 1)
-; {
-; SoundBeep, 300, 150
-; SoundBeep, 300, 150
-; dvoraktoggle := 0
-; }
-; else
-; {
-; SoundBeep, 300, 50
-; SoundBeep, 300, 50
-; SoundBeep, 300, 50
-; dvoraktoggle := 1
-; }
-; PostMessage, 0x111, 65305,,, Dvorak.ahk - AutoHotkey
-; PostMessage, 0x111, 65306,,, Dvorak.ahk - AutoHotkey
-; return
-; }
-
 AppsKey::
 {
 	toggle := 1
@@ -119,7 +97,8 @@ AppsKey::
 		{
 			toggle2 := 1
 			mastertoggle := 1
-			SoundBeep, 500, 50
+			SoundBeep, 200, 50
+			SoundBeep, 300, 50
 		}
 		Else
 		{
@@ -128,7 +107,8 @@ AppsKey::
 			{
 				mastertoggle := 0
 			}
-			SoundBeep, 250, 50
+			SoundBeep, 300, 50
+			SoundBeep, 200, 50
 		}
 	}
 	if toggle2 = 0
@@ -176,12 +156,15 @@ AppsKey::
 return
 }
 
+#InputLevel 2
 #If (mastertoggle = 1)
 {
 LCtrl::
 {
+	SendInput, {F13 Down}
 	ctrltoggle := 1
-	keywait LCtrl
+	keywait Ctrl
+	SendInput, {F13 Up}
 	ctrltoggle := 0
 	return
 }
@@ -189,23 +172,26 @@ LCtrl::
 LShift::
 {
 	shifttoggle := 1
-	keywait LShift
+	keywait Shift
 	shifttoggle := 0
 	return
 }
 
 LAlt::
 {
+	SendInput, {F13 Down}
 	alttoggle := 1
-	keywait LAlt
+	keywait Alt
+	SendInput, {F13 Up}
 	alttoggle := 0
 	return
 }
-
 RCtrl::
 {
+	SendInput, {F13 Down}
 	ctrltoggle := 1
-	keywait RCtrl
+	keywait Ctrl
+	SendInput, {F13 Up}
 	ctrltoggle := 0
 	return
 }
@@ -213,358 +199,24 @@ RCtrl::
 RShift::
 {
 	shifttoggle := 1
-	keywait RShift
+	keywait Shift
 	shifttoggle := 0
 	return
 }
 
 RAlt::
 {
+	SendInput, {F13 Down}
 	alttoggle := 1
-	keywait RAlt
+	keywait Alt
+	SendInput, {F13 Up}
 	alttoggle := 0
 	return
 }
 }
 #if
-
-; #If (dvoraktoggle = 1)
-; ~LCtrl::
-; {
-	; ctrltoggle := 1
-	; keywait LCtrl
-	; ctrltoggle := 0
-	; return
-; }
-
-; ~LShift::
-; {
-	; shifttoggle := 1
-	; keywait LShift
-	; shifttoggle := 0
-	; return
-; }
-
-; ~LAlt::
-; {
-	; alttoggle := 1
-	; keywait LAlt
-	; alttoggle := 0
-	; return
-; }
-
-; ~LWin::
-; {
-	; wintoggle := 1
-	; keywait LWin
-	; wintoggle := 0
-	; return
-; }
-
-; ~RCtrl::
-; {
-	; ctrltoggle := 1
-	; keywait RCtrl
-	; ctrltoggle := 0
-	; return
-; }
-
-; ~RShift::
-; {
-	; shifttoggle := 1
-	; keywait RShift
-	; shifttoggle := 0
-	; return
-; }
-
-; ~RAlt::
-; {
-	; alttoggle := 1
-	; keywait RAlt
-	; alttoggle := 0
-	; return
-; }
-
-; ~RWin::
-; {
-	; wintoggle := 1
-	; keywait RWin
-	; wintoggle := 0
-	; return
-; }
-; #if
-
-; *F9::MsgBox, %ctrltoggle% %alttoggle% %wintoggle% %dvoraktoggle% %mastertoggle%
-
-; #If (ctrltoggle = 0 && shifttoggle = 0 && alttoggle = 0 && wintoggle = 0 && dvoraktoggle = 1 && mastertoggle = 0)
-; {
-; -::[
-; =::]
-
-; q::'
-; w::,
-; e::.
-; r::p
-; t::y
-; y::f
-; u::g
-; i::c
-; o::r
-; p::l
-; [::/
-; ]::=
-
-; s::o
-; d::e
-; f::u
-; g::i
-; h::d
-; j::h
-; k::t
-; l::n
-; `;::s
-; '::-
-
-; z::`;
-; x::q
-; c::j
-; v::k
-; b::x
-; n::b
-; ,::w
-; .::v
-; /::z
-; }
-; #if
-
-; #If (ctrltoggle = 0 && shifttoggle = 1 && alttoggle = 0 && wintoggle = 0 && dvoraktoggle = 1 && mastertoggle = 0)
-; {
-; -::[
-; =::]
-
-; q::"  ;"
-; w::<
-; e::>
-; r::P
-; t::Y
-; y::F
-; u::G
-; i::C
-; o::R
-; p::L
-; [::?
-; ]::+
-
-; s::O
-; d::E
-; f::U
-; g::I
-; h::D
-; j::H
-; k::T
-; l::N
-; `;::S
-; '::_
-
-; z:::
-; x::Q
-; c::J
-; v::K
-; b::X
-; n::B
-; ,::W
-; .::V
-; /::Z
-; }
-; #if
-
-#if (ctrltoggle = 0 && shifttoggle = 0 && alttoggle = 0 && mastertoggle = 1 && dvoraktoggle = 1)
-{
-; no modifiers go here
-a::ControlSend, ahk_parent, a, ahk_class MozillaWindowClass
-b::ControlSend, ahk_parent, x, ahk_class MozillaWindowClass
-c::ControlSend, ahk_parent, j, ahk_class MozillaWindowClass
-d::ControlSend, ahk_parent, e, ahk_class MozillaWindowClass
-e::ControlSend, ahk_parent, d, ahk_class MozillaWindowClass
-f::ControlSend, ahk_parent, u, ahk_class MozillaWindowClass
-g::ControlSend, ahk_parent, i, ahk_class MozillaWindowClass
-h::ControlSend, ahk_parent, d, ahk_class MozillaWindowClass
-i::ControlSend, ahk_parent, c, ahk_class MozillaWindowClass
-j::ControlSend, ahk_parent, h, ahk_class MozillaWindowClass
-k::ControlSend, ahk_parent, t, ahk_class MozillaWindowClass
-l::ControlSend, ahk_parent, n, ahk_class MozillaWindowClass
-m::ControlSend, ahk_parent, m, ahk_class MozillaWindowClass
-n::ControlSend, ahk_parent, b, ahk_class MozillaWindowClass
-o::ControlSend, ahk_parent, r, ahk_class MozillaWindowClass
-p::ControlSend, ahk_parent, l, ahk_class MozillaWindowClass
-q::ControlSend, ahk_parent, ', ahk_class MozillaWindowClass  ;"
-r::ControlSend, ahk_parent, p, ahk_class MozillaWindowClass
-s::ControlSend, ahk_parent, o, ahk_class MozillaWindowClass
-t::ControlSend, ahk_parent, y, ahk_class MozillaWindowClass
-u::ControlSend, ahk_parent, g, ahk_class MozillaWindowClass
-v::ControlSend, ahk_parent, k, ahk_class MozillaWindowClass
-w::ControlSend, ahk_parent, `,, ahk_class MozillaWindowClass
-x::ControlSend, ahk_parent, q, ahk_class MozillaWindowClass
-y::ControlSend, ahk_parent, f, ahk_class MozillaWindowClass
-z::ControlSend, ahk_parent, `;, ahk_class MozillaWindowClass
-`::ControlSend, ahk_parent, ``, ahk_class MozillaWindowClass
-1::ControlSend, ahk_parent, 1, ahk_class MozillaWindowClass
-2::ControlSend, ahk_parent, 2, ahk_class MozillaWindowClass
-3::ControlSend, ahk_parent, 3, ahk_class MozillaWindowClass
-4::ControlSend, ahk_parent, 4, ahk_class MozillaWindowClass
-5::ControlSend, ahk_parent, 5, ahk_class MozillaWindowClass
-6::ControlSend, ahk_parent, 6, ahk_class MozillaWindowClass
-7::ControlSend, ahk_parent, 7, ahk_class MozillaWindowClass
-8::ControlSend, ahk_parent, 8, ahk_class MozillaWindowClass
-9::ControlSend, ahk_parent, 9, ahk_class MozillaWindowClass
-0::ControlSend, ahk_parent, 0, ahk_class MozillaWindowClass
--::ControlSend, ahk_parent, [, ahk_class MozillaWindowClass
-=::ControlSend, ahk_parent, ], ahk_class MozillaWindowClass
-[::ControlSend, ahk_parent, /, ahk_class MozillaWindowClass
-]::ControlSend, ahk_parent, =, ahk_class MozillaWindowClass
-\::ControlSend, ahk_parent, \, ahk_class MozillaWindowClass
-`;::ControlSend, ahk_parent, s, ahk_class MozillaWindowClass
-'::ControlSend, ahk_parent, -, ahk_class MozillaWindowClass
-,::ControlSend, ahk_parent, w, ahk_class MozillaWindowClass
-.::ControlSend, ahk_parent, v, ahk_class MozillaWindowClass
-/::ControlSend, ahk_parent, z, ahk_class MozillaWindowClass
-F1::ControlSend, ahk_parent, {F1}, ahk_class MozillaWindowClass
-F2::ControlSend, ahk_parent, {F2}, ahk_class MozillaWindowClass
-F3::ControlSend, ahk_parent, {F3}, ahk_class MozillaWindowClass
-F4::ControlSend, ahk_parent, {F4}, ahk_class MozillaWindowClass
-F5::ControlSend, ahk_parent, {F5}, ahk_class MozillaWindowClass
-F6::ControlSend, ahk_parent, {F6}, ahk_class MozillaWindowClass
-F7::ControlSend, ahk_parent, {F7}, ahk_class MozillaWindowClass
-F8::ControlSend, ahk_parent, {F8}, ahk_class MozillaWindowClass
-F9::ControlSend, ahk_parent, {F9}, ahk_class MozillaWindowClass
-F10::ControlSend, ahk_parent, {F10}, ahk_class MozillaWindowClass
-F11::ControlSend, ahk_parent, {F11}, ahk_class MozillaWindowClass
-F12::ControlSend, ahk_parent, {F12}, ahk_class MozillaWindowClass
-Enter::ControlSend, ahk_parent, {Enter}, ahk_class MozillaWindowClass
-Tab::ControlSend, ahk_parent, {Tab}, ahk_class MozillaWindowClass
-Left::ControlSend, ahk_parent, {Left}, ahk_class MozillaWindowClass
-Right::ControlSend, ahk_parent, {Right}, ahk_class MozillaWindowClass
-Up::ControlSend, ahk_parent, {Up}, ahk_class MozillaWindowClass
-Down::ControlSend, ahk_parent, {Down}, ahk_class MozillaWindowClass
-Backspace::ControlSend, ahk_parent, {Backspace}, ahk_class MozillaWindowClass
-Delete::ControlSend, ahk_parent, {Delete}, ahk_class MozillaWindowClass
-PgUp::ControlSend, ahk_parent, {PgUp}, ahk_class MozillaWindowClass
-PgDn::ControlSend, ahk_parent, {PgDn}, ahk_class MozillaWindowClass
-Space::ControlSend, ahk_parent, {Space}, ahk_class MozillaWindowClass
-Home::ControlSend, ahk_parent, {Home}, ahk_class MozillaWindowClass
-End::ControlSend, ahk_parent, {End}, ahk_class MozillaWindowClass
-Esc::ControlSend, ahk_parent, {Esc}, ahk_class MozillaWindowClass
-NumpadDot::
-{
-run "Nircmd\SoundVolumeView.exe" /Switch "Consoles"
-SoundBeep, 250, 250
-return
-}
-Numpad1::SoundSet, 10, Master
-Numpad2::SoundSet, 20, Master
-Numpad3::SoundSet, 30, Master
-Numpad4::SoundSet, 40, Master
-Numpad5::SoundSet, 50, Master
-Numpad6::SoundSet, 60, Master
-Numpad7::SoundSet, 70, Master
-Numpad8::SoundSet, 80, Master
-Numpad9::SoundSet, 90, Master
-Numpad0::SoundSet, 100, Master
-
-Volume_Up::
-{
-WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(2)
-return
-}
-Volume_Down::
-{
-WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(-2)
-return
-}
-}
-#if
-
-#if (ctrltoggle = 0 && shifttoggle = 1 && alttoggle = 0 && mastertoggle = 1 && dvoraktoggle = 1)
-{
-; shift goes here
-a::ControlSend, ahk_parent, {Shift Down}a{Shift Up}, ahk_class MozillaWindowClass
-b::ControlSend, ahk_parent, {Shift Down}x{Shift Up}, ahk_class MozillaWindowClass
-c::ControlSend, ahk_parent, {Shift Down}j{Shift Up}, ahk_class MozillaWindowClass
-d::ControlSend, ahk_parent, {Shift Down}e{Shift Up}, ahk_class MozillaWindowClass
-e::ControlSend, ahk_parent, {Shift Down}d{Shift Up}, ahk_class MozillaWindowClass
-f::ControlSend, ahk_parent, {Shift Down}u{Shift Up}, ahk_class MozillaWindowClass
-g::ControlSend, ahk_parent, {Shift Down}i{Shift Up}, ahk_class MozillaWindowClass
-h::ControlSend, ahk_parent, {Shift Down}d{Shift Up}, ahk_class MozillaWindowClass
-i::ControlSend, ahk_parent, {Shift Down}c{Shift Up}, ahk_class MozillaWindowClass
-j::ControlSend, ahk_parent, {Shift Down}h{Shift Up}, ahk_class MozillaWindowClass
-k::ControlSend, ahk_parent, {Shift Down}t{Shift Up}, ahk_class MozillaWindowClass
-l::ControlSend, ahk_parent, {Shift Down}n{Shift Up}, ahk_class MozillaWindowClass
-m::ControlSend, ahk_parent, {Shift Down}m{Shift Up}, ahk_class MozillaWindowClass
-n::ControlSend, ahk_parent, {Shift Down}b{Shift Up}, ahk_class MozillaWindowClass
-o::ControlSend, ahk_parent, {Shift Down}r{Shift Up}, ahk_class MozillaWindowClass
-p::ControlSend, ahk_parent, {Shift Down}l{Shift Up}, ahk_class MozillaWindowClass
-q::ControlSend, ahk_parent, {Shift Down}'{Shift Up}, ahk_class MozillaWindowClass  ;"
-r::ControlSend, ahk_parent, {Shift Down}p{Shift Up}, ahk_class MozillaWindowClass
-s::ControlSend, ahk_parent, {Shift Down}o{Shift Up}, ahk_class MozillaWindowClass
-t::ControlSend, ahk_parent, {Shift Down}y{Shift Up}, ahk_class MozillaWindowClass
-u::ControlSend, ahk_parent, {Shift Down}g{Shift Up}, ahk_class MozillaWindowClass
-v::ControlSend, ahk_parent, {Shift Down}k{Shift Up}, ahk_class MozillaWindowClass
-w::ControlSend, ahk_parent, {Shift Down}`,{Shift Up}, ahk_class MozillaWindowClass
-x::ControlSend, ahk_parent, {Shift Down}q{Shift Up}, ahk_class MozillaWindowClass
-y::ControlSend, ahk_parent, {Shift Down}f{Shift Up}, ahk_class MozillaWindowClass
-z::ControlSend, ahk_parent, {Shift Down}`;{Shift Up}, ahk_class MozillaWindowClass
-`::ControlSend, ahk_parent, {Shift Down}``{Shift Up}, ahk_class MozillaWindowClass
-1::ControlSend, ahk_parent, {Shift Down}1{Shift Up}, ahk_class MozillaWindowClass
-2::ControlSend, ahk_parent, {Shift down}2{Shift up}, ahk_class MozillaWindowClass
-3::ControlSend, ahk_parent, {Shift down}3{Shift up}, ahk_class MozillaWindowClass
-4::ControlSend, ahk_parent, {Shift down}4{Shift up}, ahk_class MozillaWindowClass
-5::ControlSend, ahk_parent, {Shift down}5{Shift up}, ahk_class MozillaWindowClass
-6::ControlSend, ahk_parent, {Shift down}6{Shift up}, ahk_class MozillaWindowClass
-7::ControlSend, ahk_parent, {Shift down}7{Shift up}, ahk_class MozillaWindowClass
-8::ControlSend, ahk_parent, {Shift down}8{Shift up}, ahk_class MozillaWindowClass
-9::ControlSend, ahk_parent, {Shift down}9{Shift up}, ahk_class MozillaWindowClass
-0::ControlSend, ahk_parent, {Shift down}0{Shift up}, ahk_class MozillaWindowClass
--::ControlSend, ahk_parent, {Shift Down}[{Shift Up}, ahk_class MozillaWindowClass
-=::ControlSend, ahk_parent, {Shift Down}]{Shift Up}, ahk_class MozillaWindowClass
-[::ControlSend, ahk_parent, {Shift Down}/{Shift Up}, ahk_class MozillaWindowClass
-]::ControlSend, ahk_parent, {Shift Down}={Shift Up}, ahk_class MozillaWindowClass
-\::ControlSend, ahk_parent, {Shift Down}\{Shift Up}, ahk_class MozillaWindowClass
-`;::ControlSend, ahk_parent, {Shift Down}s{Shift Up}, ahk_class MozillaWindowClass
-'::ControlSend, ahk_parent, {Shift Down}-{Shift Up}, ahk_class MozillaWindowClass
-,::ControlSend, ahk_parent, {Shift Down}w{Shift Up}, ahk_class MozillaWindowClass
-.::ControlSend, ahk_parent, {Shift Down}v{Shift Up}, ahk_class MozillaWindowClass
-/::ControlSend, ahk_parent, {Shift Down}z{Shift Up}, ahk_class MozillaWindowClass
-F1::ControlSend, ahk_parent, {Shift down}{F1}{Shift up}, ahk_class MozillaWindowClass
-F2::ControlSend, ahk_parent, {Shift down}{F2}{Shift up}, ahk_class MozillaWindowClass
-F3::ControlSend, ahk_parent, {Shift down}{F3}{Shift up}, ahk_class MozillaWindowClass
-F4::ControlSend, ahk_parent, {Shift down}{F4}{Shift up}, ahk_class MozillaWindowClass
-F5::ControlSend, ahk_parent, {Shift down}{F5}{Shift up}, ahk_class MozillaWindowClass
-F6::ControlSend, ahk_parent, {Shift down}{F6}{Shift up}, ahk_class MozillaWindowClass
-F7::ControlSend, ahk_parent, {Shift down}{F7}{Shift up}, ahk_class MozillaWindowClass
-F8::ControlSend, ahk_parent, {Shift down}{F8}{Shift up}, ahk_class MozillaWindowClass
-F9::ControlSend, ahk_parent, {Shift down}{F9}{Shift up}, ahk_class MozillaWindowClass
-F10::ControlSend, ahk_parent, {Shift down}{F10}{Shift up}, ahk_class MozillaWindowClass
-F11::ControlSend, ahk_parent, {Shift down}{F11}{Shift up}, ahk_class MozillaWindowClass
-F12::ControlSend, ahk_parent, {Shift down}{F12}{Shift up}, ahk_class MozillaWindowClass
-Enter::ControlSend, ahk_parent, {Shift down}{Enter}{Shift up}, ahk_class MozillaWindowClass
-Tab::ControlSend, ahk_parent, {Shift down}{Tab}{Shift up}, ahk_class MozillaWindowClass
-Left::ControlSend, ahk_parent, {Shift down}{Left}{Shift up}, ahk_class MozillaWindowClass
-Right::ControlSend, ahk_parent, {Shift down}{Right}{Shift up}, ahk_class MozillaWindowClass
-Up::ControlSend, ahk_parent, {Shift down}{Up}{Shift up}, ahk_class MozillaWindowClass
-Down::ControlSend, ahk_parent, {Shift down}{Down}{Shift up}, ahk_class MozillaWindowClass
-Backspace::ControlSend, ahk_parent, {Shift down}{Backspace}{Shift up}, ahk_class MozillaWindowClass
-Delete::ControlSend, ahk_parent, {Shift down}{Delete}{Shift up}, ahk_class MozillaWindowClass
-PgUp::ControlSend, ahk_parent, {Shift down}{PgUp}{Shift up}, ahk_class MozillaWindowClass
-PgDn::ControlSend, ahk_parent, {Shift down}{PgDn}{Shift up}, ahk_class MozillaWindowClass
-Space::ControlSend, ahk_parent, {Shift down}{space}{Shift up}, ahk_class MozillaWindowClass
-Home::ControlSend, ahk_parent, {Shift down}{Home}{Shift up}, ahk_class MozillaWindowClass
-End::ControlSend, ahk_parent, {Shift down}{End}{Shift up}, ahk_class MozillaWindowClass
-}
-#if
-
-#if (ctrltoggle = 0 && shifttoggle = 0 && alttoggle = 0 && mastertoggle = 1 && dvoraktoggle = 0)
+#InputLevel 0
+#if (ctrltoggle = 0 && shifttoggle = 0 && alttoggle = 0 && mastertoggle = 1)
 {
 ; no modifiers go here
 a::ControlSend, ahk_parent, a, ahk_class MozillaWindowClass
@@ -633,6 +285,7 @@ Right::ControlSend, ahk_parent, {Right}, ahk_class MozillaWindowClass
 Up::ControlSend, ahk_parent, {Up}, ahk_class MozillaWindowClass
 Down::ControlSend, ahk_parent, {Down}, ahk_class MozillaWindowClass
 Backspace::ControlSend, ahk_parent, {Backspace}, ahk_class MozillaWindowClass
+CapsLock::ControlSend, ahk_parent, {Backspace}, ahk_class MozillaWindowClass
 Delete::ControlSend, ahk_parent, {Delete}, ahk_class MozillaWindowClass
 PgUp::ControlSend, ahk_parent, {PgUp}, ahk_class MozillaWindowClass
 PgDn::ControlSend, ahk_parent, {PgDn}, ahk_class MozillaWindowClass
@@ -747,6 +400,7 @@ Right::ControlSend, ahk_parent, {Ctrl down}{Right}{Ctrl up}, ahk_class MozillaWi
 Up::ControlSend, ahk_parent, {Ctrl down}{Up}{Ctrl up}, ahk_class MozillaWindowClass
 Down::ControlSend, ahk_parent, {Ctrl down}{Down}{Ctrl up}, ahk_class MozillaWindowClass
 Backspace::ControlSend, ahk_parent, {Ctrl down}{Backspace}{Ctrl up}, ahk_class MozillaWindowClass
+CapsLock::ControlSend, ahk_parent, {Ctrl down}{Backspace}{Ctrl up}, ahk_class MozillaWindowClass
 Delete::ControlSend, ahk_parent, {Ctrl down}{Delete}{Ctrl up}, ahk_class MozillaWindowClass
 PgUp::ControlSend, ahk_parent, {Ctrl down}{PgUp}{Ctrl up}, ahk_class MozillaWindowClass
 PgDn::ControlSend, ahk_parent, {Ctrl down}{PgDn}{Ctrl up}, ahk_class MozillaWindowClass
@@ -820,6 +474,7 @@ Right::ControlSend, ahk_parent, {Ctrl down}{Shift down}{Right}{Ctrl up}{Shift up
 Up::ControlSend, ahk_parent, {Ctrl down}{Shift down}{Up}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
 Down::ControlSend, ahk_parent, {Ctrl down}{Shift down}{Down}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
 Backspace::ControlSend, ahk_parent, {Ctrl down}{Shift down}{Backspace}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
+CapsLock::ControlSend, ahk_parent, {Ctrl down}{Shift down}{Backspace}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
 Delete::ControlSend, ahk_parent, {Ctrl down}{Shift down}{Delete}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
 PgUp::ControlSend, ahk_parent, {Ctrl down}{Shift down}{PgUp}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
 PgDn::ControlSend, ahk_parent, {Ctrl down}{Shift down}{PgDn}{Ctrl up}{Shift up}, ahk_class MozillaWindowClass
@@ -897,6 +552,7 @@ Right::ControlSend, ahk_parent, {Alt down}{Right}{Alt up}, ahk_class MozillaWind
 Up::ControlSend, ahk_parent, {Alt down}{Up}{Alt up}, ahk_class MozillaWindowClass
 Down::ControlSend, ahk_parent, {Alt down}{Down}{Alt up}, ahk_class MozillaWindowClass
 Backspace::ControlSend, ahk_parent, {Alt down}{Backspace}{Alt up}, ahk_class MozillaWindowClass
+CapsLock::ControlSend, ahk_parent, {Alt down}{Backspace}{Alt up}, ahk_class MozillaWindowClass
 Delete::ControlSend, ahk_parent, {Alt down}{Delete}{Alt up}, ahk_class MozillaWindowClass
 PgUp::ControlSend, ahk_parent, {Alt down}{PgUp}{Alt up}, ahk_class MozillaWindowClass
 PgDn::ControlSend, ahk_parent, {Alt down}{PgDn}{Alt up}, ahk_class MozillaWindowClass
@@ -966,7 +622,7 @@ return
 }
 #if
 
-#if (ctrltoggle = 0 && shifttoggle = 1 && alttoggle = 0 && mastertoggle = 1 && dvoraktoggle = 0)
+#if (ctrltoggle = 0 && shifttoggle = 1 && alttoggle = 0 && mastertoggle = 1)
 {
 ; shift goes here
 a::ControlSend, ahk_parent, {Shift down}a{Shift up}, ahk_class MozillaWindowClass
@@ -1035,6 +691,7 @@ Right::ControlSend, ahk_parent, {Shift down}{Right}{Shift up}, ahk_class Mozilla
 Up::ControlSend, ahk_parent, {Shift down}{Up}{Shift up}, ahk_class MozillaWindowClass
 Down::ControlSend, ahk_parent, {Shift down}{Down}{Shift up}, ahk_class MozillaWindowClass
 Backspace::ControlSend, ahk_parent, {Shift down}{Backspace}{Shift up}, ahk_class MozillaWindowClass
+CapsLock::ControlSend, ahk_parent, {Shift down}{Backspace}{Shift up}, ahk_class MozillaWindowClass
 Delete::ControlSend, ahk_parent, {Shift down}{Delete}{Shift up}, ahk_class MozillaWindowClass
 PgUp::ControlSend, ahk_parent, {Shift down}{PgUp}{Shift up}, ahk_class MozillaWindowClass
 PgDn::ControlSend, ahk_parent, {Shift down}{PgDn}{Shift up}, ahk_class MozillaWindowClass
