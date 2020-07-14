@@ -49,13 +49,13 @@ Win/F20 + Middle Button: Close a window.
 
 Easy Window Organiser:
 
---------> WinGetPosEx.ahk IS REQUIRED FOR THIS SCRIPT TO RUN. <--------
+————————> WinGetPosEx.ahk IS REQUIRED FOR THIS SCRIPT TO RUN. <————————
 
 The same as Easy Window Dragging but it also adds moving and resizing windows to preset locations though hotkeys on the numpad. This script will need to be highly adapted if you dont use a 3440x1440 monitor.
 
 Firefox/Chrome Keyboard:
 
---------> VA.ahk IS REQUIRED FOR THIS SCRIPT TO RUN. <--------
+————————> VA.ahk IS REQUIRED FOR THIS SCRIPT TO RUN. <————————
 
 My magnum opus and the script I use the most. FF Keyboard enables you to use FireFox (or can be modified to Chrome) in the background!
 Holding down the menu/appskey (key to the right of the right windows key (https://en.wikipedia.org/wiki/Menu_key) press appskey + capslock to toggle) you can press any key and have it
