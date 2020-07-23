@@ -31,30 +31,10 @@ Return
 	Return
 }
 
-; <!RAlt::
-; {
-	; Symbols:=1
-	; Keywait RAlt
-	; Symbols:=0
-	; Send, {Shift Up}
-	; Send, {RAlt Up}
-	; Send, {LAlt Up}
-	; return
-; }
+; ┌─────────────────────────────────────────────┐
+; │	↓↓↓ THIS IS WHERE KEY REMAPS GO ↓↓↓	│
+; ╘═════════════════════════════════════════════╛
 
-; >!LAlt::
-; {
-	; Symbols:=1
-	; Keywait LAlt
-	; Symbols:=0
-	; Send, {Shift Up}
-	; Send, {LAlt Up}
-	; Send, {RAlt Up}
-	; return
-; }
-
-!BackSpace::CapsLock
-<!>!BackSpace::CapsLock
 #If (Symbols = 1)
 {
 	`::Send {Text}○
