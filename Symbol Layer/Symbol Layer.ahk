@@ -74,7 +74,7 @@ Return
 	j::Send {Text}┐
 	k::Send {Text}└
 	l::Send {Text}┘
-	`;::Send {Text}—
+	`;::Send {Text}─
 	'::Send {Text}│
 	
 	z::Send {Text}╞
