@@ -398,24 +398,6 @@ Space::ControlSend, ahk_parent, {Ctrl down}{space}{Ctrl up}, ahk_id %FFSafe%
 Home::ControlSend, ahk_parent, {Ctrl down}{Home}{Ctrl up}, ahk_id %FFSafe%
 End::ControlSend, ahk_parent, {Ctrl down}{End}{Ctrl up}, ahk_id %FFSafe%
 
-Insert::
-{
-if dvoraktoggle = 1
-{
-	dvoraktoggle := 0
-	SoundBeep, 300, 150
-	SoundBeep, 300, 150
-}
-else
-{
-	dvoraktoggle := 1
-	SoundBeep, 300, 50
-	SoundBeep, 300, 50
-	SoundBeep, 300, 50
-}
-return
-}
-
 Numpad1::SoundSet, 10, Master, Volume, 11
 Numpad2::SoundSet, 20, Master, Volume, 11
 Numpad3::SoundSet, 30, Master, Volume, 11
