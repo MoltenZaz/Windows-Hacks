@@ -29,14 +29,7 @@ RSpace = 0
 		{
 			FirstTime := 0
 			FirstTimeD := 1
-			If(dvorak = 1)
-			{
-				dvorak := 0
-			}
-			else
-			{
-				dvorak := 1
-			}
+			dvorak := 0
 			return
 		}
 		else
@@ -50,14 +43,7 @@ RSpace = 0
 		{
 			FirstTime := 1
 			FirstTimeD := 0
-			If(dvorak = 1)
-			{
-				dvorak := 0
-			}
-			else
-			{
-				dvorak := 1
-			}
+			dvorak := 1
 			return
 		}
 		else
