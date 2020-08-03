@@ -18,7 +18,7 @@ RSpace = 0
 
 ; If you click in a fullscreen application it will change to QWERTY and will change to DVORAK when you click and you're not in a fullscreen application
 
-; To diable the script from automatically switching disable the LButton code (Lines 23-56).
+; To diable the script from automatically switching disable the LButton code (Lines 23-70).
 
 ~LButton::
 {
@@ -29,7 +29,14 @@ RSpace = 0
 		{
 			FirstTime := 0
 			FirstTimeD := 1
-			GoSub Insert
+			If(dvorak = 1)
+			{
+				dvorak := 0
+			}
+			else
+			{
+				dvorak := 1
+			}
 			return
 		}
 		else
@@ -43,7 +50,14 @@ RSpace = 0
 		{
 			FirstTime := 1
 			FirstTimeD := 0
-			GoSub Insert
+			If(dvorak = 1)
+			{
+				dvorak := 0
+			}
+			else
+			{
+				dvorak := 1
+			}
 			return
 		}
 		else
@@ -177,10 +191,8 @@ CapsLock::Backspace
 {
 	; QWERTY to Dvorak mapping
 	
-	$-::{
-	$=::}
-	$+-::Send [
-	$+=::Send ]
+	$-::[
+	$=::]
 
 	q::'
 	w::,
