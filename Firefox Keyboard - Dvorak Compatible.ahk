@@ -9,7 +9,7 @@ DetectHiddenWindows On
 SetWorkingDir %A_ScriptDir%
 #UseHook
 
-Run Dvorak.ahk
+Run Dvorak.ahk ; In order for the script to properly detect the dvorak script the dvorak script needs to be run after the firefox keyboard script.
 
 ; Proudly Created by Mitchell Thomas
 
@@ -65,20 +65,6 @@ WinWaitNotActive, Mozilla Firefox
 DoFocus := 1
 return
 }
-}
-#if
-
-#IfWinNotActive, ahk_class UnrealWindow
-{
-CapsLock::Backspace
-!Backspace::CapsLock
-}
-#if
-
-#IfWinActive, ahk_class UnrealWindow
-{
-CapsLock::Delete
-!Backspace::CapsLock
 }
 #if
 
