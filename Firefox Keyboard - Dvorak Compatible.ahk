@@ -58,6 +58,7 @@ toggle = 0
 toggle2 = 0
 FFNow = 0
 FFSafe = 0
+Full = 0
 
 ~LButton::
 {
@@ -87,11 +88,18 @@ AppsKey::
 		{
 			FFNow := FFList%FCount%
 			WinGetPos,X,Y,FFW,FFH, ahk_id %FFNow%
+			; MsgBox %FFW% %FFH% %FFNow%
 			If (FFW = 1936 && FFH = 1096) ; You may need to change these values or use the x y coordinates to specify the window you want
 			{
 				WinRestore, ahk_id %FFNow%
 				WinMaximize, ahk_id %FFNow%
 				FFSafe = %FFNow%
+				DoFocus := 0
+			}
+			If (FFW = 1920 && FFH = 1080) ; This is for when a video is fullscreen
+			{
+				FFSafe = %FFNow%
+				Full := 1
 				DoFocus := 0
 			}
 			FCount--
@@ -202,7 +210,19 @@ b::ControlSend, ahk_parent, b, ahk_id %FFSafe%
 c::ControlSend, ahk_parent, c, ahk_id %FFSafe%
 d::ControlSend, ahk_parent, d, ahk_id %FFSafe%
 e::ControlSend, ahk_parent, e, ahk_id %FFSafe%
-f::ControlSend, ahk_parent, f, ahk_id %FFSafe%
+; Doing F like this works around a weird issue where using f to unfullscreen a youtube video doesn't work the first time
+f::
+{
+	If(Full = 1)
+	{
+		ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
+		Full := 0
+	}
+	else
+	{
+		ControlSend, ahk_parent, f, ahk_id %FFSafe%
+	}
+}
 g::ControlSend, ahk_parent, g, ahk_id %FFSafe%
 h::ControlSend, ahk_parent, h, ahk_id %FFSafe%
 i::ControlSend, ahk_parent, i, ahk_id %FFSafe%
