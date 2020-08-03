@@ -16,6 +16,10 @@ dvorak = 1
 LSpace = 0
 RSpace = 0
 
+; If you click in a fullscreen application it will change to QWERTY and will change to DVORAK when you click and you're not in a fullscreen application
+
+; To diable the script from automatically switching disable the LButton code (Lines 23-56).
+
 ~LButton::
 {
 	isFullScreen := isWindowFullScreen( "A" )
