@@ -8,7 +8,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #MaxHotkeysPerInterval, 10000
 #SingleInstance Force
 
-; Run Symbol Layer.ahk ; I use this script to run the symbol layer so that it works with the dvorak layout
+Run Symbol Layer.ahk ; I use this script to run the symbol layer so that it works with the dvorak layout
 
 FirstTime = 1
 FirstTimeD = 0
@@ -71,60 +71,104 @@ else
 }
 return
 
-; I could get () to work fine with the script but not {}
+; ──────────────────────────────────────────── Space Cadet Shift With {} ────────────────────────────────────────────
 
-; #If dvorak = 1
-; {
-	; ; Space Cadet Shift with {} when both are pressed.
+#If dvorak = 1
+{
+	~LShift::
+	{
+		LS := 1
+		SetTimer, LTimer, 150
+		KeyWait, LShift
+		return
+	}
 
-	; ~RShift::
-	; {
-	; KeyWait, RShift
-	; If (A_TimeSinceThisHotkey < 150 and A_PriorKey = "RShift")
-	; {
-		; SendRaw, )
-	; }
-	; Return
-	; }
+	~LShift Up::
+	{
+		If(LS = 1 and A_PriorKey = "LShift")
+		{
+			Send (
+		}
+		return
+	}
 
-	; ~LShift::
-	; {
-	; KeyWait, LShift
-	; If (A_TimeSinceThisHotkey < 150 and A_PriorKey = "LShift")
-	; {
-		; SendRaw, (
-	; }
-	; Return
-	; }
-	
-	; >+LShift::
-	; {
-	; KeyWait, LShift
-	; If (A_TimeSinceThisHotkey < 150 and A_PriorKey = "LShift")
-	; {
-		; SendRaw, {
-	; }
-	; return
-	; }
-	
-	; <+RShift::
-	; {
-	; KeyWait, RShift
-	; If (A_TimeSinceThisHotkey < 150 and A_PriorKey = "RShift")
-	; {
-		; SendRaw, }
-	; }
-	; return
-	; }
-; }
-; #if
+	~>+LShift::
+	{
+		LS := 1
+		SetTimer, LTimer, 150
+		KeyWait, LShift
+		return
+	}
 
-;┌—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————┐
-;│																																   │
-;│	If Control alt LWin RWin and F13 aren't being pressed while dvorak is set to 1 then remap to dvorak with space cadet shifts.   │
-;│  F13 is used to detect modifiers in the FireFox Keyboard script, so it is unnessasary if you aren't using it.                   │
-;│																																   │
-;└—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————┘
+	~>+LShift Up::
+	{
+		If(LS = 1 and A_PriorKey = "LShift")
+		{
+			SendRaw, {
+		}
+		return
+	}
+
+	~RShift::
+	{
+		RS := 1
+		SetTimer, RTimer, 150
+		KeyWait, RShift
+		return
+	}
+
+	~RShift Up::
+	{
+		If(RS = 1 and A_PriorKey = "RShift")
+		{
+			Send )
+		}
+		return
+	}
+
+	~<+RShift::
+	{
+		RS := 1
+		SetTimer, RTimer, 150
+		KeyWait, RShift
+		return
+	}
+
+	~<+RShift Up::
+	{
+		If(RS = 1 and A_PriorKey = "RShift")
+		{
+			SendRaw, }
+		}
+		return
+	}
+
+	LTimer:
+	{
+		SetTimer, LTimer, Off
+		; SoundBeep, 500, 100
+		LS := 0
+		return
+	}
+
+	RTimer:
+	{
+		SetTimer, RTimer, Off
+		; SoundBeep, 500, 100
+		RS := 0
+		return
+	}
+}
+#If
+
+; ─────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+;┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
+;│                                                                                                                │
+;│	If Control alt LWin RWin and F13 aren't being pressed while dvorak is set to 1 then remap to dvorak           │
+;│  F13 is used to detect modifiers in the FireFox Keyboard script, so it is unnessasary if you aren't using it.  │
+;│                                                                                                                │
+;└────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
 
 CapsLock::Backspace
 !Backspace::CapsLock
