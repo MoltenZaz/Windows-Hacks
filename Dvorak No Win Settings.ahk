@@ -71,8 +71,10 @@ else
 }
 return
 
-#If dvorak = 1
-{
+; I could get () to work fine with the script but not {}
+
+; #If dvorak = 1
+; {
 	; ; Space Cadet Shift with {} when both are pressed.
 
 	; ~RShift::
@@ -114,8 +116,8 @@ return
 	; }
 	; return
 	; }
-}
-#if
+; }
+; #if
 
 ;┌—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————┐
 ;│																																   │
@@ -123,6 +125,9 @@ return
 ;│  F13 is used to detect modifiers in the FireFox Keyboard script, so it is unnessasary if you aren't using it.                   │
 ;│																																   │
 ;└—————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————————┘
+
+CapsLock::Backspace
+!Backspace::CapsLock
 
 #If !GetKeyState("Control") and !GetKeyState("Alt") and !GetKeyState("LWin") and !GetKeyState("RWin") and dvorak = 1 and !GetKeyState("F13")
 {
