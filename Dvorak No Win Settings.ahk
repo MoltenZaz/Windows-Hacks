@@ -8,7 +8,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 #MaxHotkeysPerInterval, 10000
 #SingleInstance Force
 
-Run Symbol Layer.ahk
+; Run Symbol Layer.ahk ; I use this script to run the symbol layer so that it works with the dvorak layout
 
 FirstTime = 1
 FirstTimeD = 0
@@ -70,16 +70,6 @@ else
 	dvorak := 1
 }
 return
-
-; ~!Insert::
-; SetTimer, Refresh, 60001
-; return
-
-; Refresh:
-; {
-; Reload
-; return
-; }
 
 #If dvorak = 1
 {
