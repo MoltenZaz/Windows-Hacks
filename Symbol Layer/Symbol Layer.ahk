@@ -1,4 +1,4 @@
-﻿Menu, Tray, Icon, mmcndmgr.dll, 108
+Menu, Tray, Icon, mmcndmgr.dll, 108
 #NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
@@ -7,6 +7,7 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 
 Symbols = 0
 
+#InputLevel 2
 Gui, Color, FAFAFA
 Gui, Add, Picture, x0 y0 w1016 h300 , Guide.png
 Gui +LastFound +AlwaysOnTop +ToolWindow
@@ -16,7 +17,8 @@ Return
 
 ~Pause::
 {
-	If GetKeyState("Pause", "T")
+	; If GetKeyState("Pause", "T")
+	If Symbols = 0
 	{
 		Gui, Show, xCenter y1000 h300 w1016 NA, Symbol Layer
 		Symbols:=1
