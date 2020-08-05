@@ -53,11 +53,19 @@ Swap:
 			; return
 		}
 	}
+	; Input, var, L1 V
+	; GoSub, Swap
+	SetTimer, SwapTimer, 0
+	return
+}
+
+SwapTimer:
+{
+	SetTimer, SwapTimer, Off
 	Input, var, L1 V
 	GoSub, Swap
 	return
 }
-
 ; ─────────────────────────────────────────────────────
 
 Insert::
