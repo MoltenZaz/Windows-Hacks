@@ -16,9 +16,9 @@ dvorak = 1
 LSpace = 0
 RSpace = 0
 
-; If you click in a fullscreen application it will change to QWERTY and will change to DVORAK when you click and you're not in a fullscreen application
+; If you click or press any key in a fullscreen application it will change to QWERTY and will change to DVORAK when you click and you're not in a fullscreen application
 
-; To diable the script from automatically switching disable the LButton code (Lines 23-70).
+; ───────────────────── AUTO SWAP ─────────────────────
 
 ~LButton::
 {
@@ -29,12 +29,12 @@ RSpace = 0
 		{
 			FirstTime := 0
 			FirstTimeD := 1
-			dvorak := 0
-			return
+			dvorak := 0			
+			; return
 		}
 		else
 		{
-			return
+			; return
 		}
 	}
 	else
@@ -44,16 +44,20 @@ RSpace = 0
 			FirstTime := 1
 			FirstTimeD := 0
 			dvorak := 1
-			return
+			; return
 		}
 		else
 		{
-			return
+			; return
 		}
-		return
+		; return
 	}
-	return
+	; return
+	Input, var, L1 V, {LControl}{RControl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}{AppsKey}{F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12}{Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{CapsLock}{NumLock}{PrintScreen}{Pause}
+	GoSub, ~LButton
 }
+
+; ─────────────────────────────────────────────────────
 
 Insert::
 If(dvorak = 1)
@@ -70,6 +74,8 @@ else
 	dvorak := 1
 }
 return
+
+^Insert::Send {Insert}
 
 ; ──────────────────────────────────────────── Space Cadet Shift With {} ────────────────────────────────────────────
 
