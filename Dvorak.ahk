@@ -5,7 +5,7 @@ Menu, Tray, Icon, networkexplorer.dll, 15
 ; #Warn  ; Enable warnings to assist with detecting common errors.
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
-#MaxHotkeysPerInterval, 10000
+#MaxHotkeysPerInterval, 100000000000
 #SingleInstance Force
 
 Run Symbol Layer.ahk ; I use this script to run the symbol layer so that it works with the dvorak layout
@@ -20,7 +20,9 @@ RSpace = 0
 
 ; ───────────────────── AUTO SWAP ─────────────────────
 
-~LButton::
+~LButton::GoSub, Swap
+
+Swap:
 {
 	isFullScreen := isWindowFullScreen( "A" )
 	If(isFullScreen = 1)
@@ -50,11 +52,10 @@ RSpace = 0
 		{
 			; return
 		}
-		; return
 	}
-	; return
-	Input, var, L1 V, {LControl}{RControl}{LAlt}{RAlt}{LShift}{RShift}{LWin}{RWin}{AppsKey}{F1}{F2}{F3}{F4}{F5}{F6}{F7}{F8}{F9}{F10}{F11}{F12}{Left}{Right}{Up}{Down}{Home}{End}{PgUp}{PgDn}{Del}{Ins}{BS}{CapsLock}{NumLock}{PrintScreen}{Pause}
-	GoSub, ~LButton
+	Input, var, L1 V
+	GoSub, Swap
+	return
 }
 
 ; ─────────────────────────────────────────────────────
