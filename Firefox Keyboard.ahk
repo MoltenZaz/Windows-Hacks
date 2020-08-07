@@ -211,7 +211,6 @@ b::ControlSend, ahk_parent, b, ahk_id %FFSafe%
 c::ControlSend, ahk_parent, c, ahk_id %FFSafe%
 d::ControlSend, ahk_parent, d, ahk_id %FFSafe%
 e::ControlSend, ahk_parent, e, ahk_id %FFSafe%
-; Doing F like this works around a weird issue where using f to unfullscreen a youtube video doesn't work the first time
 f::ControlSend, ahk_parent, f, ahk_id %FFSafe%
 g::ControlSend, ahk_parent, g, ahk_id %FFSafe%
 h::ControlSend, ahk_parent, h, ahk_id %FFSafe%
