@@ -4,7 +4,7 @@
 ;
 ; Danny Warren <danny@dannywarren.com>
 ; https://github.com/dannywarren/AutoHotkey-Midi
-;
+; Slightly modded by Mitchell Thomas
 
 
 ; Always use gui mode when using the midi library, since we need something to
@@ -412,7 +412,7 @@ __MidiInCallback( wParam, lParam, msg )
   lowByte   := lParam & 0x0F
   data1     := (lParam >> 8) & 0xFF
   data2     := (lParam >> 16) & 0xFF
-  msgbox, %highByte% %lowByte% %data1% %data2%
+  ; msgbox, %highByte% %lowByte% %data1% %data2%
   ; Determine the friendly name of the midi event based on the status byte
   if ( highByte == 0x80 )
   {
