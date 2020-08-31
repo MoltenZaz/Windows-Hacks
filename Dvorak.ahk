@@ -98,7 +98,7 @@ return
 	{
 		LS := 1
 		SetTimer, LTimer, 150
-		KeyWait, LShift
+		; KeyWait, LShift
 		return
 	}
 
@@ -115,7 +115,7 @@ return
 	{
 		LS := 1
 		SetTimer, LTimer, 150
-		KeyWait, LShift
+		; KeyWait, LShift
 		return
 	}
 
@@ -132,7 +132,7 @@ return
 	{
 		RS := 1
 		SetTimer, RTimer, 150
-		KeyWait, RShift
+		; KeyWait, RShift
 		return
 	}
 
@@ -149,7 +149,7 @@ return
 	{
 		RS := 1
 		SetTimer, RTimer, 150
-		KeyWait, RShift
+		; KeyWait, RShift
 		return
 	}
 
@@ -184,7 +184,7 @@ return
 
 ;┌────────────────────────────────────────────────────────────────────────────────────────────────────────────────┐
 ;│                                                                                                                │
-;│	If Control alt LWin RWin and F13 aren't being pressed while dvorak is set to 1 then remap to dvorak           │
+;│	If Control alt LWin RWin and F13 aren't being pressed while dvorak is set to 1 then remap to dvorak       │
 ;│  F13 is used to detect modifiers in the FireFox Keyboard script, so it is unnessasary if you aren't using it.  │
 ;│                                                                                                                │
 ;└────────────────────────────────────────────────────────────────────────────────────────────────────────────────┘
