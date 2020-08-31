@@ -1,8 +1,7 @@
 ﻿Menu, Tray, Icon, imageres.dll, 18
 #include Midi.ahk
-#NoEnv  ; Recommended for performance and compatibility with future AutoHotkey releases.
-; #Warn  ; Enable warnings to assist with detecting common errors.
-SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
+#NoEnv
+SendMode Input
 SetWorkingDir %A_ScriptDir% 
 
 midi := new Midi()
@@ -29,6 +28,7 @@ Return
 	; }
 ; Return
 ; }
+
 MidiProgramChange0:
 {
 	Program := 0
@@ -41,26 +41,38 @@ MidiProgramChange1:
 	return
 }
 
-MidiControlChange:
+MidiControlChange64Vel0:
 {
-	If sus = 1
-	{
-		sus := 0
-	}
-	else
-	{
-		sus := 1
-	}
-	If sus = 0
-	{
-		SendInput, {F14 Up}
-	}
-	; If Program = 1
-	{
-	If sus = 1
-	{
-		SendInput, {F14 Down}
-	}
-	}
-	return
+SendInput, {F14 Up}
+return
+}
+
+MidiControlChange64Vel127:
+{
+SendInput, {F14 Down}
+return
+}
+
+MidiControlChange66Vel0:
+{
+SendInput, {F14 Up}
+return
+}
+
+MidiControlChange66Vel127:
+{
+SendInput, {F14 Down}
+return
+}
+
+MidiControlChange67Vel0:
+{
+SendInput, {F14 Up}
+return
+}
+
+MidiControlChange67Vel127:
+{
+SendInput, {F14 Down}
+return
 }

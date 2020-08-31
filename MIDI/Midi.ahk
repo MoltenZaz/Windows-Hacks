@@ -412,7 +412,7 @@ __MidiInCallback( wParam, lParam, msg )
   lowByte   := lParam & 0x0F
   data1     := (lParam >> 8) & 0xFF
   data2     := (lParam >> 16) & 0xFF
-  ; msgbox, %highByte% %lowByte% %data1% %data2%
+  msgbox, %highByte% %lowByte% %data1% %data2%
   ; Determine the friendly name of the midi event based on the status byte
   if ( highByte == 0x80 )
   {
@@ -492,7 +492,7 @@ __MidiInCallback( wParam, lParam, msg )
     midiEvent.value      := data2
 
     ; Add label callback for this controller change, ie ":MidiControlChange12"
-    labelCallbacks.Insert( midiLabelPrefix . midiEvent.status . midiEvent.controller )
+    labelCallbacks.Insert( midiLabelPrefix . midiEvent.status . midiEvent.controller . "Vel" . midiEvent.value)
 
   }
   else if ( midiEvent.status == "ProgramChange" )
