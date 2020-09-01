@@ -18,6 +18,7 @@ hGui := CreateGui()
 MouseGetPos, X, Y
 
 Run Dvorak.ahk
+Run Easy Window Organiser.ahk
 
 ; Proudly Created by Mitchell Thomas
 
@@ -355,12 +356,13 @@ SetHook(hook, fn := "", eventInfo := "", isGlobal := true) {
       Return hHook
    }
 }
-
+#If (VMouse = 1)
+{
 LowLevelMouseProc(nCode, wParam, lParam) {
 	global VMouse
 	; msgbox, %VMouse%
+	if VMouse = 1
    static WM_MOUSEMOVE := 0x200, coords := [], timer := Func("LowLevelMouseProc").Bind("timer", "", ""), hGui
-   if VMouse = 1
    if (nCode != "timer") {
       if (wParam = WM_MOUSEMOVE)  {
          mouseX := NumGet(lParam + 0, "Int")
@@ -384,8 +386,11 @@ LowLevelMouseProc(nCode, wParam, lParam) {
          ; Sleep, 1
       }
    }
+   SetTimer, % timer, off
+   return
 }
-
+}
+#if
 ; ───────────────────────────────────────────────────────────────────────────────────────────────
 
 #InputLevel 0
@@ -397,7 +402,6 @@ b::ControlSend, ahk_parent, b, ahk_id %FFSafe%
 c::ControlSend, ahk_parent, c, ahk_id %FFSafe%
 d::ControlSend, ahk_parent, d, ahk_id %FFSafe%
 e::ControlSend, ahk_parent, e, ahk_id %FFSafe%
-; Doing F like this works around a weird issue where using f to unfullscreen a youtube video doesn't work the first time
 f::ControlSend, ahk_parent, f, ahk_id %FFSafe%
 g::ControlSend, ahk_parent, g, ahk_id %FFSafe%
 h::ControlSend, ahk_parent, h, ahk_id %FFSafe%
