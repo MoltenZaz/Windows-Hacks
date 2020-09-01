@@ -9,6 +9,13 @@ DetectHiddenWindows On
 SetWorkingDir %A_ScriptDir%
 #UseHook
 #MaxHotkeysPerInterval 10000
+SetControlDelay -1
+VMouse := 0
+SetBatchLines, -1
+CoordMode, Mouse
+
+hGui := CreateGui()
+MouseGetPos, X, Y
 
 Run Dvorak.ahk
 
@@ -122,6 +129,9 @@ AppsKey::
 		{
 			toggle2 := 1
 			mastertoggle := 1
+			VMouse := 1
+			Gui, %hGui%: Show, % "NA x" 4400 . " y" 900
+			SetHook(WH_MOUSE_LL := 14, "LowLevelMouseProc", hGui)
 			SoundBeep, 200, 50
 			SoundBeep, 300, 50
 		}
@@ -132,6 +142,8 @@ AppsKey::
 			{
 				mastertoggle := 0
 			}
+			VMouse := 0
+			Gui, %hGui%: Hide
 			SoundBeep, 300, 50
 			SoundBeep, 200, 50
 		}
@@ -202,6 +214,180 @@ RAlt::
 }
 }
 #if
+
+; ──────────────────────────────────────── Virtual Mouse ────────────────────────────────────────
+
+CreateGui() {
+   Gui, New, -Caption +ToolWindow +AlwaysOnTop +hwndhGui
+   ; Gui, Color, Blue
+   ; Gui, Show, w15 h15 HIDE
+    Gui, Color, FAFAFA
+	Gui, Add, Picture, x0 y0 w32 h32 , Cursor.png
+	Gui +LastFound +AlwaysOnTop +ToolWindow
+	WinSet, TransColor, FAFAFA
+	Gui -Caption
+   Return hGui
+}
+
+#If (VMouse = 1)
+{
+	LButton::
+	{
+	Gui,+LastFound
+	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
+	x -= 3440
+	y -= 360
+	; MsgBox, %x% %y%
+	ControlClick, x%x% y%y%, ahk_id %FFSafe%
+	return
+	}
+	
+	RButton::
+	{
+	Gui,+LastFound
+	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
+	x -= 3440
+	y -= 360
+	; MsgBox, %x% %y%
+	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, R
+	return
+	}
+	
+	MButton::
+	{
+	Gui,+LastFound
+	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
+	x -= 3440
+	y -= 360
+	; MsgBox, %x% %y%
+	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, M
+	return
+	}
+	
+	XButton1::
+	{
+	Gui,+LastFound
+	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
+	x -= 3440
+	y -= 360
+	; MsgBox, %x% %y%
+	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X1
+	return
+	}
+	
+	XButton2::
+	{
+	Gui,+LastFound
+	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
+	x -= 3440
+	y -= 360
+	; MsgBox, %x% %y%
+	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X2
+	return
+	}
+	
+	; idk why but I couldn't get the scroll wheel to work so I made it send the arrow keys instead
+	WheelUp::
+	{
+	; Gui,+LastFound
+	; WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
+	; x -= 3440
+	; y -= 360
+	; MsgBox, %x% %y%
+	; ControlFocus,,ahk_id %FFSafe%
+	; ControlClick, , ahk_id %FFSafe%,, WheelUp, 1, NA
+	ControlSend, ahk_parent, {Up}, ahk_id %FFSafe%
+	return
+	}
+	
+	WheelDown::
+	{
+	; Gui,+LastFound
+	; WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
+	; x -= 3440
+	; y -= 360
+	; MsgBox, %x% %y%
+	; ControlClick,, ahk_id %FFSafe%,, WheelDown, 1
+	ControlSend, ahk_parent, {Down}, ahk_id %FFSafe%
+	return
+	}
+	
+	WheelLeft::
+	{
+	; Gui,+LastFound
+	; WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
+	; x -= 3440
+	; y -= 360
+	; ; MsgBox, %x% %y%
+	; ControlClick, x%x% y%y%, ahk_id %FFSafe%,, WL, 1
+	ControlSend, ahk_parent, {Left}, ahk_id %FFSafe%
+	return
+	}
+	
+	WheelRight::
+	{
+	; Gui,+LastFound
+	; WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
+	; x -= 3440
+	; y -= 360
+	; ; MsgBox, %x% %y%
+	; ControlClick, x%x% y%y%, ahk_id %FFSafe%,, WR, 1
+	ControlSend, ahk_parent, {Right}, ahk_id %FFSafe%
+	return
+	}
+}
+#if
+
+SetHook(hook, fn := "", eventInfo := "", isGlobal := true) {
+   static exitFunc
+   if !fn {
+      res := DllCall("UnhookWindowsHookEx", "Ptr", hook)
+      OnExit(exitFunc, 0)
+      exitFunc := ""
+   }
+   else {
+      hHook := DllCall("SetWindowsHookEx", "Int", hook, "Ptr", RegisterCallback(fn, "Fast", 3, eventInfo)
+                                         , "Ptr", !isGlobal ? 0 : DllCall("GetModuleHandle", "UInt", 0, "Ptr")
+                                         , "UInt", isGlobal ? 0 : DllCall("GetCurrentThreadId"), "Ptr")
+      ( exitFunc && OnExit(exitFunc, 0) )
+      exitFunc := Func(A_ThisFunc).Bind(hHook, "")
+      OnExit(exitFunc)
+      Return hHook
+   }
+}
+
+LowLevelMouseProc(nCode, wParam, lParam) {
+	global VMouse
+	; msgbox, %VMouse%
+   static WM_MOUSEMOVE := 0x200, coords := [], timer := Func("LowLevelMouseProc").Bind("timer", "", ""), hGui
+   if VMouse = 1
+   if (nCode != "timer") {
+      if (wParam = WM_MOUSEMOVE)  {
+         mouseX := NumGet(lParam + 0, "Int")
+         mouseY := NumGet(lParam + 4, "Int")
+         coords.Push([mouseX, mouseY])
+         (!hGui && hGui := A_EventInfo)
+		 If VMouse = 1
+         SetTimer, % timer, 0 ; change this number if there is too much lag or performance overhead
+      }
+      Return DllCall("CallNextHookEx", Ptr, 0, Int, nCode, Ptr, wParam, Ptr, lParam)
+   }
+   else {
+      while coords[1] {
+         point := coords.RemoveAt(1)
+		 if point[1]+2500>3440
+		 if point[1]+2500<5380
+		 if point[2]>360
+		 if point[2]<1440
+		 if VMouse = 1
+         Gui, %hGui%: Show, % "NA x" point[1]+2500 . " y" point[2]
+         ; Sleep, 1
+      }
+   }
+}
+
+; ───────────────────────────────────────────────────────────────────────────────────────────────
+
 #InputLevel 0
 #if (ctrltoggle = 0 && shifttoggle = 0 && alttoggle = 0 && mastertoggle = 1)
 {
@@ -211,6 +397,7 @@ b::ControlSend, ahk_parent, b, ahk_id %FFSafe%
 c::ControlSend, ahk_parent, c, ahk_id %FFSafe%
 d::ControlSend, ahk_parent, d, ahk_id %FFSafe%
 e::ControlSend, ahk_parent, e, ahk_id %FFSafe%
+; Doing F like this works around a weird issue where using f to unfullscreen a youtube video doesn't work the first time
 f::ControlSend, ahk_parent, f, ahk_id %FFSafe%
 g::ControlSend, ahk_parent, g, ahk_id %FFSafe%
 h::ControlSend, ahk_parent, h, ahk_id %FFSafe%
@@ -282,7 +469,7 @@ End::ControlSend, ahk_parent, {End}, ahk_id %FFSafe%
 Esc::ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
 NumpadDot::
 {
-SoundSet, +1, Master, Mute, 11
+SoundSet, +1, Master, Mute, 10
 SoundBeep, 250, 250
 return
 }
@@ -309,18 +496,18 @@ WinGet, ProcessName, ProcessName, A
 AppVolume(ProcessName).AdjustVolume(-2)
 return
 }
-WheelUp::
-{
-WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(2)
-return
-}
-WheelDown::
-{
-WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(-2)
-return
-}
+; WheelUp::
+; {
+; WinGet, ProcessName, ProcessName, A
+; AppVolume(ProcessName).AdjustVolume(2)
+; return
+; }
+; WheelDown::
+; {
+; WinGet, ProcessName, ProcessName, A
+; AppVolume(ProcessName).AdjustVolume(-2)
+; return
+; }
 }
 #if
 
@@ -388,8 +575,8 @@ F11::ControlSend, ahk_parent, {Ctrl down}{F11}{Ctrl up}, ahk_id %FFSafe%
 F12::ControlSend, ahk_parent, {Ctrl down}{F12}{Ctrl up}, ahk_id %FFSafe%
 Enter::
 {
-WinRestore, ahk_exe firefox.exe
-WinMaximize, ahk_exe firefox.exe
+WinRestore, ahk_id %FFNow%
+WinMaximize, ahk_id %FFNow%
 ;ControlSend, ahk_parent, ^{Enter}, ahk_id %FFSafe%
 return
 }
@@ -407,16 +594,16 @@ Space::ControlSend, ahk_parent, {Ctrl down}{space}{Ctrl up}, ahk_id %FFSafe%
 Home::ControlSend, ahk_parent, {Ctrl down}{Home}{Ctrl up}, ahk_id %FFSafe%
 End::ControlSend, ahk_parent, {Ctrl down}{End}{Ctrl up}, ahk_id %FFSafe%
 
-Numpad1::SoundSet, 10, Master, Volume, 11
-Numpad2::SoundSet, 20, Master, Volume, 11
-Numpad3::SoundSet, 30, Master, Volume, 11
-Numpad4::SoundSet, 40, Master, Volume, 11
-Numpad5::SoundSet, 50, Master, Volume, 11
-Numpad6::SoundSet, 60, Master, Volume, 11
-Numpad7::SoundSet, 70, Master, Volume, 11
-Numpad8::SoundSet, 80, Master, Volume, 11
-Numpad9::SoundSet, 90, Master, Volume, 11
-Numpad0::SoundSet, 100, Master, Volume, 11
+Numpad1::SoundSet, 10, Master, Volume, 10
+Numpad2::SoundSet, 20, Master, Volume, 10
+Numpad3::SoundSet, 30, Master, Volume, 10
+Numpad4::SoundSet, 40, Master, Volume, 10
+Numpad5::SoundSet, 50, Master, Volume, 10
+Numpad6::SoundSet, 60, Master, Volume, 10
+Numpad7::SoundSet, 70, Master, Volume, 10
+Numpad8::SoundSet, 80, Master, Volume, 10
+Numpad9::SoundSet, 90, Master, Volume, 10
+Numpad0::SoundSet, 100, Master, Volume, 10
 }
 #if
 
@@ -793,14 +980,14 @@ return
 {
 ;run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput mDP /Exit
 ; run "Nircmd\SoundVolumeView.exe" /Mute "Consoles"
-SoundSet, 1, Master, Mute, 11
+SoundSet, 1, Master, Mute, 10
 return
 }
 
 #+F2::
 {
 ; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
-SoundSet, 0, Master, Mute, 11
+SoundSet, 0, Master, Mute, 10
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI /Exit
 return
 }
@@ -808,7 +995,7 @@ return
 #+F3::
 {
 ; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
-SoundSet, 0, Master, Mute, 11
+SoundSet, 0, Master, Mute, 10
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI2 /Exit
 return
 }
