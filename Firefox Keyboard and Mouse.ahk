@@ -68,7 +68,7 @@ FFNow = 0
 FFSafe = 0
 Full = 0
 
-^F12::Run, "F:\Documents\AHK Current\Launch Scripts.ahk"
+; ^F12::Run, "F:\Documents\AHK Current\Launch Scripts.ahk"
 
 ~LButton::
 {
