@@ -29,6 +29,8 @@ toggle = 0
 
 #F20::return
 
+~Appskey::Run, % A_ScriptFullPath ; This avoids a weird conflict with firefox keyboard and mouse
+
 F20::
 {
 toggle := 1
@@ -66,13 +68,13 @@ Reload
 return
 }
 
-~RAlt & WheelUp::
+>!WheelUp::
 {
 WinGet, ProcessName, ProcessName, A
 AppVolume(ProcessName).AdjustVolume(4)
 return
 }
-~RAlt & WheelDown::
+>!WheelDown::
 {
 WinGet, ProcessName, ProcessName, A
 AppVolume(ProcessName).AdjustVolume(-4)
@@ -413,7 +415,7 @@ return
 }
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
-MouseMove, 4400, 1118, 10
+MouseMove, 4400, 960, 10
 return
 }
 return
@@ -437,6 +439,8 @@ return
 return
 }
 
+; ──────────────────────────────────────────── FULLSCREEN CHECKER ────────────────────────────────────────────
+
 isFullScreen := isWindowFullScreen( "A" )
 ;MsgBox % isFullScreen ? "Full Screen" : "Windowed"
 isWindowFullScreen( winTitle )
@@ -455,6 +459,8 @@ isWindowFullScreen( winTitle )
 	; no border and not minimized
 	Return ((style & 0x20800000) or winH < A_ScreenHeight or winW < A_ScreenWidth) ? false : true
 }
+
+; ────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 F17::
 {
@@ -1021,7 +1027,7 @@ return
 }
 if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
 {
-MouseMove, 4400, 1118, 10
+MouseMove, 4400, 960, 10
 return
 }
 return
