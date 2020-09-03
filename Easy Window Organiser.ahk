@@ -29,8 +29,6 @@ toggle = 0
 
 #F20::return
 
-~Appskey::Run, % A_ScriptFullPath ; This avoids a weird conflict with firefox keyboard and mouse
-
 F20::
 {
 toggle := 1
