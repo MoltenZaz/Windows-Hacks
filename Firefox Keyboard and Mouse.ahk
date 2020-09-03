@@ -15,7 +15,15 @@ SetBatchLines, -1
 CoordMode, Mouse
 
 hGui := CreateGui()
-MouseGetPos, X, Y
+; Gui, New, -Caption +ToolWindow +AlwaysOnTop +hwndhGui
+   ; ; Gui, Color, Blue
+   ; ; Gui, Show, w15 h15 HIDE
+    ; Gui, Color, FAFAFA
+	; Gui, Add, Picture, x0 y0 w32 h32 , Cursor.png
+	; Gui +LastFound +AlwaysOnTop +ToolWindow
+	; WinSet, TransColor, FAFAFA
+	; Gui -Caption
+; MouseGetPos, X, Y
 
 Run Dvorak.ahk
 Run Easy Window Organiser.ahk
@@ -68,7 +76,7 @@ FFNow = 0
 FFSafe = 0
 Full = 0
 
-; ^F12::Run, "F:\Documents\AHK Current\Launch Scripts.ahk"
+^Pause::Run, "F:\Documents\AHK Current\Launch Scripts.ahk" ; "
 
 ~LButton::
 {
@@ -101,9 +109,9 @@ AppsKey::
 			; MsgBox %FFW% %FFH% %FFNow%
 			If (FFW = 1936 && FFH = 1096) ; You may need to change these values or use the x y coordinates to specify the window you want
 			{
-				WinRestore, ahk_id %FFNow%
-				WinMaximize, ahk_id %FFNow%
 				FFSafe = %FFNow%
+				WinRestore, ahk_id %FFSafe%
+				WinMaximize, ahk_id %FFSafe%
 				DoFocus := 0
 			}
 			If (FFW = 1920 && FFH = 1080) ; This is for when a video is fullscreen
@@ -128,17 +136,7 @@ AppsKey::
 	else
     	{
 		KeyDown := !KeyDown
-		If KeyDown
-		{
-			toggle2 := 1
-			mastertoggle := 1
-			VMouse := 1
-			Gui, %hGui%: Show, % "NA x" 4400 . " y" 900
-			SetHook(WH_MOUSE_LL := 14, "LowLevelMouseProc", hGui)
-			SoundBeep, 200, 50
-			SoundBeep, 300, 50
-		}
-		Else
+		If !KeyDown
 		{
 			toggle2 := 0
 			if toggle = 0
@@ -146,9 +144,17 @@ AppsKey::
 				mastertoggle := 0
 			}
 			VMouse := 0
-			Gui, %hGui%: Hide
 			SoundBeep, 300, 50
 			SoundBeep, 200, 50
+		}
+		Else
+		{
+			toggle2 := 1
+			mastertoggle := 1
+			VMouse := 1
+			SetTimer, VirtualMouse, 150
+			SoundBeep, 200, 50
+			SoundBeep, 300, 50
 		}
 	}
 	if toggle2 = 0
@@ -156,6 +162,28 @@ AppsKey::
 		mastertoggle := 0
 	}
 	return
+}
+
+VirtualMouse:
+{
+SetTimer, VirtualMouse, Off
+Global VMouse
+While VMouse = 1 and !GetKeyState("AppsKey")
+			{
+				MouseGetPos, MX, MY
+				if MX+2500<3440
+				MX = 3440
+				if MX+2500>5380
+				MX = 5380
+				if MY<360
+				MY = 360
+				if MY>1440
+				MY = 1440
+				Gui, %hGui%: Show, % "NA x" MX+2500 . " y" MY
+				Sleep, 1
+			}
+			Gui, %hGui%: Hide
+return
 }
 
 #InputLevel 2
@@ -226,9 +254,11 @@ CreateGui() {
    ; Gui, Show, w15 h15 HIDE
     Gui, Color, FAFAFA
 	Gui, Add, Picture, x0 y0 w32 h32 , Cursor.png
+	Gui, Show, w32 h32
 	Gui +LastFound +AlwaysOnTop +ToolWindow
 	WinSet, TransColor, FAFAFA
 	Gui -Caption
+	Gui, Hide
    Return hGui
 }
 
@@ -290,6 +320,7 @@ CreateGui() {
 	}
 	
 	; idk why but I couldn't get the scroll wheel to work so I made it send the arrow keys instead
+	
 	WheelUp::
 	{
 	; Gui,+LastFound
@@ -299,6 +330,7 @@ CreateGui() {
 	; MsgBox, %x% %y%
 	; ControlFocus,,ahk_id %FFSafe%
 	; ControlClick, , ahk_id %FFSafe%,, WheelUp, 1, NA
+	; ControlClick,, ahk_id %FFSafe%,,WheelUp
 	ControlSend, ahk_parent, {Up}, ahk_id %FFSafe%
 	return
 	}
@@ -341,58 +373,6 @@ CreateGui() {
 }
 #if
 
-SetHook(hook, fn := "", eventInfo := "", isGlobal := true) {
-   static exitFunc
-   if !fn {
-      res := DllCall("UnhookWindowsHookEx", "Ptr", hook)
-      OnExit(exitFunc, 0)
-      exitFunc := ""
-   }
-   else {
-      hHook := DllCall("SetWindowsHookEx", "Int", hook, "Ptr", RegisterCallback(fn, "Fast", 3, eventInfo)
-                                         , "Ptr", !isGlobal ? 0 : DllCall("GetModuleHandle", "UInt", 0, "Ptr")
-                                         , "UInt", isGlobal ? 0 : DllCall("GetCurrentThreadId"), "Ptr")
-      ( exitFunc && OnExit(exitFunc, 0) )
-      exitFunc := Func(A_ThisFunc).Bind(hHook, "")
-      OnExit(exitFunc)
-      Return hHook
-   }
-}
-#If (VMouse = 1)
-{
-LowLevelMouseProc(nCode, wParam, lParam) {
-	global VMouse
-	; msgbox, %VMouse%
-	if VMouse = 1
-   static WM_MOUSEMOVE := 0x200, coords := [], timer := Func("LowLevelMouseProc").Bind("timer", "", ""), hGui
-   if (nCode != "timer") {
-      if (wParam = WM_MOUSEMOVE)  {
-         mouseX := NumGet(lParam + 0, "Int")
-         mouseY := NumGet(lParam + 4, "Int")
-         coords.Push([mouseX, mouseY])
-         (!hGui && hGui := A_EventInfo)
-		 If VMouse = 1
-         SetTimer, % timer, 0 ; change this number if there is too much lag or performance overhead
-      }
-      Return DllCall("CallNextHookEx", Ptr, 0, Int, nCode, Ptr, wParam, Ptr, lParam)
-   }
-   else {
-      while coords[1] {
-         point := coords.RemoveAt(1)
-		 if point[1]+2500>3440
-		 if point[1]+2500<5380
-		 if point[2]>360
-		 if point[2]<1440
-		 if VMouse = 1
-         Gui, %hGui%: Show, % "NA x" point[1]+2500 . " y" point[2]
-         ; Sleep, 1
-      }
-   }
-   SetTimer, % timer, off
-   return
-}
-}
-#if
 ; ───────────────────────────────────────────────────────────────────────────────────────────────
 
 #InputLevel 0
@@ -458,15 +438,15 @@ F9::ControlSend, ahk_parent, {F9}, ahk_id %FFSafe%
 F10::ControlSend, ahk_parent, {F10}, ahk_id %FFSafe%
 F11::ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
 F12::ControlSend, ahk_parent, {F12}, ahk_id %FFSafe%
-Enter::ControlSend, ahk_parent, {Enter}, ahk_id %FFSafe%
+; Enter::ControlSend, ahk_parent, {Enter}, ahk_id %FFSafe%
 Tab::ControlSend, ahk_parent, {Tab}, ahk_id %FFSafe%
-Left::ControlSend, ahk_parent, {Left}, ahk_id %FFSafe%
-Right::ControlSend, ahk_parent, {Right}, ahk_id %FFSafe%
-Up::ControlSend, ahk_parent, {Up}, ahk_id %FFSafe%
-Down::ControlSend, ahk_parent, {Down}, ahk_id %FFSafe%
+; Left::ControlSend, ahk_parent, {Left}, ahk_id %FFSafe%
+; Right::ControlSend, ahk_parent, {Right}, ahk_id %FFSafe%
+; Up::ControlSend, ahk_parent, {Up}, ahk_id %FFSafe%
+; Down::ControlSend, ahk_parent, {Down}, ahk_id %FFSafe%
 Backspace::ControlSend, ahk_parent, {Backspace}, ahk_id %FFSafe%
 CapsLock::ControlSend, ahk_parent, {Backspace}, ahk_id %FFSafe%
-Delete::ControlSend, ahk_parent, {Delete}, ahk_id %FFSafe%
+; Delete::ControlSend, ahk_parent, {Delete}, ahk_id %FFSafe%
 PgUp::ControlSend, ahk_parent, {PgUp}, ahk_id %FFSafe%
 PgDn::ControlSend, ahk_parent, {PgDn}, ahk_id %FFSafe%
 Space::ControlSend, ahk_parent, {Space}, ahk_id %FFSafe%
