@@ -70,8 +70,6 @@ shifttoggle = 0
 alttoggle = 0
 wintoggle = 0
 mastertoggle = 0
-toggle = 0
-toggle2 = 0
 FFNow = 0
 FFSafe = 0
 Full = 0
@@ -91,10 +89,70 @@ return
 }
 #if
 
+F24::
+{
+if mastertoggle = 1
+{
+mastertoggle := 0
+VMouse := 0
+; SoundBeep, 300, 50
+; SoundBeep, 200, 50
+}
+else
+{
+mastertoggle := 1
+VMouse := 1
+; ; SetTimer, VirtualMouse, 250
+; SoundBeep, 200, 50
+; SoundBeep, 300, 50
+}
+GoSub, FocusWindow
+; if VMouse = 1
+; GoSub, VirtualMouse
+return
+}
+
 AppsKey::
 {
-	; ──────────────────────────────────── This section automatically focuses the firefox window on my second monitor ────────────────────────────────────
-	
+	GoSub, FocusWindow
+	mastertoggle := 1
+	VMouse := 1
+	GoSub, VirtualMouse
+	; KeyWait, AppsKey, D T0.2
+	; if ErrorLevel
+	; {
+		; VMouse := 0
+		; mastertoggle := 0
+	; }
+	; else
+    	; {
+		; KeyDown := !KeyDown
+		; If !KeyDown
+		; {
+			; mastertoggle := 0
+			; VMouse := 0
+			; SoundBeep, 300, 50
+			; SoundBeep, 200, 50
+		; }
+		; Else
+		; {
+			; mastertoggle := 1
+			; VMouse := 1
+			; SetTimer, VirtualMouse, 150
+			; SoundBeep, 200, 50
+			; SoundBeep, 300, 50
+		; }
+	; }
+	return
+}
+AppsKey Up::
+{
+	mastertoggle := 0
+	VMouse := 0
+}
+; ──────────────────────────────────── This section automatically focuses the firefox window on my second monitor ────────────────────────────────────
+FocusWindow:
+{
 	FFArray := []
 	FCount := 0
 	If(DoFocus = 1)
@@ -104,14 +162,17 @@ AppsKey::
 		WinGet, FCount, Count, ahk_exe firefox.exe
 		Loop %FCount%
 		{
+			If FCount >= 0
 			FFNow := FFList%FCount%
 			WinGetPos,X,Y,FFW,FFH, ahk_id %FFNow%
 			; MsgBox %FFW% %FFH% %FFNow%
 			If (FFW = 1936 && FFH = 1096) ; You may need to change these values or use the x y coordinates to specify the window you want
 			{
 				FFSafe = %FFNow%
-				WinRestore, ahk_id %FFSafe%
-				WinMaximize, ahk_id %FFSafe%
+				; WinRestore, ahk_id %FFSafe%
+				; WinMaximize, ahk_id %FFSafe%
+				ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
+				ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
 				DoFocus := 0
 			}
 			If (FFW = 1920 && FFH = 1080) ; This is for when a video is fullscreen
@@ -124,52 +185,20 @@ AppsKey::
 			FCount--
 		}
 	}
-	
-	; ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
-	
-	toggle := 1
-	mastertoggle := 1
-	keywait AppsKey
-	KeyWait, AppsKey, D T0.2
-	if ErrorLevel
-		toggle := 0
-	else
-    	{
-		KeyDown := !KeyDown
-		If !KeyDown
-		{
-			toggle2 := 0
-			if toggle = 0
-			{
-				mastertoggle := 0
-			}
-			VMouse := 0
-			SoundBeep, 300, 50
-			SoundBeep, 200, 50
-		}
-		Else
-		{
-			toggle2 := 1
-			mastertoggle := 1
-			VMouse := 1
-			SetTimer, VirtualMouse, 150
-			SoundBeep, 200, 50
-			SoundBeep, 300, 50
-		}
-	}
-	if toggle2 = 0
-	{
-		mastertoggle := 0
-	}
-	return
+return
 }
+; ──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
 VirtualMouse:
 {
 SetTimer, VirtualMouse, Off
 Global VMouse
-While VMouse = 1 and !GetKeyState("AppsKey")
+While VMouse = 1 ;  and !GetKeyState("AppsKey") and !GetKeyState("F24")
 			{
+				If GetKeyState("AppsKey")
+					VMouse := 0
+				If GetKeyState("F24")
+					VMouse := 0
 				MouseGetPos, MX, MY
 				if MX+2500<3440
 				MX = 3440
@@ -185,6 +214,12 @@ While VMouse = 1 and !GetKeyState("AppsKey")
 			Gui, %hGui%: Hide
 return
 }
+	
+#If VMouse = 1
+{
+F23::GoSub, VirtualMouse
+}
+#if
 
 #InputLevel 2
 #If (mastertoggle = 1)
@@ -438,15 +473,15 @@ F9::ControlSend, ahk_parent, {F9}, ahk_id %FFSafe%
 F10::ControlSend, ahk_parent, {F10}, ahk_id %FFSafe%
 F11::ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
 F12::ControlSend, ahk_parent, {F12}, ahk_id %FFSafe%
-; Enter::ControlSend, ahk_parent, {Enter}, ahk_id %FFSafe%
+Enter::ControlSend, ahk_parent, {Enter}, ahk_id %FFSafe%
 Tab::ControlSend, ahk_parent, {Tab}, ahk_id %FFSafe%
-; Left::ControlSend, ahk_parent, {Left}, ahk_id %FFSafe%
-; Right::ControlSend, ahk_parent, {Right}, ahk_id %FFSafe%
-; Up::ControlSend, ahk_parent, {Up}, ahk_id %FFSafe%
-; Down::ControlSend, ahk_parent, {Down}, ahk_id %FFSafe%
+Left::ControlSend, ahk_parent, {Left}, ahk_id %FFSafe%
+Right::ControlSend, ahk_parent, {Right}, ahk_id %FFSafe%
+Up::ControlSend, ahk_parent, {Up}, ahk_id %FFSafe%
+Down::ControlSend, ahk_parent, {Down}, ahk_id %FFSafe%
 Backspace::ControlSend, ahk_parent, {Backspace}, ahk_id %FFSafe%
 CapsLock::ControlSend, ahk_parent, {Backspace}, ahk_id %FFSafe%
-; Delete::ControlSend, ahk_parent, {Delete}, ahk_id %FFSafe%
+Delete::ControlSend, ahk_parent, {Delete}, ahk_id %FFSafe%
 PgUp::ControlSend, ahk_parent, {PgUp}, ahk_id %FFSafe%
 PgDn::ControlSend, ahk_parent, {PgDn}, ahk_id %FFSafe%
 Space::ControlSend, ahk_parent, {Space}, ahk_id %FFSafe%
@@ -559,13 +594,7 @@ F9::ControlSend, ahk_parent, {Ctrl down}{F9}{Ctrl up}, ahk_id %FFSafe%
 F10::ControlSend, ahk_parent, {Ctrl down}{F10}{Ctrl up}, ahk_id %FFSafe%
 F11::ControlSend, ahk_parent, {Ctrl down}{F11}{Ctrl up}, ahk_id %FFSafe%
 F12::ControlSend, ahk_parent, {Ctrl down}{F12}{Ctrl up}, ahk_id %FFSafe%
-Enter::
-{
-WinRestore, ahk_id %FFNow%
-WinMaximize, ahk_id %FFNow%
-;ControlSend, ahk_parent, ^{Enter}, ahk_id %FFSafe%
-return
-}
+Enter::ControlSend, ahk_parent, ^{Enter}, ahk_id %FFSafe%
 Tab::ControlSend, ahk_parent, {Ctrl down}{Tab}{Ctrl up}, ahk_id %FFSafe%
 Left::ControlSend, ahk_parent, {Ctrl down}{Left}{Ctrl up}, ahk_id %FFSafe%
 Right::ControlSend, ahk_parent, {Ctrl down}{Right}{Ctrl up}, ahk_id %FFSafe%
@@ -713,6 +742,7 @@ PgDn::ControlSend, ahk_parent, {Alt down}{PgDn}{Alt up}, ahk_id %FFSafe%
 Space::ControlSend, ahk_parent, {Alt down}{space}{Alt up}, ahk_id %FFSafe%
 Home::ControlSend, ahk_parent, {Alt down}{Home}{Alt up}, ahk_id %FFSafe%
 End::ControlSend, ahk_parent, {Alt down}{End}{Alt up}, ahk_id %FFSafe%
+Insert::Reload
 Numpad1::
 {
 WinGet, ProcessName, ProcessName, A
