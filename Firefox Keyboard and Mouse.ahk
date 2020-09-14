@@ -171,15 +171,16 @@ FocusWindow:
 				FFSafe = %FFNow%
 				; WinRestore, ahk_id %FFSafe%
 				; WinMaximize, ahk_id %FFSafe%
-				ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
-				ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
+				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
+				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
+				ControlClick, x1765 y20, ahk_id %FFSafe%
 				DoFocus := 0
 			}
 			If (FFW = 1920 && FFH = 1080) ; This is for when a video is fullscreen
 			{
 				FFSafe = %FFNow%
-				ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
-				ControlSend, ahk_parent, f, ahk_id %FFSafe%
+				; ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
+				; ControlSend, ahk_parent, f, ahk_id %FFSafe%
 				DoFocus := 0
 			}
 			FCount--
@@ -365,7 +366,7 @@ CreateGui() {
 	; MsgBox, %x% %y%
 	; ControlFocus,,ahk_id %FFSafe%
 	; ControlClick, , ahk_id %FFSafe%,, WheelUp, 1, NA
-	; ControlClick,, ahk_id %FFSafe%,,WheelUp
+	; ControlClick, x1000 y600, ahk_id %FFSafe%,, WheelUp
 	ControlSend, ahk_parent, {Up}, ahk_id %FFSafe%
 	return
 	}
