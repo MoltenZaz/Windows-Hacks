@@ -169,8 +169,8 @@ return
 }
 #if
 
-XButton1::XButton1
-XButton2::XButton2
+; XButton1::XButton1
+; XButton2::XButton2
 
 ~LButton::
 {
