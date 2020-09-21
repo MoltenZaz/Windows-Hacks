@@ -15,6 +15,89 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;Win+Shift+W searches on wikipedia.
 ;RAlt+Capslock toggles SaRcASM tExT.
 
+NumpadClear::NumpadDown
+
+#IfWinExist, ahk_exe Spotify.exe
+{
+Media_Next::
+{
+IfWinNotExist, Spotify Free
+{
+Send, {LAUNCH_MEDIA}
+Sleep, 100
+}
+Send, {Media_Next}
+IfWinNotExist, Spotify Free
+{
+; Sleep, 500
+Send, {LAUNCH_MEDIA}
+}
+return
+}
+
+Media_Prev::
+{
+IfWinNotExist, Spotify Free
+{
+Send, {LAUNCH_MEDIA}
+Sleep, 100
+}
+Send, {Media_Prev}
+IfWinNotExist, Spotify Free
+{
+; Sleep, 500
+Send, {LAUNCH_MEDIA}
+}
+return
+}
+
+}
+#if
+
+#IfWinNotActive,ahk_exe photoshop.exe
+F15::
+{
+while GetKeyState("F15", "P")
+{
+      MouseClick, WheelLeft, , , 1
+      sleep, 50
+}
+return
+}
+
+F16::
+{
+while GetKeyState("F16", "P")
+{
+      MouseClick, WheelRight, , , 1
+      sleep, 50
+}
+return
+}
+#if
+
+#IfWinActive,ahk_exe photoshop.exe
+F16::
+{
+while GetKeyState("F16", "P")
+{
+      MouseClick, WheelLeft, , , 1
+      sleep, 10
+}
+return
+}
+
+F15::
+{
+while GetKeyState("F15", "P")
+{
+      MouseClick, WheelRight, , , 1
+      sleep, 10
+}
+return
+}
+#If
+
 ~RAlt & ~Capslock::
 {
 KeyDown := !KeyDown
@@ -65,7 +148,7 @@ Return
 
 SarcasmText()
 {
-Random, rand, 0, 6
+Random, rand, 0, 4
 if (rand=0)
      SetCapsLockState % !GetKeyState("CapsLock", "T")
 if (rand=1)
@@ -75,10 +158,6 @@ if (rand=2)
 if (rand=3)
      SetCapsLockState % !GetKeyState("CapsLock", "T")
 if (rand=4)
-     SetCapsLockState % !GetKeyState("CapsLock", "T")
-if (rand=5)
-     SetCapsLockState % !GetKeyState("CapsLock", "T")
-if (rand=6)
      return
 return
 }
@@ -348,7 +427,7 @@ ClipboardRestore()
 }
 
 ;stop from changing keyboard / language in windows
-#Space::Return
+; #Space::Return
 
 isFullScreen := isWindowFullScreen( "A" )
 ;MsgBox % isFullScreen ? "Full Screen" : "Windowed"
