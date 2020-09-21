@@ -76,6 +76,102 @@ Full = 0
 
 ^Pause::Run, "F:\Documents\AHK Current\Launch Scripts.ahk" ; "
 
+>!WheelUp::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(4)
+return
+}
+>!WheelDown::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(-4)
+return
+}
+
+XButton2 & WheelUp::Volume_Up
+XButton2 & WheelDown::Volume_Down
+
+XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
+XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
+
+F24 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(1)
+F24 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-1)
+
+F24 & XButton2::Send, {Media_Next}
+F24 & F20::Send, {Media_Play_Pause}
+F24 & 3::Send, {Media_Play_Pause}
+F24 & F21::Send, {Media_Play_Pause}
+F24 & `::Send, {Media_Play_Pause}
+
+F24 & MButton::
+{
+IfWinExist ahk_exe Spotify.exe
+{
+    ; ifWinActive ahk_exe Spotify.exe
+    ; {
+        ; WinMinimize
+    ; }
+    ; else
+    ; {
+        ; WinActivate
+    ; }
+	DetectHiddenWindows, On
+	WinGet, winInfo, List, ahk_exe Spotify.exe
+	Loop, %winInfo%
+	{
+		thisID := winInfo%A_Index%
+		ControlFocus , , ahk_id %thisID%
+		ControlSend, , {space}, ahk_id %thisID%
+	}
+}
+else
+{
+    run "C:\Users\mkenn\AppData\Roaming\Spotify\Spotify.exe"
+}
+return
+}
+
+#IfWinExist, ahk_exe Spotify.exe
+{
+F24 & XButton2::
+{
+IfWinNotExist, Spotify Free
+{
+Send, {LAUNCH_MEDIA}
+Sleep, 100
+}
+Send, {Media_Next}
+IfWinNotExist, Spotify Free
+{
+; Sleep, 500
+Send, {LAUNCH_MEDIA}
+}
+return
+}
+
+Media_Prev::
+{
+IfWinNotExist, Spotify Free
+{
+Send, {LAUNCH_MEDIA}
+Sleep, 100
+}
+Send, {Media_Prev}
+IfWinNotExist, Spotify Free
+{
+; Sleep, 500
+Send, {LAUNCH_MEDIA}
+}
+return
+}
+
+}
+#if
+
+XButton1::XButton1
+XButton2::XButton2
+
 ~LButton::
 {
 IfWinActive, ahk_id %FFSafe%
@@ -89,7 +185,7 @@ return
 }
 #if
 
-F24::
+F24 & XButton1::
 {
 if mastertoggle = 1
 {
@@ -102,7 +198,7 @@ else
 {
 mastertoggle := 1
 VMouse := 1
-; ; SetTimer, VirtualMouse, 250
+SetTimer, VirtualMouse, 100
 ; SoundBeep, 200, 50
 ; SoundBeep, 300, 50
 }
@@ -149,6 +245,7 @@ AppsKey Up::
 {
 	mastertoggle := 0
 	VMouse := 0
+	return
 }
 ; ──────────────────────────────────── This section automatically focuses the firefox window on my second monitor ────────────────────────────────────
 FocusWindow:
@@ -181,6 +278,7 @@ FocusWindow:
 				FFSafe = %FFNow%
 				; ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
 				; ControlSend, ahk_parent, f, ahk_id %FFSafe%
+				ControlClick, x1765 y20, ahk_id %FFSafe%
 				DoFocus := 0
 			}
 			FCount--
@@ -216,11 +314,11 @@ While VMouse = 1 ;  and !GetKeyState("AppsKey") and !GetKeyState("F24")
 return
 }
 	
-#If VMouse = 1
-{
-F23::GoSub, VirtualMouse
-}
-#if
+; #If VMouse = 1
+; {
+; F23::GoSub, VirtualMouse
+; }
+; #if
 
 #InputLevel 2
 #If (mastertoggle = 1)
@@ -506,18 +604,6 @@ Numpad8::SoundSet, 80, Master
 Numpad9::SoundSet, 90, Master
 Numpad0::SoundSet, 100, Master
 
-Volume_Up::
-{
-WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(2)
-return
-}
-Volume_Down::
-{
-WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(-2)
-return
-}
 ; WheelUp::
 ; {
 ; WinGet, ProcessName, ProcessName, A
@@ -972,6 +1058,34 @@ return
 #if
 
 ; These hotkeys don't require the appskey
+
+
+
+#WheelUp::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(2)
+return
+}
+#WheelDown::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(-2)
+return
+}
+
+#Volume_Up::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(2)
+return
+}
+#Volume_Down::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(-2)
+return
+}
 
 ^Volume_Up::
 {
