@@ -29,7 +29,7 @@ toggle = 0
 
 #F20::return
 
-F20::
+~F20::
 {
 toggle := 1
 MouseGetPos,,,FGUI
@@ -57,33 +57,65 @@ toggle := 0
 return
 }
 
-Refresh:
-{
-SoundBeep, 300, 50
-Run "F:\Documents\AHK Current\Firefox Keyboard.ahk"
-Run "F:\Documents\AHK Current\YouTube Play Pause.ahk"
-Reload
-return
-}
+; Refresh:
+; {
+; SoundBeep, 300, 50
+; Run "F:\Documents\AHK Current\Firefox Keyboard.ahk"
+; Run "F:\Documents\AHK Current\YouTube Play Pause.ahk"
+; Reload
+; return
+; }
 
->!WheelUp::
-{
-WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(4)
-return
-}
->!WheelDown::
-{
-WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(-4)
-return
-}
+; >!WheelUp::
+; {
+; WinGet, ProcessName, ProcessName, A
+; AppVolume(ProcessName).AdjustVolume(4)
+; return
+; }
+; >!WheelDown::
+; {
+; WinGet, ProcessName, ProcessName, A
+; AppVolume(ProcessName).AdjustVolume(-4)
+; return
+; }
 
-~XButton2 & WheelUp::Volume_Up
-~XButton2 & WheelDown::Volume_Down
+; XButton2 & WheelUp::Volume_Up
+; XButton2 & WheelDown::Volume_Down
 
-~XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
-~XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
+; XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
+; XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
+
+; XButton1::
+; {
+	; isFullScreen := isWindowFullScreen( "A" )
+	; IfWinNotActive, ahk_class WorkerW
+	; IfWinNotActive, ahk_class Progman
+	; if isFullScreen = 1
+	; {
+		; XButton1::XButton1
+	; }
+	; else
+	; {
+		; Send, {XButton1}
+	; }
+	; return
+; }
+
+; XButton2::
+; {
+	; isFullScreen := isWindowFullScreen( "A" )
+	; IfWinNotActive, ahk_class WorkerW
+	; IfWinNotActive, ahk_class Progman
+	; if isFullScreen = 1
+	; {
+		; XButton2::XButton2
+	; }
+	; else
+	; {
+		; Send, {XButton2}
+	; }
+	; return
+; }
 
 #if (toggle = 1)
 {
@@ -691,6 +723,10 @@ return
 }
 #if
 
+; neoauntaoehusahi
+; eapindthhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh
+; nthouei/rco.hir.ocpo.pi
+
 ResizeWindow(XPos, YPos, WPos, HPos)
 {
 MouseGetPos, , , id, control 
@@ -715,18 +751,23 @@ gui Submit,NoHide
 Offset_X :=Offset_Y:=0
 
     WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
+	; MsgBox, %Offset_X% %Offset_Y%
 If Offset_X < 0
 {
-Offset_X += -1
-HPosO=-3
-HPosO+=Offset_X
-WPosO=-8
-WPosO+=Offset_X
+Offset_X2 := Offset_X * 2 - 1
+Offset_Y2 := Offset_Y * 2 - 4
+; MsgBox %Offset_X% %Offset_X2% %Offset_Y% %Offset_Y2%
+; HPosO=-3
+HPosO+=Offset_Y2
+; WPosO=-8
+WPosO+=Offset_X2
 }
 WPos-=WPosO
 HPos-=HPosO
-XPos+=Offset_X
-YPos+=Offset_Y
+; XPos+=Offset_X
+; YPos+=Offset_Y
+XPos += Offset_X
+YPos += Offset_Y
 MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
 WinRestore,ahk_id %hParentGUI%
