@@ -1,10 +1,42 @@
 Menu, Tray, Icon, pifmgr.dll, 18
-
+#InputLevel 0
 #SingleInstance force
+
+;F1::
+;{
+;Send, +{tab}
+;Sleep, 500
+;Send, {down}
+;Sleep, 1000
+;Send, {LButton}
+;return
+;}
 
 ^!Space:: Winset, Alwaysontop, , A
 
 ^Esc::Send, {Esc}
+
+#1::^#1
+#2::^#2
+#3::^#3
+#4::^#4
+#5::^#5
+#6::^#6
+#7::^#7
+#8::^#8
+#9::^#9
+#0::^#0
+
++#1::+#1
++#2::+#2
++#3::+#3
++#4::+#4
++#5::+#5
++#6::+#6
++#7::+#7
++#8::+#8
++#9::+#9
++#0::+#0
 
 #f::Send, f
 
@@ -20,6 +52,51 @@ Menu, Tray, Icon, pifmgr.dll, 18
 
 #^+b::Send, b
 
+#^!+w::return
+
+#^!+t::return
+
+#^!+y::return
+
+#^!+o::return
+
+#^!+p::return
+
+#^!+d::return
+
+#^!+l::return
+
+#^!+x::return
+
+#^!+n::return
+
+#^!+Space::return
+
+$#^!Shift::return
+
+$#^+Alt::return
+
+$#!+Ctrl::return
+
+$^!+LWin::return
+
+$^!+RWin::return
+
+~NumLock::
+{
+KeyWait, NumLock
+KeyWait, NumLock, D T0.2
+If ErrorLevel
+{
+	return
+}
+else
+{
+	Run calc.exe
+}
+return
+}
+
 ; make forward and back mouse buttons dive in and out of nodes in houdini
 ; multiple other bindings for houdini, including different hotkeys when two are pressed at once
 #IfWinActive,ahk_exe houdinifx.exe
@@ -29,12 +106,12 @@ Menu, Tray, Icon, pifmgr.dll, 18
 Send, 3
 return
 }
-F22::v
-F23::c
-F23 & F22::
+F18::v
+F19::c
+F19 & F18::
 {
 Send, {1 down}
-keywait, F22
+keywait, F18
 Send, {1 up}
 return
 }
@@ -43,43 +120,43 @@ return
 Send, 4
 return
 }
-F22 & F23::
+F18 & F19::
 {
 Send, {2 down}
-keywait, F23
+keywait, F19
 Send, {2 up}
 return
 }
-~Xbutton1::u
-~Xbutton2::i
+~Xbutton1::Send, !{Left}
+~Xbutton2::Send, !{Right}
 #u::
 #i::
 return
-; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
+; ; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
+; F21::
+; {
+; if b = 1
+; {
+; Send ^{Up}
+; b = 2
+; }
+; else
+; {
+; if b = 0
+; {
+; Send {Up}
+; b = 1
+; }
+; else
+; {
+; Send {Up}
+; b = 0
+; }
+; }
+; keywait, F21
+; return
+; }
 F21::
-{
-if b = 1
-{
-Send ^{Up}
-b = 2
-}
-else
-{
-if b = 0
-{
-Send {Up}
-b = 1
-}
-else
-{
-Send {Up}
-b = 0
-}
-}
-keywait, F21
-return
-}
-F24::
 {
 If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
 {
@@ -103,12 +180,12 @@ Return
 Send, 3
 return
 }
-F22::v
-F23::c
-F23 & F22::
+F18::v
+F19::c
+F19 & F18::
 {
 Send, {1 down}
-keywait, F22
+keywait, F18
 Send, {1 up}
 return
 }
@@ -117,43 +194,43 @@ return
 Send, 4
 return
 }
-F22 & F23::
+F18 & F19::
 {
 Send, {2 down}
-keywait, F23
+keywait, F19
 Send, {2 up}
 return
 }
-~Xbutton1::u
-~Xbutton2::i
+~Xbutton1::Send, !{Left}
+~Xbutton2::Send, !{Right}
 #u::
 #i::
 return
 ; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
+; F21::
+; {
+; if b = 1
+; {
+; Send ^{Up}
+; b = 2
+; }
+; else
+; {
+; if b = 0
+; {
+; Send {Up}
+; b = 1
+; }
+; else
+; {
+; Send {Up}
+; b = 0
+; }
+; }
+; keywait, F21
+; return
+; }
 F21::
-{
-if b = 1
-{
-Send ^{Up}
-b = 2
-}
-else
-{
-if b = 0
-{
-Send {Up}
-b = 1
-}
-else
-{
-Send {Up}
-b = 0
-}
-}
-keywait, F21
-return
-}
-F24::
 {
 If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
 {
@@ -167,8 +244,6 @@ return
 }
 Return
 }
-F19::ControlSend, ahk_parent, {Space}, ahk_class MozillaWindowClass
-F16::ControlSend, ahk_parent, {Left}, ahk_class MozillaWindowClass
 }
 #if
 
@@ -179,12 +254,12 @@ F16::ControlSend, ahk_parent, {Left}, ahk_class MozillaWindowClass
 Send, 3
 return
 }
-F22::v
-F23::c
-F23 & F22::
+F18::v
+F19::c
+F19 & F18::
 {
 Send, {1 down}
-keywait, F22
+keywait, F18
 Send, {1 up}
 return
 }
@@ -193,43 +268,43 @@ return
 Send, 4
 return
 }
-F22 & F23::
+F18 & F19::
 {
 Send, {2 down}
-keywait, F23
+keywait, F19
 Send, {2 up}
 return
 }
-~Xbutton1::u
-~Xbutton2::i
+~Xbutton1::Send, !{Left}
+~Xbutton2::Send, !{Right}
 #u::
 #i::
 return
 ; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
+; F21::
+; {
+; if b = 1
+; {
+; Send ^{Up}
+; b = 2
+; }
+; else
+; {
+; if b = 0
+; {
+; Send {Up}
+; b = 1
+; }
+; else
+; {
+; Send {Up}
+; b = 0
+; }
+; }
+; keywait, F21
+; return
+; }
 F21::
-{
-if b = 1
-{
-Send ^{Up}
-b = 2
-}
-else
-{
-if b = 0
-{
-Send {Up}
-b = 1
-}
-else
-{
-Send {Up}
-b = 0
-}
-}
-keywait, F21
-return
-}
-F24::
 {
 If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
 {
@@ -253,12 +328,12 @@ Return
 Send, 3
 return
 }
-F22::v
-F23::c
-F23 & F22::
+F18::v
+F19::c
+F19 & F18::
 {
 Send, {1 down}
-keywait, F22
+keywait, F18
 Send, {1 up}
 return
 }
@@ -267,43 +342,43 @@ return
 Send, 4
 return
 }
-F22 & F23::
+F18 & F19::
 {
 Send, {2 down}
-keywait, F23
+keywait, F19
 Send, {2 up}
 return
 }
-~Xbutton1::u
-~Xbutton2::i
+~Xbutton1::Send, !{Left}
+~Xbutton2::Send, !{Right}
 #u::
 #i::
 return
 ; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
+; F21::
+; {
+; if b = 1
+; {
+; Send ^{Up}
+; b = 2
+; }
+; else
+; {
+; if b = 0
+; {
+; Send {Up}
+; b = 1
+; }
+; else
+; {
+; Send {Up}
+; b = 0
+; }
+; }
+; keywait, F21
+; return
+; }
 F21::
-{
-if b = 1
-{
-Send ^{Up}
-b = 2
-}
-else
-{
-if b = 0
-{
-Send {Up}
-b = 1
-}
-else
-{
-Send {Up}
-b = 0
-}
-}
-keywait, F21
-return
-}
-F24::
 {
 If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
 {
