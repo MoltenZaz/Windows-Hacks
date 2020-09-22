@@ -150,13 +150,15 @@ mastertoggle := 1
 VMouse := 1
 SetTimer, VirtualMouse, 100
 }
-GoSub, FocusWindow
+SetTimer, FocusWindow, 10
 return
 }
 }
 #if
 
-#IfWinExist, ahk_exe Spotify.exe and MB = 1
+#IfWinExist, ahk_exe Spotify.exe
+{
+#If MB = 1
 {
 XButton2::
 {
@@ -189,8 +191,9 @@ Send, {LAUNCH_MEDIA}
 }
 return
 }
-
 }
+}
+#if
 #if
 
 ~LButton::
@@ -248,6 +251,7 @@ AppsKey Up::
 ; ──────────────────────────────────── This section automatically focuses the firefox window on my second monitor ────────────────────────────────────
 FocusWindow:
 {
+	SetTimer, FocusWindow, off
 	FFArray := []
 	FCount := 0
 	If(DoFocus = 1)
