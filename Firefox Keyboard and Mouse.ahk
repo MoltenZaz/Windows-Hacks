@@ -276,7 +276,7 @@ FocusWindow:
 				FFSafe = %FFNow%
 				; ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
 				; ControlSend, ahk_parent, f, ahk_id %FFSafe%
-				ControlClick, x1765 y20, ahk_id %FFSafe%
+				ControlClick, x0 y0, ahk_id %FFSafe%
 				DoFocus := 0
 			}
 			FCount--
