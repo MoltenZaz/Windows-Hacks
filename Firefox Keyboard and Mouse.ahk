@@ -89,33 +89,39 @@ AppVolume(ProcessName).AdjustVolume(-4)
 return
 }
 
+F24::
+{
+MB = 1
+KeyWait, F24
+MB = 0
+return
+}
+
+XButton1::XButton1
+XButton2::XButton2
+
 XButton2 & WheelUp::Volume_Up
 XButton2 & WheelDown::Volume_Down
 
 XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
 XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
 
-F24 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(1)
-F24 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-1)
 
-F24 & XButton2::Send, {Media_Next}
-F24 & F20::Send, {Media_Play_Pause}
-F24 & 3::Send, {Media_Play_Pause}
-F24 & F21::Send, {Media_Play_Pause}
-F24 & `::Send, {Media_Play_Pause}
+#If MB = 1
+{
+WheelUp::AppVolume("Spotify.exe").AdjustVolume(1)
+WheelDown::AppVolume("Spotify.exe").AdjustVolume(-1)
 
-F24 & MButton::
+XButton2::Media_Next
+F20::Media_Play_Pause
+3::Media_Play_Pause
+F21::Media_Play_Pause
+`::Media_Play_Pause
+
+MButton::
 {
 IfWinExist ahk_exe Spotify.exe
 {
-    ; ifWinActive ahk_exe Spotify.exe
-    ; {
-        ; WinMinimize
-    ; }
-    ; else
-    ; {
-        ; WinActivate
-    ; }
 	DetectHiddenWindows, On
 	WinGet, winInfo, List, ahk_exe Spotify.exe
 	Loop, %winInfo%
@@ -131,10 +137,28 @@ else
 }
 return
 }
-
-#IfWinExist, ahk_exe Spotify.exe
+XButton1::
 {
-F24 & XButton2::
+if mastertoggle = 1
+{
+mastertoggle := 0
+VMouse := 0
+}
+else
+{
+mastertoggle := 1
+VMouse := 1
+SetTimer, VirtualMouse, 100
+}
+GoSub, FocusWindow
+return
+}
+}
+#if
+
+#IfWinExist, ahk_exe Spotify.exe and MB = 1
+{
+XButton2::
 {
 IfWinNotExist, Spotify Free
 {
@@ -169,9 +193,6 @@ return
 }
 #if
 
-; XButton1::XButton1
-; XButton2::XButton2
-
 ~LButton::
 {
 IfWinActive, ahk_id %FFSafe%
@@ -184,29 +205,6 @@ return
 return
 }
 #if
-
-F24 & XButton1::
-{
-if mastertoggle = 1
-{
-mastertoggle := 0
-VMouse := 0
-; SoundBeep, 300, 50
-; SoundBeep, 200, 50
-}
-else
-{
-mastertoggle := 1
-VMouse := 1
-SetTimer, VirtualMouse, 100
-; SoundBeep, 200, 50
-; SoundBeep, 300, 50
-}
-GoSub, FocusWindow
-; if VMouse = 1
-; GoSub, VirtualMouse
-return
-}
 
 AppsKey::
 {
