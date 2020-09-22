@@ -76,13 +76,13 @@ Full = 0
 
 ^Pause::Run, "F:\Documents\AHK Current\Launch Scripts.ahk" ; "
 
->!WheelUp::
+!WheelUp::
 {
 WinGet, ProcessName, ProcessName, A
 AppVolume(ProcessName).AdjustVolume(4)
 return
 }
->!WheelDown::
+!WheelDown::
 {
 WinGet, ProcessName, ProcessName, A
 AppVolume(ProcessName).AdjustVolume(-4)
@@ -272,7 +272,7 @@ FocusWindow:
 				; WinMaximize, ahk_id %FFSafe%
 				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
 				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
-				ControlClick, x1765 y20, ahk_id %FFSafe%
+				ControlClick, x0 y0, ahk_id %FFSafe%
 				DoFocus := 0
 			}
 			If (FFW = 1920 && FFH = 1080) ; This is for when a video is fullscreen
