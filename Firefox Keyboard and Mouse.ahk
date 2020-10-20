@@ -13,20 +13,38 @@ SetControlDelay -1
 VMouse := 0
 SetBatchLines, -1
 CoordMode, Mouse
-
-hGui := CreateGui()
-; Gui, New, -Caption +ToolWindow +AlwaysOnTop +hwndhGui
-   ; ; Gui, Color, Blue
-   ; ; Gui, Show, w15 h15 HIDE
-    ; Gui, Color, FAFAFA
-	; Gui, Add, Picture, x0 y0 w32 h32 , Cursor.png
-	; Gui +LastFound +AlwaysOnTop +ToolWindow
-	; WinSet, TransColor, FAFAFA
-	; Gui -Caption
-; MouseGetPos, X, Y
+SetWinDelay,0
 
 Run Dvorak.ahk
 Run Easy Window Organiser.ahk
+Run Creative Helper.ahk
+
+DoFocus = 1
+ctrltoggle = 0
+shifttoggle = 0
+alttoggle = 0
+wintoggle = 0
+mastertoggle = 0
+FFNow = 0
+FFSafe = 0
+Full = 0
+
+hGui := CreateGui()
+
+CreateGui()
+{
+Gui, New, -Caption +ToolWindow +AlwaysOnTop +hwndhGui
+; Gui, Color, Blue
+; Gui, Show, w32 h32 HIDE
+Gui, Color, FAFAFA
+Gui, Add, Picture, x0 y0 w32 h32 , Cursor.png
+Gui, Show, w32 h32
+Gui +LastFound +AlwaysOnTop +ToolWindow
+WinSet, TransColor, FAFAFA
+Gui -Caption
+Gui, Hide
+Return hGui
+}
 
 ; Proudly Created by Mitchell Thomas
 
@@ -64,30 +82,22 @@ Run Easy Window Organiser.ahk
 
 ; You can toggle the script to be always on by double pressing appskey (so that you dont have to keep holding appskey while typing)
 
-DoFocus = 1
-ctrltoggle = 0
-shifttoggle = 0
-alttoggle = 0
-wintoggle = 0
-mastertoggle = 0
-FFNow = 0
-FFSafe = 0
-Full = 0
-
-^Pause::Run, "F:\Documents\AHK Current\Launch Scripts.ahk" ; "
+; ^Pause::Run, "F:\Documents\AHK Current\Launch Scripts.ahk" ; "
 
 !WheelUp::
 {
 WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(4)
+AppVolume(ProcessName).AdjustVolume(1)
 return
 }
 !WheelDown::
 {
 WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(-4)
+AppVolume(ProcessName).AdjustVolume(-1)
 return
 }
+
+!Pause::ControlClick, x0 y0, ahk_exe Discord.exe
 
 F24::
 {
@@ -97,15 +107,14 @@ MB = 0
 return
 }
 
-XButton1::XButton1
-XButton2::XButton2
+; XButton1::XButton1
+; XButton2::XButton2
 
-XButton2 & WheelUp::Volume_Up
-XButton2 & WheelDown::Volume_Down
+~XButton2 & WheelUp::Volume_Up
+~XButton2 & WheelDown::Volume_Down
 
-XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
-XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
-
+~XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
+~XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
 
 #If MB = 1
 {
@@ -148,6 +157,7 @@ else
 {
 mastertoggle := 1
 VMouse := 1
+Gui, %hGui%: Show, % "NA x" 4400 . " y" 800
 SetTimer, VirtualMouse, 100
 }
 SetTimer, FocusWindow, 10
@@ -160,8 +170,20 @@ return
 {
 #If MB = 1
 {
+Media_Next::
 XButton2::
 {
+; IfWinNotExist, Spotify Free
+; ; Skip to the Next song.
+; DetectHiddenWindows, On
+; WinGet, winInfo, List, ahk_exe Spotify.exe
+; Loop, %winInfo%
+; {
+    ; thisID := winInfo%A_Index%
+    ; ControlFocus , , ahk_id %thisID%
+    ; ControlSend, , ^{right}, ahk_id %thisID%
+; }
+; return
 IfWinNotExist, Spotify Free
 {
 Send, {LAUNCH_MEDIA}
@@ -214,6 +236,7 @@ AppsKey::
 	GoSub, FocusWindow
 	mastertoggle := 1
 	VMouse := 1
+	Gui, %hGui%: Show, % "NA x" 4400 . " y" 800
 	GoSub, VirtualMouse
 	; KeyWait, AppsKey, D T0.2
 	; if ErrorLevel
@@ -241,6 +264,13 @@ AppsKey::
 		; }
 	; }
 	return
+}
+
+F1::
+{
+VMouse := 0
+mastertoggle := 0
+return
 }
 AppsKey Up::
 {
@@ -272,7 +302,7 @@ FocusWindow:
 				; WinMaximize, ahk_id %FFSafe%
 				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
 				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
-				ControlClick, x0 y0, ahk_id %FFSafe%
+				ControlClick, x0 y0, ahk_id %FFSafe%,,, NA
 				DoFocus := 0
 			}
 			If (FFW = 1920 && FFH = 1080) ; This is for when a video is fullscreen
@@ -280,7 +310,7 @@ FocusWindow:
 				FFSafe = %FFNow%
 				; ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
 				; ControlSend, ahk_parent, f, ahk_id %FFSafe%
-				ControlClick, x0 y0, ahk_id %FFSafe%
+				ControlClick, NA x0 y0, ahk_id %FFSafe%,,, NA
 				DoFocus := 0
 			}
 			FCount--
@@ -296,10 +326,10 @@ SetTimer, VirtualMouse, Off
 Global VMouse
 While VMouse = 1 ;  and !GetKeyState("AppsKey") and !GetKeyState("F24")
 			{
-				If GetKeyState("AppsKey")
-					VMouse := 0
-				If GetKeyState("F24")
-					VMouse := 0
+				; If GetKeyState("AppsKey")
+				; 	VMouse := 0
+				; If GetKeyState("F24")
+				; 	VMouse := 0
 				MouseGetPos, MX, MY
 				if MX+2500<3440
 				MX = 3440
@@ -309,7 +339,10 @@ While VMouse = 1 ;  and !GetKeyState("AppsKey") and !GetKeyState("F24")
 				MY = 360
 				if MY>1440
 				MY = 1440
-				Gui, %hGui%: Show, % "NA x" MX+2500 . " y" MY
+				; msgbox, %MX% %MY%
+				; Gui, %hGui%: Show, % "NA x" MX+2500 . " y" MY
+				; GuiControl, Move, MouseGui, x1000 y520
+				WinMove, Firefox Keyboard and Mouse.ahk,, MX+2500, MY
 				Sleep, 1
 			}
 			Gui, %hGui%: Hide
@@ -384,20 +417,6 @@ RAlt::
 
 ; ──────────────────────────────────────── Virtual Mouse ────────────────────────────────────────
 
-CreateGui() {
-   Gui, New, -Caption +ToolWindow +AlwaysOnTop +hwndhGui
-   ; Gui, Color, Blue
-   ; Gui, Show, w15 h15 HIDE
-    Gui, Color, FAFAFA
-	Gui, Add, Picture, x0 y0 w32 h32 , Cursor.png
-	Gui, Show, w32 h32
-	Gui +LastFound +AlwaysOnTop +ToolWindow
-	WinSet, TransColor, FAFAFA
-	Gui -Caption
-	Gui, Hide
-   Return hGui
-}
-
 #If (VMouse = 1)
 {
 	LButton::
@@ -407,7 +426,7 @@ CreateGui() {
 	x -= 3440
 	y -= 360
 	; MsgBox, %x% %y%
-	ControlClick, x%x% y%y%, ahk_id %FFSafe%
+	ControlClick, x%x% y%y%, ahk_id %FFSafe%,,, NA
 	return
 	}
 	
@@ -418,7 +437,7 @@ CreateGui() {
 	x -= 3440
 	y -= 360
 	; MsgBox, %x% %y%
-	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, R
+	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, R,, NA
 	return
 	}
 	
@@ -429,7 +448,7 @@ CreateGui() {
 	x -= 3440
 	y -= 360
 	; MsgBox, %x% %y%
-	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, M
+	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, M,, NA
 	return
 	}
 	
@@ -440,7 +459,7 @@ CreateGui() {
 	x -= 3440
 	y -= 360
 	; MsgBox, %x% %y%
-	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X1
+	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X1,, NA
 	return
 	}
 	
@@ -451,7 +470,7 @@ CreateGui() {
 	x -= 3440
 	y -= 360
 	; MsgBox, %x% %y%
-	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X2
+	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X2,, NA
 	return
 	}
 	
@@ -465,7 +484,7 @@ CreateGui() {
 	; y -= 360
 	; MsgBox, %x% %y%
 	; ControlFocus,,ahk_id %FFSafe%
-	; ControlClick, , ahk_id %FFSafe%,, WheelUp, 1, NA
+	; ControlClick, x%x% y%y%, ahk_id %FFSafe%,, WheelUp,, NA
 	; ControlClick, x1000 y600, ahk_id %FFSafe%,, WheelUp
 	ControlSend, ahk_parent, {Up}, ahk_id %FFSafe%
 	return
@@ -478,7 +497,7 @@ CreateGui() {
 	; x -= 3440
 	; y -= 360
 	; MsgBox, %x% %y%
-	; ControlClick,, ahk_id %FFSafe%,, WheelDown, 1
+	; ControlClick, x%x% y%y%, ahk_id %FFSafe%,, WheelDown,, NA
 	ControlSend, ahk_parent, {Down}, ahk_id %FFSafe%
 	return
 	}
@@ -591,7 +610,7 @@ End::ControlSend, ahk_parent, {End}, ahk_id %FFSafe%
 Esc::ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
 NumpadDot::
 {
-SoundSet, +1, Master, Mute, 10
+SoundSet, +1, Master, Mute, 9
 SoundBeep, 250, 250
 return
 }
@@ -698,16 +717,16 @@ Space::ControlSend, ahk_parent, {Ctrl down}{space}{Ctrl up}, ahk_id %FFSafe%
 Home::ControlSend, ahk_parent, {Ctrl down}{Home}{Ctrl up}, ahk_id %FFSafe%
 End::ControlSend, ahk_parent, {Ctrl down}{End}{Ctrl up}, ahk_id %FFSafe%
 
-Numpad1::SoundSet, 10, Master, Volume, 10
-Numpad2::SoundSet, 20, Master, Volume, 10
-Numpad3::SoundSet, 30, Master, Volume, 10
-Numpad4::SoundSet, 40, Master, Volume, 10
-Numpad5::SoundSet, 50, Master, Volume, 10
-Numpad6::SoundSet, 60, Master, Volume, 10
-Numpad7::SoundSet, 70, Master, Volume, 10
-Numpad8::SoundSet, 80, Master, Volume, 10
-Numpad9::SoundSet, 90, Master, Volume, 10
-Numpad0::SoundSet, 100, Master, Volume, 10
+Numpad1::SoundSet, 10, Master, Volume, 9
+Numpad2::SoundSet, 20, Master, Volume, 9
+Numpad3::SoundSet, 30, Master, Volume, 9
+Numpad4::SoundSet, 40, Master, Volume, 9
+Numpad5::SoundSet, 50, Master, Volume, 9
+Numpad6::SoundSet, 60, Master, Volume, 9
+Numpad7::SoundSet, 70, Master, Volume, 9
+Numpad8::SoundSet, 80, Master, Volume, 9
+Numpad9::SoundSet, 90, Master, Volume, 9
+Numpad0::SoundSet, 100, Master, Volume, 9
 }
 #if
 
@@ -1113,14 +1132,14 @@ return
 {
 ;run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput mDP /Exit
 ; run "Nircmd\SoundVolumeView.exe" /Mute "Consoles"
-SoundSet, 1, Master, Mute, 10
+SoundSet, 1, Master, Mute, 9
 return
 }
 
 #+F2::
 {
 ; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
-SoundSet, 0, Master, Mute, 10
+SoundSet, 0, Master, Mute, 9
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI /Exit
 return
 }
@@ -1128,7 +1147,7 @@ return
 #+F3::
 {
 ; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
-SoundSet, 0, Master, Mute, 10
+SoundSet, 0, Master, Mute, 9
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI2 /Exit
 return
 }
