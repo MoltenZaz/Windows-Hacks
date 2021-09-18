@@ -137,7 +137,7 @@ return
 
 Numpad1::
 {
-If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
 {
 ResizeWindow(0, 700, 1146, 700)
 }
@@ -151,7 +151,7 @@ return
 
 Numpad2::
 {
-If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
 {
 ResizeWindow(1146, 700, 1148, 700)
 }
@@ -165,7 +165,7 @@ return
 
 Numpad3::
 {
-If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
 {
 ResizeWindow(2294, 700, 1146, 700)
 }
@@ -179,7 +179,7 @@ return
 
 Numpad4::
 {
-If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
 {
 ResizeWindow(0, 0, 1146, 700)
 }
@@ -193,7 +193,7 @@ return
 
 Numpad5::
 {
-If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
 {
 ResizeWindow(1146, 0, 1148, 700)
 }
@@ -225,7 +225,7 @@ return
 
 Numpad6::
 {
-If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
 {
 ResizeWindow(2294, 0, 1146, 700)
 }
@@ -289,21 +289,64 @@ return
 
 Numpad8::
 {
-If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
 {
 ResizeWindow(0, 700, 1720, 700)
 }
 else
 {
-ResizeWindow(0, 0, 1920, 1076)
+MouseGetPos, , , id, control 
+WinGetClass, dclass, ahk_id %id% 
+if dclass != WorkerW
+if dclass != Progman
+{
+isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
+{
+if isFullScreen = 1
+{
 return
+}
+}
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
+{
+MouseGetPos,,,hParentGUI
+WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+gui Submit,NoHide
+Offset_X :=Offset_Y:=0
+
+    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
+If Offset_X < 0
+{
+Offset_X += -1
+HPosO=-3
+HPosO+=Offset_X
+WPosO=-8
+WPosO+=Offset_X
+}
+XPos=0
+YPos=0
+WPos=1920
+WPos-=WPosO
+HPos=1076
+HPos-=HPosO
+XPos+=Offset_X
+YPos+=Offset_Y
+MouseGetPos,,,hParentGUI
+WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+WinRestore,ahk_id %hParentGUI%
+WinMove,ahk_id %hParentGUI%,,,, WPos, HPos
+return
+}
+}
 }
 return
 }
 
 Numpad9::
 {
-If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
 {
 ResizeWindow(1720, 700, 1720, 700)
 keywait, F20
@@ -338,7 +381,7 @@ return
 
 NumpadDiv::
 {
-If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
 {
 ResizeWindow(0, 0, 1720, 700)
 }
@@ -352,7 +395,7 @@ return
 
 NumpadMult::
 {
-If (GetKeyState("XButton2", "p") or ctrltoggle = 1)
+If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
 {
 ResizeWindow(1720, 0, 1720, 700)
 }
@@ -361,6 +404,12 @@ else
 ResizeWindow(1720, 0, 1720, 1400)
 return
 }
+return
+}
+
+NumpadSub::
+{
+ResizeWindow(754, 0, 1924, 1400)
 return
 }
 
@@ -492,6 +541,35 @@ isWindowFullScreen( winTitle )
 
 ; ────────────────────────────────────────────────────────────────────────────────────────────────────────────
 
+WheelDown::
+{
+isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
+{
+if isFullScreen = 1
+{
+SendInput {WheelDown DOWN}
+keywait, WheelDown
+SendInput {WheelDown UP}
+return
+}
+}
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
+{
+    MouseGetPos,,,hParentGUI
+    MouseGetPos, , , id, control 
+WinGetClass, dclass, ahk_id %id% 
+if dclass != WorkerW
+if dclass != Progman
+{
+    winrestore,ahk_id %kde_id%
+    return
+}
+return
+}
+}
+
 F17::
 {
 isFullScreen := isWindowFullScreen( "A" )
@@ -522,6 +600,34 @@ if dclass != Progman
 }
 return
 }
+}
+
+WheelUp::
+{
+isfullscreen := iswindowfullscreen( "a" )
+IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
+{
+if isFullScreen = 1
+{
+SendInput {WheelUp down}
+keywait, WheelUp
+SendInput {WheelUp up}
+return
+}
+}
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman
+    mousegetpos,,,kde_id
+    if kde_id != %desktopid%
+{
+	{
+    ; toggle between maximized and restored state.
+    
+        winmaximize,ahk_id %kde_id%
+    return
+	}
+}
+return
 }
 
 F18::
@@ -580,9 +686,22 @@ if dclass != WorkerW
 if dclass != Progman
 {
 If MOV_Win
-    return
+{
+	winrestore,ahk_id %moveID%
+	winactivate, ahk_id %moveID%
+	; soundbeep, 1000, 100
+	WinGetPos,X,Y,W,H,ahk_id %moveID%
+	Mx := W/2 + X
+	My := H/2 + Y	
+	mousemove, Mx, My, 0
+	Sleep, 100
+	mousemove, Mx, My, 0
+	MouseGetPos,MOV_X1,MOV_Y1,moveID
+	; msgbox, %Mx% %My%
+    ; return
+}
 ; Get the initial window position.
-WinGetPos,MOV_WinX1,MOV_WinY1,,,ahk_id %moveID%
+WinGetPos,MOV_WinX1,MOV_WinY1,W,H,ahk_id %moveID%
 Loop
 {
 	WinGet,MOV_Win,MinMax,ahk_id %MOV2_id%
@@ -604,6 +723,82 @@ Loop
 }
 }
 return
+}
+
+LButton Up::
+{
+	MouseGetPos,MOV_X1,MOV_Y1,moveID
+	WinGet,MOV_Win,MinMax,ahk_id %moveID%
+	MouseGetPos, , , id, control 
+	WinGetClass, dclass, ahk_id %id%
+	; WinGetPos,MOV_WinX1,MOV_WinY1,,,ahk_id %moveID%
+	if dclass != WorkerW
+	if dclass != Progman
+	If MOV_Y1 < 100
+	{
+		If MOV_X1 < 100
+		{
+			; top left corner
+			ResizeWindow(0, 0, 1720, 700)
+			return
+		}
+		If MOV_X1 > 3340
+		{
+			; top right corner
+			ResizeWindow(1720, 0, 1720, 700)
+			return
+		}
+		else ; maximize main monitor
+		{
+			MouseGetPos,,,hParentGUI
+			WinGetPos,KDE_WinX1,KDE_WinY1,Width,Height,ahk_id %hParentGUI%
+			gui Submit,NoHide
+			MouseGetPos,,,hParentGUI
+			WinRestore,ahk_id %hParentGUI%
+			WinMove,ahk_id %hParentGUI%,, (A_ScreenWidth/2)-(Width/2), (A_ScreenHeight/2)-(Height/2)
+			winmaximize,ahk_id %moveID%
+			return
+		}
+	}
+	If MOV_Y1 > 1340
+	{
+		If MOV_X1 < 100
+		{
+			; bottom left corner
+			ResizeWindow(0, 700, 1720, 700)
+			return
+		}
+		If MOV_X1 > 3340
+		{
+			; bottom right corner
+			ResizeWindow(1720, 700, 1720, 700)
+			return
+		}
+	}
+	else
+	{
+		If MOV_X1 < 100
+		{
+			; left middle
+			ResizeWindow(0, 0, 1720, 1400)
+			return
+		}
+		If MOV_X1 > 3340
+		{
+			If MOV_X1 > 3440
+			{
+				; right monitor
+				return
+			}
+			else
+			{
+				; right middle
+				ResizeWindow(1720, 0, 1720, 1400)
+				return
+			}
+		}
+	}
+	return
 }
 
 RButton::
@@ -1397,19 +1592,19 @@ return
 ; return
 ; }
 
-#IfWinActive, ahk_exe firefox.exe
-{
-~Lbutton::
-{
-if (fffirst = 1)
-{
-fffirst = 0
-winmaximize, ahk_exe firefox.exe
-}
-return
-}
-return
-}
+; #IfWinActive, ahk_exe firefox.exe
+; {
+; ~Lbutton::
+; {
+; if (fffirst = 1)
+; {
+; fffirst = 0
+; winmaximize, ahk_exe firefox.exe
+; }
+; return
+; }
+; return
+; }
 
 AppVolume(app:="", device:="")
 {
