@@ -775,6 +775,19 @@ LButton Up::
 			return
 		}
 	}
+	If MOV_Y1 < 264
+	{
+		If MOV_X1 >3440
+		{
+			MouseGetPos,,,hParentGUI
+			WinGetPos,KDE_WinX1,KDE_WinY1,Width,Height,ahk_id %hParentGUI%
+			gui Submit,NoHide
+			MouseGetPos,,,hParentGUI
+			WinRestore,ahk_id %hParentGUI%
+			WinMove,ahk_id %hParentGUI%,, (A_ScreenWidth/2)-(Width/2)+3440, (A_ScreenHeight/2)-(Height/2)
+			winmaximize,ahk_id %moveID%
+		}
+	}
 	else
 	{
 		If MOV_X1 < 100
