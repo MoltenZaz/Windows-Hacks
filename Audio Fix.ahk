@@ -9,6 +9,13 @@ run F:\Documents\Nircmd\nircmd.exe setdefaultsounddevice "FiiO DAC-E10" 1
 run F:\Documents\Nircmd\nircmd.exe setdefaultsounddevice "FiiO DAC-E10" 2
 run F:\Documents\Nircmd\nircmd.exe setdefaultsounddevice "RODE Microphone" 1
 run F:\Documents\Nircmd\nircmd.exe setdefaultsounddevice "RODE Microphone" 2
-SoundSet, 40, Master, Volume, 5
-SoundSet, 95, Master, Volume, 11
-SoundSet, 1, Master, Mute, 10
+SoundSet, 40, Master, Volume
+; SoundSet, 95, Master, Volume, 10
+; SoundSet, 1, Master, Mute, 9
+
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "RODE Microphone" 97
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 0
+Sleep, 10000
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 0

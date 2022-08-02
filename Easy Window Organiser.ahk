@@ -1,4 +1,4 @@
-#NoEnv
+﻿#NoEnv
 Coordmode, Mouse, Screen
 Menu, Tray, Icon, shell32.dll, 300
 #Include VA.ahk

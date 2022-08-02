@@ -70,6 +70,8 @@ Menu, Tray, Icon, pifmgr.dll, 18
 
 #^!+n::return
 
+; #Space::Send, {Space}
+
 #^!+Space::return
 
 $#^!Shift::return
@@ -101,71 +103,51 @@ return
 ; multiple other bindings for houdini, including different hotkeys when two are pressed at once
 #IfWinActive,ahk_exe houdinifx.exe
 {
+F18::1
+F19::2
+
+F19 & F18::Send, ^1
+F18 & F19::Send, ^2
+
 ~Xbutton1 & Xbutton2::
 {
 Send, 3
 return
 }
-F18::v
-F19::c
-F19 & F18::
-{
-Send, {1 down}
-keywait, F18
-Send, {1 up}
-return
-}
+
 ~Xbutton2 & Xbutton1::
 {
 Send, 4
 return
 }
-F18 & F19::
+
+~Xbutton1::u
+~Xbutton2::i
+
+F22::Esc
+
+F21 & F22::
 {
-Send, {2 down}
-keywait, F19
-Send, {2 up}
+Send, {space down}
+KeyWait, F22
+Send, h{space up}
 return
 }
-~Xbutton1::Send, !{Left}
-~Xbutton2::Send, !{Right}
-#u::
-#i::
-return
-; ; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
-; F21::
-; {
-; if b = 1
-; {
-; Send ^{Up}
-; b = 2
-; }
-; else
-; {
-; if b = 0
-; {
-; Send {Up}
-; b = 1
-; }
-; else
-; {
-; Send {Up}
-; b = 0
-; }
-; }
-; keywait, F21
-; return
-; }
+
 F21::
 {
 If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
 {
-Send, {space}g
+Send, {space down}
+KeyWait, F22
+Send, g{space up}
 return
 }
 else
 {
-Send, {space}h
+Send, {space down}
+KeyWait, F22
+Send, f{space up}
 return
 }
 Return
@@ -175,71 +157,51 @@ Return
 
 #IfWinActive,ahk_exe happrentice.exe
 {
+F18::1
+F19::2
+
+F19 & F18::Send, ^1
+F18 & F19::Send, ^2
+
 ~Xbutton1 & Xbutton2::
 {
 Send, 3
 return
 }
-F18::v
-F19::c
-F19 & F18::
-{
-Send, {1 down}
-keywait, F18
-Send, {1 up}
-return
-}
+
 ~Xbutton2 & Xbutton1::
 {
 Send, 4
 return
 }
-F18 & F19::
+
+~Xbutton1::u
+~Xbutton2::i
+
+F22::Esc
+
+F21 & F22::
 {
-Send, {2 down}
-keywait, F19
-Send, {2 up}
+Send, {space down}
+KeyWait, F22
+Send, h{space up}
 return
 }
-~Xbutton1::Send, !{Left}
-~Xbutton2::Send, !{Right}
-#u::
-#i::
-return
-; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
-; F21::
-; {
-; if b = 1
-; {
-; Send ^{Up}
-; b = 2
-; }
-; else
-; {
-; if b = 0
-; {
-; Send {Up}
-; b = 1
-; }
-; else
-; {
-; Send {Up}
-; b = 0
-; }
-; }
-; keywait, F21
-; return
-; }
+
 F21::
 {
 If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
 {
-Send, {space}g
+Send, {space down}
+KeyWait, F22
+Send, g{space up}
 return
 }
 else
 {
-Send, {space}h
+Send, {space down}
+KeyWait, F22
+Send, f{space up}
 return
 }
 Return
@@ -249,71 +211,51 @@ Return
 
 #IfWinActive,ahk_exe houdini.exe
 {
+F18::1
+F19::2
+
+F19 & F18::Send, ^1
+F18 & F19::Send, ^2
+
 ~Xbutton1 & Xbutton2::
 {
 Send, 3
 return
 }
-F18::v
-F19::c
-F19 & F18::
-{
-Send, {1 down}
-keywait, F18
-Send, {1 up}
-return
-}
+
 ~Xbutton2 & Xbutton1::
 {
 Send, 4
 return
 }
-F18 & F19::
+
+~Xbutton1::u
+~Xbutton2::i
+
+F22::Esc
+
+F21 & F22::
 {
-Send, {2 down}
-keywait, F19
-Send, {2 up}
+Send, {space down}
+KeyWait, F22
+Send, h{space up}
 return
 }
-~Xbutton1::Send, !{Left}
-~Xbutton2::Send, !{Right}
-#u::
-#i::
-return
-; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
-; F21::
-; {
-; if b = 1
-; {
-; Send ^{Up}
-; b = 2
-; }
-; else
-; {
-; if b = 0
-; {
-; Send {Up}
-; b = 1
-; }
-; else
-; {
-; Send {Up}
-; b = 0
-; }
-; }
-; keywait, F21
-; return
-; }
+
 F21::
 {
 If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
 {
-Send, {space}g
+Send, {space down}
+KeyWait, F22
+Send, g{space up}
 return
 }
 else
 {
-Send, {space}h
+Send, {space down}
+KeyWait, F22
+Send, f{space up}
 return
 }
 Return
@@ -323,71 +265,51 @@ Return
 
 #IfWinActive,ahk_exe mplay.exe
 {
+F18::1
+F19::2
+
+F19 & F18::Send, ^1
+F18 & F19::Send, ^2
+
 ~Xbutton1 & Xbutton2::
 {
 Send, 3
 return
 }
-F18::v
-F19::c
-F19 & F18::
-{
-Send, {1 down}
-keywait, F18
-Send, {1 up}
-return
-}
+
 ~Xbutton2 & Xbutton1::
 {
 Send, 4
 return
 }
-F18 & F19::
+
+~Xbutton1::u
+~Xbutton2::i
+
+F22::Esc
+
+F21 & F22::
 {
-Send, {2 down}
-keywait, F19
-Send, {2 up}
+Send, {space down}
+KeyWait, F22
+Send, h{space up}
 return
 }
-~Xbutton1::Send, !{Left}
-~Xbutton2::Send, !{Right}
-#u::
-#i::
-return
-; make F21 send up twice then ctrl up on each sequential keypress (play, pause, rewind)
-; F21::
-; {
-; if b = 1
-; {
-; Send ^{Up}
-; b = 2
-; }
-; else
-; {
-; if b = 0
-; {
-; Send {Up}
-; b = 1
-; }
-; else
-; {
-; Send {Up}
-; b = 0
-; }
-; }
-; keywait, F21
-; return
-; }
+
 F21::
 {
 If (A_PriorHotKey = A_ThisHotKey and A_TimeSincePriorHotkey < 500)
 {
-Send, {space}g
+Send, {space down}
+KeyWait, F22
+Send, g{space up}
 return
 }
 else
 {
-Send, {space}h
+Send, {space down}
+KeyWait, F22
+Send, f{space up}
 return
 }
 Return

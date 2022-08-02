@@ -1,4 +1,4 @@
-Menu, Tray, Icon, pifmgr.dll, 13
+Menu, Tray, Icon, networkexplorer.dll, 15
 #InputLevel 0
 #NoEnv
 #SingleInstance force
@@ -15,7 +15,8 @@ SetBatchLines, -1
 CoordMode, Mouse
 SetWinDelay,0
 
-Run Dvorak.ahk
+; Run Dvorak.ahk
+; Run Symbol Layer.ahk
 Run Easy Window Organiser.ahk
 Run Creative Helper.ahk
 
@@ -99,7 +100,7 @@ return
 
 !Pause::ControlClick, x0 y0, ahk_exe Discord.exe
 
-F24::
+~F24::
 {
 MB = 1
 KeyWait, F24
@@ -113,21 +114,31 @@ return
 ~XButton2 & WheelUp::Volume_Up
 ~XButton2 & WheelDown::Volume_Down
 
-~XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
-~XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
+~XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(1)
+~XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-1)
 
-#If MB = 1
-{
-WheelUp::AppVolume("Spotify.exe").AdjustVolume(1)
-WheelDown::AppVolume("Spotify.exe").AdjustVolume(-1)
+F19::XButton1
+F14::XButton2
 
-XButton2::Media_Next
-F20::Media_Play_Pause
-3::Media_Play_Pause
-F21::Media_Play_Pause
-`::Media_Play_Pause
+F14 & WheelUp::Volume_Up
+F14 & WheelDown::Volume_Down
 
-MButton::
+F19 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(1)
+F19 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-1)
+
+; #If MB = 1
+; {
+~F24 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
+~F24 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
+
+~F24 & XButton2::Media_Next
+; ~F24 & F14::Media_Next
+~F24 & F20::Media_Play_Pause
+~F24 & 3::Media_Play_Pause
+~F24 & F21::Media_Play_Pause
+~F24 & `::Media_Play_Pause
+
+~F24 & MButton::
 {
 IfWinExist ahk_exe Spotify.exe
 {
@@ -142,11 +153,89 @@ IfWinExist ahk_exe Spotify.exe
 }
 else
 {
-    run "C:\Users\mkenn\AppData\Roaming\Spotify\Spotify.exe"
+	run "C:\Users\mkenn\AppData\Roaming\Spotify\Spotify.exe"
+	; SetTitleMatchMode 2
+	; Run, "C:\Users\mkenn\AppData\Roaming\Spotify\Spotify.exe", , Min
+	; WinWait Spotify.exe
+	; WinShow
 }
 return
 }
-XButton1::
+
+*Launch_Media::
+{
+IfWinExist ahk_exe Spotify.exe
+{
+	DetectHiddenWindows, On
+	WinGet, winInfo, List, ahk_exe Spotify.exe
+	Loop, %winInfo%
+	{
+		thisID := winInfo%A_Index%
+		ControlFocus , , ahk_id %thisID%
+		ControlSend, , {space}, ahk_id %thisID%
+	}
+}
+else
+{
+	run "C:\Users\mkenn\AppData\Roaming\Spotify\Spotify.exe"
+	; SetTitleMatchMode 2
+	; Run, "C:\Users\mkenn\AppData\Roaming\Spotify\Spotify.exe", , Min
+	; WinWait Spotify.exe
+	; WinShow
+}
+return
+}
+
+*Launch_App2::
+{
+IfWinExist ahk_exe Spotify.exe
+{
+	DetectHiddenWindows, On
+	WinGet, winInfo, List, ahk_exe Spotify.exe
+	Loop, %winInfo%
+	{
+		thisID := winInfo%A_Index%
+		ControlFocus , , ahk_id %thisID%
+		ControlSend, , ^{left}, ahk_id %thisID%
+	}
+}
+return
+}
+
+*Launch_App1::
+{
+IfWinExist ahk_exe Spotify.exe
+{
+	DetectHiddenWindows, On
+	WinGet, winInfo, List, ahk_exe Spotify.exe
+	Loop, %winInfo%
+	{
+		thisID := winInfo%A_Index%
+		ControlFocus , , ahk_id %thisID%
+		ControlSend, , ^{right}, ahk_id %thisID%
+	}
+}
+return
+}
+
+Launch_Mail::
+{
+IfWinExist ahk_exe Spotify.exe
+{
+	DetectHiddenWindows, On
+	WinGet, winInfo, List, ahk_exe Spotify.exe
+	Loop, %winInfo%
+	{
+		thisID := winInfo%A_Index%
+		ControlFocus , , ahk_id %thisID%
+		ControlSend, , ^r, ahk_id %thisID%
+	}
+}
+return
+}
+
+!Delete::
+~F24 & XButton1::
 {
 if mastertoggle = 1
 {
@@ -163,15 +252,15 @@ SetTimer, VirtualMouse, 100
 SetTimer, FocusWindow, 10
 return
 }
-}
-#if
+; }
+; #if
 
 #IfWinExist, ahk_exe Spotify.exe
 {
-#If MB = 1
-{
-Media_Next::
-XButton2::
+; #If MB = 1
+; {
+~F24 & Media_Next::
+~F24 & XButton2::
 {
 ; IfWinNotExist, Spotify Free
 ; ; Skip to the Next song.
@@ -198,7 +287,7 @@ Send, {LAUNCH_MEDIA}
 return
 }
 
-Media_Prev::
+~F24 & Media_Prev::
 {
 IfWinNotExist, Spotify Free
 {
@@ -214,8 +303,8 @@ Send, {LAUNCH_MEDIA}
 return
 }
 }
-}
-#if
+; }
+; #if
 #if
 
 ~LButton::
@@ -266,18 +355,13 @@ AppsKey::
 	return
 }
 
-F1::
-{
-VMouse := 0
-mastertoggle := 0
-return
-}
 AppsKey Up::
 {
 	mastertoggle := 0
 	VMouse := 0
 	return
 }
+
 ; ──────────────────────────────────── This section automatically focuses the firefox window on my second monitor ────────────────────────────────────
 FocusWindow:
 {
@@ -300,17 +384,17 @@ FocusWindow:
 				FFSafe = %FFNow%
 				; WinRestore, ahk_id %FFSafe%
 				; WinMaximize, ahk_id %FFSafe%
-				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
-				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
-				ControlClick, x0 y0, ahk_id %FFSafe%,,, NA
+				ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
+				ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
+				; ControlClick, x0 y0, ahk_id %FFSafe%,,, NA
 				DoFocus := 0
 			}
 			If (FFW = 1920 && FFH = 1080) ; This is for when a video is fullscreen
 			{
 				FFSafe = %FFNow%
-				; ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
-				; ControlSend, ahk_parent, f, ahk_id %FFSafe%
-				ControlClick, NA x0 y0, ahk_id %FFSafe%,,, NA
+				ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
+				ControlSend, ahk_parent, f, ahk_id %FFSafe%
+				; ControlClick, NA x0 y0, ahk_id %FFSafe%,,, NA
 				DoFocus := 0
 			}
 			FCount--
@@ -335,10 +419,10 @@ While VMouse = 1 ;  and !GetKeyState("AppsKey") and !GetKeyState("F24")
 				MX = 3440
 				if MX+2500>5380
 				MX = 5380
-				if MY<360
-				MY = 360
-				if MY>1440
-				MY = 1440
+				if MY<164
+				MY = 164
+				if MY>1254
+				MY = 1254
 				; msgbox, %MX% %MY%
 				; Gui, %hGui%: Show, % "NA x" MX+2500 . " y" MY
 				; GuiControl, Move, MouseGui, x1000 y520
@@ -424,7 +508,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 360
+	y -= 158
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,,, NA
 	return
@@ -435,7 +519,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 360
+	y -= 158
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, R,, NA
 	return
@@ -446,7 +530,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 360
+	y -= 158
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, M,, NA
 	return
@@ -457,7 +541,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 360
+	y -= 158
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X1,, NA
 	return
@@ -468,7 +552,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 360
+	y -= 158
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X2,, NA
 	return
@@ -481,7 +565,7 @@ RAlt::
 	; Gui,+LastFound
 	; WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	; x -= 3440
-	; y -= 360
+	; y -= 158
 	; MsgBox, %x% %y%
 	; ControlFocus,,ahk_id %FFSafe%
 	; ControlClick, x%x% y%y%, ahk_id %FFSafe%,, WheelUp,, NA
@@ -495,7 +579,7 @@ RAlt::
 	; Gui,+LastFound
 	; WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	; x -= 3440
-	; y -= 360
+	; y -= 158
 	; MsgBox, %x% %y%
 	; ControlClick, x%x% y%y%, ahk_id %FFSafe%,, WheelDown,, NA
 	ControlSend, ahk_parent, {Down}, ahk_id %FFSafe%
@@ -507,7 +591,7 @@ RAlt::
 	; Gui,+LastFound
 	; WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	; x -= 3440
-	; y -= 360
+	; y -= 158
 	; ; MsgBox, %x% %y%
 	; ControlClick, x%x% y%y%, ahk_id %FFSafe%,, WL, 1
 	ControlSend, ahk_parent, {Left}, ahk_id %FFSafe%
@@ -519,7 +603,7 @@ RAlt::
 	; Gui,+LastFound
 	; WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	; x -= 3440
-	; y -= 360
+	; y -= 158
 	; ; MsgBox, %x% %y%
 	; ControlClick, x%x% y%y%, ahk_id %FFSafe%,, WR, 1
 	ControlSend, ahk_parent, {Right}, ahk_id %FFSafe%
@@ -610,8 +694,10 @@ End::ControlSend, ahk_parent, {End}, ahk_id %FFSafe%
 Esc::ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
 NumpadDot::
 {
-SoundSet, +1, Master, Mute, 9
-SoundBeep, 250, 250
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
+SoundBeep, 250, 100
+SoundBeep, 400, 100
 return
 }
 Numpad1::SoundSet, 10, Master
@@ -717,16 +803,36 @@ Space::ControlSend, ahk_parent, {Ctrl down}{space}{Ctrl up}, ahk_id %FFSafe%
 Home::ControlSend, ahk_parent, {Ctrl down}{Home}{Ctrl up}, ahk_id %FFSafe%
 End::ControlSend, ahk_parent, {Ctrl down}{End}{Ctrl up}, ahk_id %FFSafe%
 
-Numpad1::SoundSet, 10, Master, Volume, 9
-Numpad2::SoundSet, 20, Master, Volume, 9
-Numpad3::SoundSet, 30, Master, Volume, 9
-Numpad4::SoundSet, 40, Master, Volume, 9
-Numpad5::SoundSet, 50, Master, Volume, 9
-Numpad6::SoundSet, 60, Master, Volume, 9
-Numpad7::SoundSet, 70, Master, Volume, 9
-Numpad8::SoundSet, 80, Master, Volume, 9
-Numpad9::SoundSet, 90, Master, Volume, 9
-Numpad0::SoundSet, 100, Master, Volume, 9
+Numpad1::run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 10
+Numpad2::run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 20
+Numpad3::run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 30
+Numpad4::run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
+Numpad5::run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 50
+Numpad6::run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 60
+Numpad7::run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 70
+Numpad8::run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 80
+Numpad9::run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 90
+Numpad0::run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 100
+
+NumpadDot::
+{
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 0
+SoundBeep, 400, 100
+SoundBeep, 250, 100
+return
+}
+
+; Numpad1::SoundSet, 10, Master, Volume, 9
+; Numpad2::SoundSet, 20, Master, Volume, 9
+; Numpad3::SoundSet, 30, Master, Volume, 9
+; Numpad4::SoundSet, 40, Master, Volume, 9
+; Numpad5::SoundSet, 50, Master, Volume, 9
+; Numpad6::SoundSet, 60, Master, Volume, 9
+; Numpad7::SoundSet, 70, Master, Volume, 9
+; Numpad8::SoundSet, 80, Master, Volume, 9
+; Numpad9::SoundSet, 90, Master, Volume, 9
+; Numpad0::SoundSet, 100, Master, Volume, 9
 }
 #if
 
@@ -1132,14 +1238,16 @@ return
 {
 ;run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput mDP /Exit
 ; run "Nircmd\SoundVolumeView.exe" /Mute "Consoles"
-SoundSet, 1, Master, Mute, 9
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 0
 return
 }
 
 #+F2::
 {
 ; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
-SoundSet, 0, Master, Mute, 9
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI /Exit
 return
 }
@@ -1147,7 +1255,8 @@ return
 #+F3::
 {
 ; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
-SoundSet, 0, Master, Mute, 9
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
 run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI2 /Exit
 return
 }

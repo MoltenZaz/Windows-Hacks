@@ -15,7 +15,21 @@ SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
 ;Win+Shift+W searches on wikipedia.
 ;RAlt+Capslock toggles SaRcASM tExT.
 
-NumpadClear::NumpadDown
+#IfWinActive, ahk_exe GGST-Win64-Shipping.exe
+{
+Delete::w
+Backspace::m
+Esc::Backspace
+}
+#If
+
+#IfWinActive, ahk_exe celeste.exe
+{
+o::z
+e::x
+u::c
+}
+#If
 
 #IfWinExist, ahk_exe Spotify.exe
 {
@@ -54,13 +68,34 @@ return
 }
 #if
 
-#IfWinNotActive,ahk_exe photoshop.exe
+; #IfWinActive,ahk_exe firefox.exe
+; F16::
+; {
+; while GetKeyState("F16", "P")
+; {
+;       Send ^{Tab}
+;       sleep, 200
+; }
+; return
+; }
+
+; F15::
+; {
+; while GetKeyState("F15", "P")
+; {
+;       Send ^+{Tab}
+;       sleep, 200
+; }
+; return
+; }
+; #If
+; #IfWinNotActive,ahk_exe firefox.exe
 F15::
 {
 while GetKeyState("F15", "P")
 {
       MouseClick, WheelLeft, , , 1
-      sleep, 50
+      sleep, 150
 }
 return
 }
@@ -70,97 +105,75 @@ F16::
 while GetKeyState("F16", "P")
 {
       MouseClick, WheelRight, , , 1
-      sleep, 50
+      sleep, 150
 }
 return
 }
-#if
+; #if
 
-#IfWinActive,ahk_exe photoshop.exe
-F16::
-{
-while GetKeyState("F16", "P")
-{
-      MouseClick, WheelLeft, , , 1
-      sleep, 10
-}
-return
-}
+; ~RAlt & ~Capslock::
+; {
+; KeyDown := !KeyDown
+; If KeyDown
+; {
+	; sarcasmtoggle := 1
+	; SoundBeep, 500, 50
+; }
+; Else
+; {
+	; sarcasmtoggle := 0
+	; SoundBeep, 250, 50
+	; SetCapsLockState, off
+; }
+; Return
+; }
 
-F15::
-{
-while GetKeyState("F15", "P")
-{
-      MouseClick, WheelRight, , , 1
-      sleep, 10
-}
-return
-}
-#If
+; #if (sarcasmtoggle = 1)
+; {
+; ~a::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~b::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~c::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~d::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~e::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~f::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~g::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~h::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~i::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~j::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~k::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~l::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~m::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~n::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~o::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~p::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~q::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~r::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~s::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~t::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~u::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~v::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~w::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~x::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~y::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; ~z::SetCapsLockState % !GetKeyState("CapsLock", "T")
+; }
+; #if
 
-~RAlt & ~Capslock::
-{
-KeyDown := !KeyDown
-If KeyDown
-{
-	sarcasmtoggle := 1
-	SoundBeep, 500, 50
-}
-Else
-{
-	sarcasmtoggle := 0
-	SoundBeep, 250, 50
-	SetCapsLockState, off
-}
-Return
-}
-
-#if (sarcasmtoggle = 1)
-{
-~a::SarcasmText()
-~b::SarcasmText()
-~c::SarcasmText()
-~d::SarcasmText()
-~e::SarcasmText()
-~f::SarcasmText()
-~g::SarcasmText()
-~h::SarcasmText()
-~i::SarcasmText()
-~j::SarcasmText()
-~k::SarcasmText()
-~l::SarcasmText()
-~m::SarcasmText()
-~n::SarcasmText()
-~o::SarcasmText()
-~p::SarcasmText()
-~q::SarcasmText()
-~r::SarcasmText()
-~s::SarcasmText()
-~t::SarcasmText()
-~u::SarcasmText()
-~v::SarcasmText()
-~w::SarcasmText()
-~x::SarcasmText()
-~y::SarcasmText()
-~z::SarcasmText()
-}
-#if
-
-SarcasmText()
-{
-Random, rand, 0, 4
-if (rand=0)
-     SetCapsLockState % !GetKeyState("CapsLock", "T")
-if (rand=1)
-     SetCapsLockState % !GetKeyState("CapsLock", "T")
-if (rand=2)
-     SetCapsLockState % !GetKeyState("CapsLock", "T")
-if (rand=3)
-     SetCapsLockState % !GetKeyState("CapsLock", "T")
-if (rand=4)
-     return
-return
-}
+; SarcasmText()
+; {
+; Random, rand, 0, 4
+; if (rand=0)
+     ; SetCapsLockState % !GetKeyState("CapsLock", "T")
+; if (rand=1)
+     ; SetCapsLockState % !GetKeyState("CapsLock", "T")
+; if (rand=2)
+     ; SetCapsLockState % !GetKeyState("CapsLock", "T")
+; if (rand=3)
+     ; SetCapsLockState % !GetKeyState("CapsLock", "T")
+; if (rand=4)
+     ; SetCapsLockState % !GetKeyState("CapsLock", "T")
+; return
+; }
 
 ; Get DEFINITION of selected word.    
 #+d::

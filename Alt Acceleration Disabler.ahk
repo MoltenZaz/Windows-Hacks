@@ -13,14 +13,22 @@ Process, Priority, , H
 SendMode Input
 #SingleInstance force
 
+#F12::
+{
+SetTitleMatchMode, 2
+DetectHiddenWindows, On
+WinShow, Synthesia
+return
+}
+
+!#F12::Run, "F:\Documents\AHK Current\Launch Scripts.ahk"
+
 ;These next two lines are EXTREMELY IMPORTANT. You have to change the "menu mask key" away from being CTRL, to something that won't result in cross-talk. Read this thread to learn the details: https://autohotkey.com/boards/viewtopic.php?f=76&t=57683
 #MenuMaskKey vk07  ; vk07 is unassigned. 
 #UseHook
 
 ; INFO: you can hold down both ALT keys if you want to easily toggle this script on and off.
 
-; This is a slightly modified version of Taran Van Hemert's code: https://www.youtube.com/channel/UCd0ZD4iCXRXf18p3cA7EQfg by Mitchell Thomas
-; This version seems to work better in photoshop when rapidly using alt to select colours with the brush tool
 
 ; THEY ALL SAID IT COULD NOT BE DONE
 ; THEY ALL HAD SHITTY SOLUTIONS THAT DIDN'T WORK
@@ -64,34 +72,44 @@ SendMode Input
 
 ; THE SOLUTION:
 
+; ; ~LAlt::
+; ; sendinput, {LAlt down}
+; ; sendinput, {SC0E9 down} ;this is the scan code of an unassigned key. As long as you nor the system never use it for anything else, it can be used in THIS way to cancel the menu acceleration.
+; ; ;KeyWait, LAlt
+; ; return
+
+; ; ~LAlt up::
+; ; sendinput, {LAlt up}
+; ; sendinput, {SC0E9 up}
+; ; return
+
+
+; ; ~RAlt::
+; ; sendinput, {RAlt down}
+; ; sendinput, {SC0E9 down}
+; ; ;;tooltip, Ralt is pressed
+; ; ;KeyWait, RAlt
+; ; ;;tooltip, Ralt was released
+; ; return
+
+; ; ~RAlt up::
+; ; sendinput, {RAlt up}
+; ; sendinput, {SC0E9 up}
+; ; ;;tooltip, 
+; ; return
+
+
 ~LAlt::
-sendinput, {LAlt down}
-sendinput, {SC0E9 down} ;this is the scan code of an unassigned key. As long as you nor the system never use it for anything else, it can be used in THIS way to cancel the menu acceleration.
-;KeyWait, LAlt
+Sendinput {Blind}{sc0E9}
+KeyWait, LAlt ; so that it doesn't keep spamming SC0E9 (as seen from an AHK window Key history and script info... window.)
 return
-
-~LAlt up::
-sendinput, {LAlt up}
-sendinput, {SC0E9 up}
-return
-
 
 ~RAlt::
-sendinput, {RAlt down}
-sendinput, {SC0E9 down}
-;;tooltip, Ralt is pressed
-;KeyWait, RAlt
-;;tooltip, Ralt was released
+Sendinput {Blind}{sc0E9}
+KeyWait, RAlt ; so that it doesn't keep spamming SC0E9
 return
 
-~RAlt up::
-sendinput, {RAlt up}
-sendinput, {SC0E9 up}
-;;tooltip, 
-return
-
-
-Lalt & Ralt::suspend ;hit both ALT keys simultaneously to toggle the functonality of this script. The tray icon will also change visually, so you will always know.
+;Lalt & Ralt::suspend ;hit both ALT keys simultaneously to toggle the functonality of this script. The tray icon will also change visually, so you will always know.
 
 
 ;;comment in the code below if you wish to reassign alt modifier combinations:
