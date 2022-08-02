@@ -1,0 +1,6 @@
+NKRO_ENABLE = yes
+COMMAND_ENABLE = no
+STENO_ENABLE = yes
+UNICODEMAP_ENABLE = yes
+SWAP_HANDS_ENABLE = yes
+DEBOUNCE_TYPE = asym_eager_defer_pk
