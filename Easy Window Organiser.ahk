@@ -137,7 +137,7 @@ return
 
 Numpad1::
 {
-If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
+If (GetKeyState("XButton2", "p") ctrltoggle = 1)
 {
 ResizeWindow(0, 700, 1146, 700)
 }
@@ -151,7 +151,7 @@ return
 
 Numpad2::
 {
-If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
+If (GetKeyState("XButton2", "p") ctrltoggle = 1)
 {
 ResizeWindow(1146, 700, 1148, 700)
 }
@@ -165,7 +165,7 @@ return
 
 Numpad3::
 {
-If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
+If (GetKeyState("XButton2", "p") ctrltoggle = 1)
 {
 ResizeWindow(2294, 700, 1146, 700)
 }
@@ -179,7 +179,7 @@ return
 
 Numpad4::
 {
-If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
+If (GetKeyState("XButton2", "p") ctrltoggle = 1)
 {
 ResizeWindow(0, 0, 1146, 700)
 }
@@ -193,7 +193,7 @@ return
 
 Numpad5::
 {
-If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
+If (GetKeyState("XButton2", "p") ctrltoggle = 1)
 {
 ResizeWindow(1146, 0, 1148, 700)
 }
@@ -225,7 +225,7 @@ return
 
 Numpad6::
 {
-If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
+If (GetKeyState("XButton2", "p") ctrltoggle = 1)
 {
 ResizeWindow(2294, 0, 1146, 700)
 }
@@ -289,7 +289,7 @@ return
 
 Numpad8::
 {
-If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
+If (GetKeyState("XButton2", "p") ctrltoggle = 1)
 {
 ResizeWindow(0, 700, 1720, 700)
 }
@@ -346,7 +346,7 @@ return
 
 Numpad9::
 {
-If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
+If (GetKeyState("XButton2", "p") ctrltoggle = 1)
 {
 ResizeWindow(1720, 700, 1720, 700)
 keywait, F20
@@ -381,7 +381,7 @@ return
 
 NumpadDiv::
 {
-If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
+If (GetKeyState("XButton2", "p") ctrltoggle = 1)
 {
 ResizeWindow(0, 0, 1720, 700)
 }
@@ -395,7 +395,7 @@ return
 
 NumpadMult::
 {
-If (GetKeyState("XButton2", "p") ctrltoggle = 1 or GetKeyState("F14", "p"))
+If (GetKeyState("XButton2", "p") ctrltoggle = 1)
 {
 ResizeWindow(1720, 0, 1720, 700)
 }

@@ -117,14 +117,14 @@ return
 ~XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(1)
 ~XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-1)
 
-F19::XButton1
-F14::XButton2
+; F19::XButton1
+; F14::XButton2
 
-F14 & WheelUp::Volume_Up
-F14 & WheelDown::Volume_Down
+; F14 & WheelUp::Volume_Up
+; F14 & WheelDown::Volume_Down
 
-F19 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(1)
-F19 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-1)
+; F19 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(1)
+; F19 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-1)
 
 ; #If MB = 1
 ; {
@@ -419,10 +419,10 @@ While VMouse = 1 ;  and !GetKeyState("AppsKey") and !GetKeyState("F24")
 				MX = 3440
 				if MX+2500>5380
 				MX = 5380
-				if MY<164
-				MY = 164
-				if MY>1254
-				MY = 1254
+				if MY<232
+				MY = 232
+				if MY>1322
+				MY = 1322
 				; msgbox, %MX% %MY%
 				; Gui, %hGui%: Show, % "NA x" MX+2500 . " y" MY
 				; GuiControl, Move, MouseGui, x1000 y520
@@ -508,7 +508,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 158
+	y -= 224
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,,, NA
 	return
@@ -519,7 +519,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 158
+	y -= 224
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, R,, NA
 	return
@@ -530,7 +530,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 158
+	y -= 224
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, M,, NA
 	return
@@ -541,7 +541,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 158
+	y -= 224
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X1,, NA
 	return
@@ -552,7 +552,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 158
+	y -= 224
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X2,, NA
 	return
