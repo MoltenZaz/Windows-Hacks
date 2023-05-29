@@ -88,15 +88,29 @@ Return hGui
 !WheelUp::
 {
 WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(1)
+AppVolume(ProcessName).AdjustVolume(4)
 return
 }
 !WheelDown::
 {
 WinGet, ProcessName, ProcessName, A
-AppVolume(ProcessName).AdjustVolume(-1)
+AppVolume(ProcessName).AdjustVolume(-4)
 return
 }
+
+!+WheelUp::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(2)
+return
+}
+!+WheelDown::
+{
+WinGet, ProcessName, ProcessName, A
+AppVolume(ProcessName).AdjustVolume(-2)
+return
+}
+
 
 !Pause::ControlClick, x0 y0, ahk_exe Discord.exe
 
@@ -114,8 +128,8 @@ return
 ~XButton2 & WheelUp::Volume_Up
 ~XButton2 & WheelDown::Volume_Down
 
-~XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(1)
-~XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-1)
+~XButton1 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
+~XButton1 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
 
 ; F19::XButton1
 ; F14::XButton2
@@ -128,8 +142,8 @@ return
 
 ; #If MB = 1
 ; {
-~F24 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(4)
-~F24 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-4)
+~F24 & WheelUp::AppVolume("Spotify.exe").AdjustVolume(2)
+~F24 & WheelDown::AppVolume("Spotify.exe").AdjustVolume(-2)
 
 ~F24 & XButton2::Media_Next
 ; ~F24 & F14::Media_Next
@@ -235,7 +249,7 @@ return
 }
 
 !Delete::
-~F24 & XButton1::
+;~F24 & XButton1::
 {
 if mastertoggle = 1
 {
@@ -320,6 +334,15 @@ return
 }
 #if
 
+^!+Space::
+{
+	GoSub, FocusWindow
+	mastertoggle := 1
+	ControlSend, ahk_parent, {Space}, ahk_id %FFSafe%
+	mastertoggle := 0
+	return
+}
+
 AppsKey::
 {
 	GoSub, FocusWindow
@@ -382,19 +405,19 @@ FocusWindow:
 			If (FFW = 1936 && FFH = 1096) ; You may need to change these values or use the x y coordinates to specify the window you want
 			{
 				FFSafe = %FFNow%
-				; WinRestore, ahk_id %FFSafe%
-				; WinMaximize, ahk_id %FFSafe%
-				ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
-				ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
-				; ControlClick, x0 y0, ahk_id %FFSafe%,,, NA
+				; ; WinRestore, ahk_id %FFSafe%
+				; ; WinMaximize, ahk_id %FFSafe%
+				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
+				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
+				; ; ControlClick, x0 y0, ahk_id %FFSafe%,,, NA
 				DoFocus := 0
 			}
 			If (FFW = 1920 && FFH = 1080) ; This is for when a video is fullscreen
 			{
 				FFSafe = %FFNow%
-				ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
-				ControlSend, ahk_parent, f, ahk_id %FFSafe%
-				; ControlClick, NA x0 y0, ahk_id %FFSafe%,,, NA
+				; ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
+				; ControlSend, ahk_parent, f, ahk_id %FFSafe%
+				; ; ControlClick, NA x0 y0, ahk_id %FFSafe%,,, NA
 				DoFocus := 0
 			}
 			FCount--
@@ -419,10 +442,10 @@ While VMouse = 1 ;  and !GetKeyState("AppsKey") and !GetKeyState("F24")
 				MX = 3440
 				if MX+2500>5380
 				MX = 5380
-				if MY<232
-				MY = 232
-				if MY>1322
-				MY = 1322
+				if MY<162
+				MY = 162
+				if MY>1242
+				MY = 1242
 				; msgbox, %MX% %MY%
 				; Gui, %hGui%: Show, % "NA x" MX+2500 . " y" MY
 				; GuiControl, Move, MouseGui, x1000 y520
@@ -444,10 +467,10 @@ return
 {
 LCtrl::
 {
-	SendInput, {F13 Down}
+	; SendInput, {F13 Down}
 	ctrltoggle := 1
 	keywait Ctrl
-	SendInput, {F13 Up}
+	; SendInput, {F13 Up}
 	ctrltoggle := 0
 	return
 }
@@ -462,19 +485,19 @@ LShift::
 
 LAlt::
 {
-	SendInput, {F13 Down}
+	; SendInput, {F13 Down}
 	alttoggle := 1
 	keywait Alt
-	SendInput, {F13 Up}
+	; SendInput, {F13 Up}
 	alttoggle := 0
 	return
 }
 RCtrl::
 {
-	SendInput, {F13 Down}
+	; SendInput, {F13 Down}
 	ctrltoggle := 1
 	keywait Ctrl
-	SendInput, {F13 Up}
+	; SendInput, {F13 Up}
 	ctrltoggle := 0
 	return
 }
@@ -489,10 +512,10 @@ RShift::
 
 RAlt::
 {
-	SendInput, {F13 Down}
+	; SendInput, {F13 Down}
 	alttoggle := 1
 	keywait Alt
-	SendInput, {F13 Up}
+	; SendInput, {F13 Up}
 	alttoggle := 0
 	return
 }
@@ -508,7 +531,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 224
+	y -= 154
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,,, NA
 	return
@@ -519,7 +542,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 224
+	y -= 154
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, R,, NA
 	return
@@ -530,7 +553,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 224
+	y -= 154
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, M,, NA
 	return
@@ -541,7 +564,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 224
+	y -= 154
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X1,, NA
 	return
@@ -552,7 +575,7 @@ RAlt::
 	Gui,+LastFound
 	WinGetPos,x,y,w,h, ahk_class AutoHotkeyGUI
 	x -= 3440
-	y -= 224
+	y -= 154
 	; MsgBox, %x% %y%
 	ControlClick, x%x% y%y%, ahk_id %FFSafe%,, X2,, NA
 	return
@@ -1234,9 +1257,54 @@ return
 +Volume_Up::AppVolume("Spotify.exe").AdjustVolume(2)
 +Volume_Down::AppVolume("Spotify.exe").AdjustVolume(-2)
 
++^!F1::
+{
+run "F:\Documents\AHK Current\controlmymonitor\ControlMyMonitor.exe" /SetValue "DELL U3415W" 60 15
+; run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput DP /Exit
+; run "Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 0
+return
+}
+
++^!F2::
+{
+; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "F:\Documents\AHK Current\controlmymonitor\ControlMyMonitor.exe" /SetValue "DELL U3415W" 60 17
+; run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI /Exit
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
+return
+}
+
++^!F3::
+{
+; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "F:\Documents\AHK Current\controlmymonitor\ControlMyMonitor.exe" /SetValue "DELL U3415W" 60 18
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
+; run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI2 /Exit
+return
+}
+
++^!F4::
+{
+run F:\Documents\Nircmd\nircmd.exe setdefaultsounddevice "Nest Mini" 1
+Sleep, 500
+SoundSet, 0
+Send {Volume_Up}
+Send {Volume_Down 50}
+Sleep, 1000
+; run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Nest Mini" 1
+run F:\Documents\Nircmd\nircmd.exe setdefaultsounddevice "FiiO DAC-E10" 1
+run F:\Documents\Nircmd\nircmd.exe setdefaultsounddevice "FiiO DAC-E10" 2
+return
+}
+
 #+F1::
 {
-;run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput mDP /Exit
+run "F:\Documents\AHK Current\controlmymonitor\ControlMyMonitor.exe" /SetValue "DELL U3415W" 60 15
+;run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput DP /Exit
 ; run "Nircmd\SoundVolumeView.exe" /Mute "Consoles"
 run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Mute "Consoles"
 run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 0
@@ -1246,18 +1314,20 @@ return
 #+F2::
 {
 ; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "F:\Documents\AHK Current\controlmymonitor\ControlMyMonitor.exe" /SetValue "DELL U3415W" 60 17
 run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
 run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
-run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI /Exit
+; run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI /Exit
 return
 }
 
 #+F3::
 {
 ; run "Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
+run "F:\Documents\AHK Current\controlmymonitor\ControlMyMonitor.exe" /SetValue "DELL U3415W" 60 18
 run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Unmute "Consoles"
 run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /SetVolume "Consoles" 40
-run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI2 /Exit
+; run "C:\Program Files (x86)\Dell\Dell Display Manager\ddm.exe" /1:SetActiveInput HDMI2 /Exit
 return
 }
 

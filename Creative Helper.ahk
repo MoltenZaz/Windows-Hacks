@@ -12,7 +12,7 @@ Menu, Tray, Icon, pifmgr.dll, 18
 ;return
 ;}
 
-^!Space:: Winset, Alwaysontop, , A
+;^!Space:: Winset, Alwaysontop, , A
 
 ^Esc::Send, {Esc}
 

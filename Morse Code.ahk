@@ -44,7 +44,7 @@ F14::
 		else
 			Send, {Space Down}
 		if (Sound == 1)
-			SoundBeep, 680, %UNIT%
+			SoundBeep, 600, %UNIT%
 		else
 			Sleep, UNIT
 		If (FormattingEnabled == 1)
@@ -77,7 +77,7 @@ F23::
 		else
 			Send, {Space Down}
 		if (Sound == 1)
-			SoundBeep, 680, %SUNIT%
+			SoundBeep, 600, %SUNIT%
 		else
 			Sleep, UNIT * 3
 		If (FormattingEnabled == 1)
