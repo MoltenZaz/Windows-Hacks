@@ -37,7 +37,7 @@ isWindowFullScreen( winTitle )
 ; when fullscreen is detected capture app id
 ; when app is closed/alt tabbed change to mtgap
 ; change back when focussed again (maybe using alt tab detection)
-dcheck := 10
+dcheck := 60
 
 #ifWinActive ahk_exe steamwebhelper.exe
 ~LButton::
@@ -45,7 +45,7 @@ dcheck := 10
 ; msgbox steam
 WinWaitNotActive, ahk_exe steamwebhelper.exe
 ; msgbox nosteam
-dcheck := 10
+dcheck := 60
 checkfs:
 isFullScreen := isWindowFullScreen( "A" )
 IfWinNotActive, ahk_class WorkerW
@@ -59,16 +59,24 @@ IfWinNotActive, ahk_class Chrome_WidgetWin_1
 		; change keyboard layer to gaming
 		run "F:\Documents\AHK Current\Enter Gaming.lnk" hide
 		dcheck := 0
-		WinGet, active_id, ID, A
+		WinGet, active_id, ProcessName, A
+		if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+		{
+			run "F:\Documents\AHK Current\Enter Arrows.lnk" hide
+		}
 		SetTimer, LoseFocus, 100
-		WinWaitClose, ahk_id %active_id%
+		WinWaitClose, ahk_exe %active_id%
+		if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+		{
+			run "F:\Documents\AHK Current\Exit Arrows.lnk" hide
+		}
 		SetTimer, LoseFocus, Delete
 		; change keyboard layer to mtgap
 		run "F:\Documents\AHK Current\Exit Gaming.lnk" hide
 		; msgbox, fs
 		return
 	}
-	if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman or IfWinActive, ahk_class Windows.UI.Core.CoreWindow, or IfWinActive, ahk_class MozillaWindowClass, or IfWinActive, ahk_class Chrome_WidgetWin_1
+	if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman or IfWinActive, ahk_class Windows.UI.Core.CoreWindow or IfWinActive, ahk_class MozillaWindowClass or IfWinActive, ahk_class Chrome_WidgetWin_1
 	{
 		if dcheck > 0
 		{
@@ -86,12 +94,20 @@ return
 LoseFocus:
 {
 SetTimer, LoseFocus, Off
-WinWaitNotActive, ahk_id %active_id%
+WinWaitNotActive, ahk_exe %active_id%
 run "F:\Documents\AHK Current\Exit Gaming.lnk" hide
-IfWinExist, ahk_id %active_id%
-WinWaitActive, ahk_id %active_id%
+if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+{
+	run "F:\Documents\AHK Current\Exit Arrows.lnk" hide
+}
+IfWinExist, ahk_exe %active_id%
+WinWaitActive, ahk_exe %active_id%
 run "F:\Documents\AHK Current\Enter Gaming.lnk" hide
-IfWinExist, ahk_id %active_id%
+if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+{
+	run "F:\Documents\AHK Current\Enter Arrows.lnk" hide
+}
+IfWinExist, ahk_exe %active_id%
 SetTimer, LoseFocus, 100
 return
 }
@@ -100,25 +116,33 @@ return
 {
 ~LButton::
 {
-	active_work = acad.exe
+	WinGet, active_work, ProcessName, A
 	run "F:\Documents\AHK Current\Enter Work.lnk" hide
 	SetTimer, LoseFocusWork, 100
 	WinWaitClose, ahk_exe %active_work%
-	SetTimer, LoseFocusWork, Delete
+	if (active_w2 != "acad.exe" and active_w2 != "houdini.exe")
+	{
+		run "F:\Documents\AHK Current\Exit Work.lnk" hide
+		SetTimer, LoseFocusWork, Delete
+	}
 }
 return
 }
 #if
 
-#IfWinActive ahk_exe happrentice.exe
+#IfWinActive ahk_exe houdini.exe
 {
 ~LButton::
 {
-	active_work = happrentice.exe
+	WinGet, active_work, ProcessName, A
 	run "F:\Documents\AHK Current\Enter Work.lnk" hide
 	SetTimer, LoseFocusWork, 100
 	WinWaitClose, ahk_exe %active_work%
-	SetTimer, LoseFocusWork, Delete
+	if (active_w2 != "acad.exe" and active_w2 != "houdini.exe")
+	{
+		run "F:\Documents\AHK Current\Exit Work.lnk" hide
+		SetTimer, LoseFocusWork, Delete
+	}
 }
 return
 }

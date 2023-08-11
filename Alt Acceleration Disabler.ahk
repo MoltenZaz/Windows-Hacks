@@ -13,6 +13,15 @@ Process, Priority, , H
 SendMode Input
 #SingleInstance force
 
+Run Keyboard Helper.ahk
+Run Firefox Keyboard and Mouse.ahk
+Run Internet Assistant.ahk
+Run Time Fix.ahk
+run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+; Sleep, 5000
+; Send, {Alt}
+return
+
 #F12::
 {
 SetTitleMatchMode, 2
@@ -21,7 +30,9 @@ WinShow, Synthesia
 return
 }
 
-!#F12::Run, "F:\Documents\AHK Current\Launch Scripts.ahk"
+; !#F12::Run, "F:\Documents\AHK Current\Launch Scripts.exe"
+
++#F12::Reload
 
 ;These next two lines are EXTREMELY IMPORTANT. You have to change the "menu mask key" away from being CTRL, to something that won't result in cross-talk. Read this thread to learn the details: https://autohotkey.com/boards/viewtopic.php?f=76&t=57683
 #MenuMaskKey vk07  ; vk07 is unassigned. 

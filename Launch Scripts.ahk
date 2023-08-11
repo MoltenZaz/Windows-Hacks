@@ -5,16 +5,16 @@ SetTitleMatchMode, 2
 
 Sleep, 5000
 Run Alt Acceleration Disabler.ahk
-; Run Audio Fix.ahk
-; Run Creative Helper.ahk
-Run Firefox Keyboard and Mouse.ahk
-Run Internet Assistant.ahk
-; Run MIDI Control.lnk
-Run Time Fix.ahk
-; Run Numpad Light.ahk
-run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Mute "Consoles"
-Sleep, 5000
-Send, {Alt}
+; ; Run Audio Fix.ahk
+; ; Run Creative Helper.ahk
+; Run Firefox Keyboard and Mouse.ahk
+; Run Internet Assistant.ahk
+; ; Run MIDI Control.lnk
+; Run Time Fix.ahk
+; ; Run Numpad Light.ahk
+; run "F:\Documents\AHK Current\Nircmd\SoundVolumeView.exe" /Mute "Consoles"
+; Sleep, 5000
+; Send, {Alt}
 ; Run "C:\ProgramData\Microsoft\Windows\Start Menu\Programs\Synthesia.lnk"
 ; DetectHiddenWindows, On
 ; WinWait, Synthesia
