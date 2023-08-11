@@ -57,7 +57,7 @@ Firefox/Chrome Keyboard:
 
 ————————> VA.ahk IS REQUIRED FOR THIS SCRIPT TO RUN. <————————
 
-My magnum opus and the script I use the most. FF Keyboard enables you to use FireFox (or can be modified to Chrome) in the background!
+The script I use the most. FF Keyboard enables you to use FireFox (or can be modified to Chrome) in the background!
 Holding down the menu/appskey (key to the right of the right windows key (https://en.wikipedia.org/wiki/Menu_key) press appskey + capslock to toggle) you can press any key and have it
 sent to FireFox or Chrome! This enables you to browse the interenet, change YouTube videos and much more without tabbing out of fullsceen applications such as games!
 (Rarely a game will require you to reload the script after opening it to work, GTA V is the only example i've come across)
