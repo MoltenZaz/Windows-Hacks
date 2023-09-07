@@ -112,12 +112,14 @@ return
 
 ~LAlt::
 Sendinput {Blind}{sc0E9}
-KeyWait, LAlt ; so that it doesn't keep spamming SC0E9 (as seen from an AHK window Key history and script info... window.)
+KeyWait, LAlt ; this wasit for the key to be RELEASED. So that it doesn't keep spamming SC0E9 (as seen from an AHK window Key history and script info... window.)
+Sendinput {Blind}{sc0EA}
 return
 
 ~RAlt::
 Sendinput {Blind}{sc0E9}
 KeyWait, RAlt ; so that it doesn't keep spamming SC0E9
+Sendinput {Blind}{sc0EA}
 return
 
 ;Lalt & Ralt::suspend ;hit both ALT keys simultaneously to toggle the functonality of this script. The tray icon will also change visually, so you will always know.
