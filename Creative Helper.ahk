@@ -86,6 +86,7 @@ $^!+RWin::return
 
 ~NumLock::
 {
+SetNumLockState,On
 KeyWait, NumLock
 KeyWait, NumLock, D T0.2
 If ErrorLevel
