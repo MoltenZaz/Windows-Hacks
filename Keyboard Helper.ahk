@@ -112,51 +112,51 @@ SetTimer, LoseFocus, 100
 return
 }
 
-#IfWinActive ahk_exe acad.exe
-{
-~LButton::
-{
-	WinGet, active_work, ProcessName, A
-	run "F:\Documents\AHK Current\Enter Work.lnk" hide
-	SetTimer, LoseFocusWork, 100
-	WinWaitClose, ahk_exe %active_work%
-	if (active_w2 != "acad.exe" and active_w2 != "houdini.exe")
-	{
-		run "F:\Documents\AHK Current\Exit Work.lnk" hide
-		SetTimer, LoseFocusWork, Delete
-	}
-}
-return
-}
-#if
+; #IfWinActive ahk_exe acad.exe
+; {
+; ~LButton::
+; {
+	; WinGet, active_work, ProcessName, A
+	; run "F:\Documents\AHK Current\Enter Work.lnk" hide
+	; SetTimer, LoseFocusWork, 100
+	; WinWaitClose, ahk_exe %active_work%
+	; if (active_w2 != "acad.exe" and active_w2 != "houdini.exe")
+	; {
+		; run "F:\Documents\AHK Current\Exit Work.lnk" hide
+		; SetTimer, LoseFocusWork, Delete
+	; }
+; }
+; return
+; }
+; #if
 
-#IfWinActive ahk_exe houdini.exe
-{
-~LButton::
-{
-	WinGet, active_work, ProcessName, A
-	run "F:\Documents\AHK Current\Enter Work.lnk" hide
-	SetTimer, LoseFocusWork, 100
-	WinWaitClose, ahk_exe %active_work%
-	if (active_w2 != "acad.exe" and active_w2 != "houdini.exe")
-	{
-		run "F:\Documents\AHK Current\Exit Work.lnk" hide
-		SetTimer, LoseFocusWork, Delete
-	}
-}
-return
-}
-#if
+; #IfWinActive ahk_exe houdini.exe
+; {
+; ~LButton::
+; {
+	; WinGet, active_work, ProcessName, A
+	; run "F:\Documents\AHK Current\Enter Work.lnk" hide
+	; SetTimer, LoseFocusWork, 100
+	; WinWaitClose, ahk_exe %active_work%
+	; if (active_w2 != "acad.exe" and active_w2 != "houdini.exe")
+	; {
+		; run "F:\Documents\AHK Current\Exit Work.lnk" hide
+		; SetTimer, LoseFocusWork, Delete
+	; }
+; }
+; return
+; }
+; #if
 
-LoseFocusWork:
-{
-SetTimer, LoseFocusWork, Off
-WinWaitNotActive, ahk_exe %active_work%
-run "F:\Documents\AHK Current\Exit Work.lnk" hide
-IfWinExist, ahk_exe %active_work%
-WinWaitActive, ahk_exe %active_work%
-run "F:\Documents\AHK Current\Enter Work.lnk" hide
-IfWinExist, ahk_exe %active_work%
-SetTimer, LoseFocusWork, 100
-return
-}
+; LoseFocusWork:
+; {
+; SetTimer, LoseFocusWork, Off
+; WinWaitNotActive, ahk_exe %active_work%
+; run "F:\Documents\AHK Current\Exit Work.lnk" hide
+; IfWinExist, ahk_exe %active_work%
+; WinWaitActive, ahk_exe %active_work%
+; run "F:\Documents\AHK Current\Enter Work.lnk" hide
+; IfWinExist, ahk_exe %active_work%
+; SetTimer, LoseFocusWork, 100
+; return
+; }
