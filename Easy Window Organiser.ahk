@@ -1,4 +1,4 @@
-﻿#NoEnv
+#NoEnv
 Coordmode, Mouse, Screen
 Menu, Tray, Icon, shell32.dll, 300
 #Include VA.ahk
@@ -472,6 +472,251 @@ return
 }
 return
 }
+
+; kyria work around
+
+p::
+{
+MouseGetPos, , , id, control 
+WinGetClass, dclass, ahk_id %id% 
+if dclass != WorkerW
+if dclass != Progman
+if dclass != Windows.UI.Core.CoreWindow
+{
+isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
+IfWinNotActive, ahk_class Windows.UI.Core.CoreWindow
+{
+if isFullScreen = 1
+{
+return
+}
+}
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman or IfWinActive, ahk_class Windows.UI.Core.CoreWindow
+{
+MouseGetPos,,,hParentGUI
+WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+gui Submit,NoHide
+Offset_X :=Offset_Y:=0
+
+    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
+If Offset_X < 0
+{
+Offset_X += -1
+HPosO=-3
+HPosO+=Offset_X
+WPosO=-8
+WPosO+=Offset_X
+}
+XPos=0
+YPos=0
+WPos=1280
+WPos-=WPosO
+HPos=716
+HPos-=HPosO
+XPos+=Offset_X
+YPos+=Offset_Y
+MouseGetPos,,,hParentGUI
+WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+WinRestore,ahk_id %hParentGUI%
+WinMove,ahk_id %hParentGUI%,,,, WPos, HPos
+return
+}
+}
+return
+}
+
+o::
+{
+MouseGetPos, , , id, control 
+WinGetClass, dclass, ahk_id %id% 
+if dclass != WorkerW
+if dclass != Progman
+if dclass != Windows.UI.Core.CoreWindow
+{
+isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
+IfWinNotActive, ahk_class Windows.UI.Core.CoreWindow
+{
+if isFullScreen = 1
+{
+return
+}
+}
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman or IfWinActive, ahk_class Windows.UI.Core.CoreWindow
+{
+MouseGetPos,,,hParentGUI
+WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+gui Submit,NoHide
+Offset_X :=Offset_Y:=0
+
+    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
+If Offset_X < 0
+{
+Offset_X += -1
+HPosO=-3
+HPosO+=Offset_X
+WPosO=-8
+WPosO+=Offset_X
+}
+XPos=0
+YPos=0
+WPos=1920
+WPos-=WPosO
+HPos=1076
+HPos-=HPosO
+XPos+=Offset_X
+YPos+=Offset_Y
+MouseGetPos,,,hParentGUI
+WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+WinRestore,ahk_id %hParentGUI%
+WinMove,ahk_id %hParentGUI%,,,, WPos, HPos
+return
+}
+}
+return
+}
+
+u::
+{
+isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
+IfWinNotActive, ahk_class Windows.UI.Core.CoreWindow
+{
+if isFullScreen = 1
+{
+return
+}
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman or IfWinActive, ahk_class Windows.UI.Core.CoreWindow
+{
+MouseGetPos,,,hParentGUI
+WinGetPos,KDE_WinX1,KDE_WinY1,Width,Height,ahk_id %hParentGUI%
+gui Submit,NoHide
+MouseGetPos,,,hParentGUI
+WinRestore,ahk_id %hParentGUI%
+WinMove,ahk_id %hParentGUI%,, (A_ScreenWidth/2)-(Width/2), ((A_ScreenHeight-40)/2)-(Height/2)
+return
+}
+return
+}
+return
+}
+
+z::
+{
+If (GetKeyState("XButton2", "p"))
+{
+; ResizeWindow(0, 0, 800, 1400)
+ResizeWindow(0, 700, 1146, 700)
+}
+else
+{
+ResizeWindow(0, 0, 1146, 1400)
+return
+}
+return
+}
+
+$'::
+{
+If (GetKeyState("XButton2", "p"))
+{
+; ResizeWindow(800, 0, 1840, 1400)
+ResizeWindow(1146, 700, 1148, 700)
+}
+else
+{
+ResizeWindow(1146, 0, 1148, 1400)
+return
+}
+return
+}
+
+$,::
+{
+If (GetKeyState("XButton2", "p"))
+{
+; ResizeWindow(2640, 0, 800, 1400)
+ResizeWindow(2294, 700, 1146, 700)
+}
+else
+{
+ResizeWindow(2294, 0, 1146, 1400)
+return
+}
+return
+}
+
+i::
+{
+ResizeWindow(0, 0, 1720, 1400)
+return
+}
+
+n::
+{
+If (GetKeyState("XButton2", "p"))
+{
+ResizeWindow(0, 0, 1146, 700)
+}
+else
+{
+ResizeWindow(0, 0, 880, 1400)
+return
+}
+return
+}
+
+e::
+{
+If (GetKeyState("XButton2", "p"))
+{
+ResizeWindow(1146, 0, 1148, 700)
+}
+else
+{
+ResizeWindow(880, 0, 1680, 1400)
+return
+}
+return
+}
+
+a::
+{
+If (GetKeyState("XButton2", "p"))
+{
+ResizeWindow(2294, 0, 1146, 700)
+}
+else
+{
+ResizeWindow(2560, 0, 880, 1400)
+return
+}
+return
+}
+
+$.::
+{
+ResizeWindow(1720, 0, 1720, 1400)
+return
+}
+
+q::
+{
+ResizeWindow(0, 0, 2560, 1400)
+return
+}
+
+$;::
+{
+ResizeWindow(880, 0, 2560, 1400)
+return
+}
+
+; end of kyria
 
 F1::
 {
