@@ -1,4 +1,4 @@
-﻿#NoEnv
+#NoEnv
 #SingleInstance force
 Menu, Tray, Icon, pifmgr.dll, 13
 #MaxHotkeysPerInterval 1000
@@ -39,6 +39,13 @@ isWindowFullScreen( winTitle )
 ; change back when focussed again (maybe using alt tab detection)
 dcheck := 60
 
+; a::
+; {
+; WinGet, active_id, ProcessName, A
+; msgbox, %active_id%
+; return
+; }
+
 #ifWinActive ahk_exe steamwebhelper.exe
 ~LButton::
 {
@@ -57,23 +64,37 @@ IfWinNotActive, ahk_class Chrome_WidgetWin_1
 	if isFullScreen = 1 ; try multiple times with delay inbetween before deciding to change to mtgap
 	{
 		; change keyboard layer to gaming
-		run "F:\Documents\AHK Current\Enter Gaming.lnk" hide
 		dcheck := 0
 		WinGet, active_id, ProcessName, A
-		if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+		; blacklist
+		if (active_id = "Shenzhen.exe" or active_id = "retroarch.exe" or active_id = "attract.exe")
 		{
-			run "F:\Documents\AHK Current\Enter Arrows.lnk" hide
+			; msgbox, isthn
+			return
 		}
-		SetTimer, LoseFocus, 100
-		WinWaitClose, ahk_exe %active_id%
-		if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+		else
 		{
-			run "F:\Documents\AHK Current\Exit Arrows.lnk" hide
+			run "F:\Documents\AHK Current\Enter Gaming.lnk" hide
+			run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
+			; also arrow keys list
+			if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+			{
+				run "F:\Documents\AHK Current\Enter Arrows.lnk" hide
+				run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
+			}
+			SetTimer, LoseFocus, 100
+			WinWaitClose, ahk_exe %active_id%
+			SetTimer, LoseFocus, Delete
+			; also arrow keys list
+			if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+			{
+				run "F:\Documents\AHK Current\Exit Arrows.lnk" hide
+				run "F:\Documents\AHK Current\Exit Arrows ID75.lnk" hide
+			}
+			; change keyboard layer to mtgap
+			run "F:\Documents\AHK Current\Exit Gaming.lnk" hide
+			run "F:\Documents\AHK Current\Exit Gaming ID75.lnk" hide
 		}
-		SetTimer, LoseFocus, Delete
-		; change keyboard layer to mtgap
-		run "F:\Documents\AHK Current\Exit Gaming.lnk" hide
-		; msgbox, fs
 		return
 	}
 	if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman or IfWinActive, ahk_class Windows.UI.Core.CoreWindow or IfWinActive, ahk_class MozillaWindowClass or IfWinActive, ahk_class Chrome_WidgetWin_1
@@ -95,20 +116,35 @@ LoseFocus:
 {
 SetTimer, LoseFocus, Off
 WinWaitNotActive, ahk_exe %active_id%
+IfWinNotExist, ahk_exe %active_id%
+	Return
 run "F:\Documents\AHK Current\Exit Gaming.lnk" hide
+run "F:\Documents\AHK Current\Exit Gaming ID75.lnk" hide
+; also arrow keys list
 if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
 {
 	run "F:\Documents\AHK Current\Exit Arrows.lnk" hide
+	run "F:\Documents\AHK Current\Exit Arrows ID75.lnk" hide
 }
 IfWinExist, ahk_exe %active_id%
 WinWaitActive, ahk_exe %active_id%
-run "F:\Documents\AHK Current\Enter Gaming.lnk" hide
-if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+IfWinNotExist, ahk_exe %active_id%
 {
-	run "F:\Documents\AHK Current\Enter Arrows.lnk" hide
+	SetTimer, LoseFocus, Delete
+	Return
 }
 IfWinExist, ahk_exe %active_id%
-SetTimer, LoseFocus, 100
+{
+	run "F:\Documents\AHK Current\Enter Gaming.lnk" hide
+	run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
+	; also arrow keys list
+	if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+	{
+		run "F:\Documents\AHK Current\Enter Arrows.lnk" hide
+		run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
+	}
+	SetTimer, LoseFocus, 500
+}
 return
 }
 
