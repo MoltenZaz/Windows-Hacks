@@ -1,4 +1,4 @@
-#NoEnv
+﻿#NoEnv
 #SingleInstance force
 Menu, Tray, Icon, pifmgr.dll, 13
 #MaxHotkeysPerInterval 1000
@@ -45,7 +45,34 @@ dcheck := 60
 ; msgbox, %active_id%
 ; return
 ; }
+GroupAdd, NPMOD, ahk_exe acad.exe
+GroupAdd, NPMOD, ahk_exe Revit.exe
+GroupAdd, NPMOD, ahk_exe cadwin.exe
+#IfWinActive ahk_group NPMOD
+~LButton::
+{
+; msgbox, i
+; WinGet, NPMOD, ProcessName, A
+run "F:\Documents\AHK Current\Enter NPMOD.lnk" hide
+GoSub, LoseFocusNPMOD
+WinWaitClose, ahk_group NPMOD
+return
+}
+#if
 
+LoseFocusNPMOD:
+{
+IfWinExist, ahk_group NPMOD
+{
+	WinWaitNotActive, ahk_group NPMOD
+	run "F:\Documents\AHK Current\Exit NPMOD.lnk" hide
+	WinWaitActive, ahk_group NPMOD
+	run "F:\Documents\AHK Current\Enter NPMOD.lnk" hide
+	GoSub, LoseFocusNPMOD
+}
+return
+}
+F1::MsgBox, %NPMOD%
 #ifWinActive ahk_exe steamwebhelper.exe
 ~LButton::
 {
@@ -67,7 +94,7 @@ IfWinNotActive, ahk_class Chrome_WidgetWin_1
 		dcheck := 0
 		WinGet, active_id, ProcessName, A
 		; blacklist
-		if (active_id = "Shenzhen.exe" or active_id = "retroarch.exe" or active_id = "attract.exe")
+		if (active_id = "Shenzhen.exe" or active_id = "retroarch.exe" or active_id = "attract.exe" or active_id = "picross.exe")
 		{
 			; msgbox, isthn
 			return
