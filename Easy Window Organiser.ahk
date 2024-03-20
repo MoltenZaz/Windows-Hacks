@@ -640,11 +640,11 @@ $,::
 If (GetKeyState("XButton2", "p"))
 {
 ; ResizeWindow(2640, 0, 800, 1400)
-ResizeWindow(2294, 700, 1146, 700)
+ResizeWindow(2294, 700, 1145, 700)
 }
 else
 {
-ResizeWindow(2294, 0, 1146, 1400)
+ResizeWindow(2294, 0, 1145, 1400)
 return
 }
 return
@@ -688,11 +688,11 @@ a::
 {
 If (GetKeyState("XButton2", "p"))
 {
-ResizeWindow(2294, 0, 1146, 700)
+ResizeWindow(2294, 0, 1145, 700)
 }
 else
 {
-ResizeWindow(2560, 0, 880, 1400)
+ResizeWindow(2560, 0, 879, 1400)
 return
 }
 return
@@ -700,7 +700,7 @@ return
 
 $.::
 {
-ResizeWindow(1720, 0, 1720, 1400)
+ResizeWindow(1720, 0, 1719, 1400)
 return
 }
 
@@ -712,7 +712,7 @@ return
 
 $;::
 {
-ResizeWindow(880, 0, 2560, 1400)
+ResizeWindow(880, 0, 2559, 1400)
 return
 }
 
@@ -1148,6 +1148,49 @@ return
 }
 }
 
+F15::Media_Play_Pause
+F16::
+{
+	DoFocus = 1
+	FFArray := []
+	FCount := 0
+	If(DoFocus = 1)
+	{
+		DetectHiddenWindows Off
+		WinGet, FFList, List, ahk_exe firefox.exe
+		WinGet, FCount, Count, ahk_exe firefox.exe
+		Loop %FCount%
+		{
+			If FCount >= 0
+			FFNow := FFList%FCount%
+			WinGetPos,X,Y,FFW,FFH, ahk_id %FFNow%
+			; MsgBox %FFW% %FFH% %FFNow%
+			If (FFW = 1936 && FFH = 1096) ; You may need to change these values or use the x y coordinates to specify the window you want
+			{
+				FFSafe = %FFNow%
+				; ; WinRestore, ahk_id %FFSafe%
+				; ; WinMaximize, ahk_id %FFSafe%
+				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
+				; ControlSend, ahk_parent, {F11}, ahk_id %FFSafe%
+				; ; ControlClick, x0 y0, ahk_id %FFSafe%,,, NA
+				DoFocus := 0
+			}
+			If (FFW = 1920 && FFH = 1080) ; This is for when a video is fullscreen
+			{
+				FFSafe = %FFNow%
+				; ControlSend, ahk_parent, {Esc}, ahk_id %FFSafe%
+				; ControlSend, ahk_parent, f, ahk_id %FFSafe%
+				; ; ControlClick, NA x0 y0, ahk_id %FFSafe%,,, NA
+				DoFocus := 0
+			}
+			FCount--
+		}
+	}
+	ControlSend, ahk_parent, {Space}, ahk_id %FFSafe%
+	; msgbox %FFSafe%
+return
+}
+
 ; "Win + MButton" may be simpler, but I
 ; like an extra measure of security for
 ; an operation like this.
@@ -1207,6 +1250,10 @@ return
 
 ResizeWindow(XPos, YPos, WPos, HPos)
 {
+XPos2 := XPos
+YPos2 := YPos
+WPos2 := WPos
+HPos2 := HPos
 MouseGetPos, , , id, control 
 WinGetClass, dclass, ahk_id %id% 
 if dclass != WorkerW
@@ -1252,6 +1299,59 @@ MouseGetPos,,,hParentGUI
 WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
 WinRestore,ahk_id %hParentGUI%
 WinMove,ahk_id %hParentGUI%,,XPos, YPos, WPos, HPos
+}
+}
+Offset_X := 0
+Offset_Y := 0
+Offset_X2 := 0
+Offset_Y2 := 0
+WPosO := 0
+HPosO := 0
+; MouseGetPos, , , id, control 
+; WinGetClass, dclass, ahk_id %id% 
+if dclass != WorkerW
+if dclass != Progman
+if dclass != Windows.UI.Core.CoreWindow
+{
+isFullScreen := isWindowFullScreen( "A" )
+IfWinNotActive, ahk_class WorkerW
+IfWinNotActive, ahk_class Progman
+IfWinNotActive, ahk_class Windows.UI.Core.CoreWindow
+{
+if isFullScreen = 1
+{
+return
+}
+}
+if isFullScreen != 1 or IfWinActive, ahk_class WorkerW or IfWinActive, ahk_class Progman or IfWinActive, ahk_class Windows.UI.Core.CoreWindow
+{
+; MouseGetPos,,,hParentGUI
+; WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+gui Submit,NoHide
+Offset_X :=Offset_Y:=0
+
+    WinGetPosEx(hParentGUI,X,Y,Width,Height,Offset_X,Offset_Y)
+	; MsgBox, %Offset_X% %Offset_Y%
+If Offset_X < 0
+{
+Offset_X2 := Offset_X * 2 - 1
+Offset_Y2 := Offset_Y * 2 - 4
+; MsgBox %Offset_X% %Offset_X2% %Offset_Y% %Offset_Y2%
+; HPosO=-3
+HPosO+=Offset_Y2
+; WPosO=-8
+WPosO+=Offset_X2
+}
+WPos2-=WPosO
+HPos2-=HPosO
+; XPos+=Offset_X
+; YPos+=Offset_Y
+XPos2 += Offset_X
+YPos2 += Offset_Y
+; MouseGetPos,,,hParentGUI
+; WinGetPos,KDE_WinX1,KDE_WinY1,,,ahk_id %hParentGUI%
+WinRestore,ahk_id %hParentGUI%
+WinMove,ahk_id %hParentGUI%,,XPos2, YPos2, WPos2, HPos2
 }
 }
 }
