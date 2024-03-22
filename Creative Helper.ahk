@@ -1,4 +1,6 @@
-Menu, Tray, Icon, pifmgr.dll, 18
+
+; Menu, Tray, Icon, blank.ico
+Menu, Tray, NoIcon
 #InputLevel 0
 #SingleInstance force
 
@@ -14,7 +16,57 @@ Menu, Tray, Icon, pifmgr.dll, 18
 
 ;^!Space:: Winset, Alwaysontop, , A
 
-^Esc::Send, {Esc}
+; ^Esc::Send, {Esc}
+
+GroupAdd, NPMOD, ahk_exe acad.exe
+GroupAdd, NPMOD, ahk_exe Revit.exe
+GroupAdd, NPMOD, ahk_exe cadwin.exe
+Sleep, 1000
+Menu, Tray, Icon
+Menu, Tray, Icon, pifmgr.dll, 18
+#IfWinActive ahk_group NPMOD
+~LButton::
+{
+; msgbox, i
+; WinGet, NPMOD, ProcessName, A
+run "F:\Documents\AHK Current\Enter NPMOD.lnk" hide
+; GoSub, LoseFocusNPMOD
+SetTimer, LoseFocusNPMOD, 100
+; Sleep, 5000
+run Check if Closed.ahk
+; WinWaitClose, ahk_group NPMOD
+return
+}
+#if
+
+LoseFocusNPMOD:
+{
+SetTimer, LoseFocusNPMOD, Off
+Loop
+{
+	IfWinExist, ahk_group NPMOD
+	{
+		WinWaitNotActive, ahk_group NPMOD
+		run "F:\Documents\AHK Current\Exit NPMOD.lnk" hide
+		IfWinNotExist, ahk_group NPMOD
+			break
+		WinWaitActive, ahk_group NPMOD
+		run "F:\Documents\AHK Current\Enter NPMOD.lnk" hide
+	}
+	else
+		break
+}
+return
+}
+
+; F1::
+; {
+; IfWinNotExist, ahk_group NPMOD
+; MsgBox, not exist
+; IfWinExist, ahk_group NPMOD
+; MsgBox, exist
+; return
+; }
 
 #1::^#1
 #2::^#2

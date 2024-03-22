@@ -1,6 +1,6 @@
 ﻿#NoEnv
 #SingleInstance force
-Menu, Tray, Icon, pifmgr.dll, 13
+Menu, Tray, NoIcon
 #MaxHotkeysPerInterval 1000
 SendMode Input  ; Recommended for new scripts due to its superior speed and reliability.
 SetWorkingDir %A_ScriptDir%  ; Ensures a consistent starting directory.
@@ -45,34 +45,19 @@ dcheck := 60
 ; msgbox, %active_id%
 ; return
 ; }
-GroupAdd, NPMOD, ahk_exe acad.exe
-GroupAdd, NPMOD, ahk_exe Revit.exe
-GroupAdd, NPMOD, ahk_exe cadwin.exe
-#IfWinActive ahk_group NPMOD
-~LButton::
-{
-; msgbox, i
-; WinGet, NPMOD, ProcessName, A
-run "F:\Documents\AHK Current\Enter NPMOD.lnk" hide
-GoSub, LoseFocusNPMOD
-WinWaitClose, ahk_group NPMOD
-return
-}
-#if
+arrow := 0
 
-LoseFocusNPMOD:
-{
-IfWinExist, ahk_group NPMOD
-{
-	WinWaitNotActive, ahk_group NPMOD
-	run "F:\Documents\AHK Current\Exit NPMOD.lnk" hide
-	WinWaitActive, ahk_group NPMOD
-	run "F:\Documents\AHK Current\Enter NPMOD.lnk" hide
-	GoSub, LoseFocusNPMOD
-}
-return
-}
-F1::MsgBox, %NPMOD%
+GroupAdd, Blacklist, ahk_exe Shenzhen.exe
+GroupAdd, Blacklist, ahk_exe retroarch.exe
+GroupAdd, Blacklist, ahk_exe attract.exe
+GroupAdd, Blacklist, ahk_exe picross.exe
+
+GroupAdd, Arrows, ahk_exe TetrisEffect-Win64-Shipping.exe
+GroupAdd, Arrows, ahk_exe celeste.exe
+
+Sleep, 1000
+Menu, Tray, Icon
+Menu, Tray, Icon, pifmgr.dll, 13
 #ifWinActive ahk_exe steamwebhelper.exe
 ~LButton::
 {
@@ -94,33 +79,25 @@ IfWinNotActive, ahk_class Chrome_WidgetWin_1
 		dcheck := 0
 		WinGet, active_id, ProcessName, A
 		; blacklist
-		if (active_id = "Shenzhen.exe" or active_id = "retroarch.exe" or active_id = "attract.exe" or active_id = "picross.exe")
-		{
-			; msgbox, isthn
+		IfWinActive ahk_group Blacklist
 			return
-		}
 		else
 		{
 			run "F:\Documents\AHK Current\Enter Gaming.lnk" hide
-			run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
+			; run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
 			; also arrow keys list
-			if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+			IfWinActive ahk_group Arrows
 			{
 				run "F:\Documents\AHK Current\Enter Arrows.lnk" hide
-				run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
+				arrow := 1
+				; run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
 			}
+			; GoSub, LoseFocus
 			SetTimer, LoseFocus, 100
 			WinWaitClose, ahk_exe %active_id%
-			SetTimer, LoseFocus, Delete
-			; also arrow keys list
-			if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
-			{
-				run "F:\Documents\AHK Current\Exit Arrows.lnk" hide
-				run "F:\Documents\AHK Current\Exit Arrows ID75.lnk" hide
-			}
-			; change keyboard layer to mtgap
-			run "F:\Documents\AHK Current\Exit Gaming.lnk" hide
-			run "F:\Documents\AHK Current\Exit Gaming ID75.lnk" hide
+			if (arrow = 1)
+				arrow = 0
+			return
 		}
 		return
 	}
@@ -139,87 +116,70 @@ return
 }
 #if
 
-LoseFocus:
+LoseFocus: ;update and change to loop
 {
 SetTimer, LoseFocus, Off
-WinWaitNotActive, ahk_exe %active_id%
-IfWinNotExist, ahk_exe %active_id%
-	Return
-run "F:\Documents\AHK Current\Exit Gaming.lnk" hide
-run "F:\Documents\AHK Current\Exit Gaming ID75.lnk" hide
-; also arrow keys list
-if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+Loop
 {
-	run "F:\Documents\AHK Current\Exit Arrows.lnk" hide
-	run "F:\Documents\AHK Current\Exit Arrows ID75.lnk" hide
-}
-IfWinExist, ahk_exe %active_id%
-WinWaitActive, ahk_exe %active_id%
-IfWinNotExist, ahk_exe %active_id%
-{
-	SetTimer, LoseFocus, Delete
-	Return
-}
-IfWinExist, ahk_exe %active_id%
-{
-	run "F:\Documents\AHK Current\Enter Gaming.lnk" hide
-	run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
-	; also arrow keys list
-	if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+	IfWinExist, ahk_exe %active_id%
 	{
-		run "F:\Documents\AHK Current\Enter Arrows.lnk" hide
-		run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
+		WinWaitNotActive, ahk_exe %active_id%
+		; if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+		; IfWinNotActive ahk_group Arrows
+		if (arrow = 1)
+		{
+			run "F:\Documents\AHK Current\Exit Arrows.lnk" hide
+			; run "F:\Documents\AHK Current\Exit Arrows ID75.lnk" hide
+		}
+		run "F:\Documents\AHK Current\Exit Gaming.lnk" hide
+		ifWinNotExist, ahk_exe %active_id%
+			break
+		; run "F:\Documents\AHK Current\Exit Gaming ID75.lnk" hide
+		WinWaitActive, ahk_exe %active_id%
+		; if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
+		IfWinActive ahk_group Arrows
+		{
+			run "F:\Documents\AHK Current\Enter Arrows.lnk" hide
+			; run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
+		}
+		run "F:\Documents\AHK Current\Enter Gaming.lnk" hide
+		; run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
 	}
-	SetTimer, LoseFocus, 500
+	else
+		break
 }
 return
 }
-
-; #IfWinActive ahk_exe acad.exe
+; SetTimer, LoseFocus, Off
+; WinWaitNotActive, ahk_exe %active_id%
+; IfWinNotExist, ahk_exe %active_id%
+	; Return
+; run "F:\Documents\AHK Current\Exit Gaming.lnk" hide
+; run "F:\Documents\AHK Current\Exit Gaming ID75.lnk" hide
+; ; also arrow keys list
+; if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
 ; {
-; ~LButton::
+	; run "F:\Documents\AHK Current\Exit Arrows.lnk" hide
+	; run "F:\Documents\AHK Current\Exit Arrows ID75.lnk" hide
+; }
+; IfWinExist, ahk_exe %active_id%
+; WinWaitActive, ahk_exe %active_id%
+; IfWinNotExist, ahk_exe %active_id%
 ; {
-	; WinGet, active_work, ProcessName, A
-	; run "F:\Documents\AHK Current\Enter Work.lnk" hide
-	; SetTimer, LoseFocusWork, 100
-	; WinWaitClose, ahk_exe %active_work%
-	; if (active_w2 != "acad.exe" and active_w2 != "houdini.exe")
+	; SetTimer, LoseFocus, Delete
+	; Return
+; }
+; IfWinExist, ahk_exe %active_id%
+; {
+	; run "F:\Documents\AHK Current\Enter Gaming.lnk" hide
+	; run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
+	; ; also arrow keys list
+	; if (active_id = "TetrisEffect-Win64-Shipping.exe" or active_id = "celeste.exe")
 	; {
-		; run "F:\Documents\AHK Current\Exit Work.lnk" hide
-		; SetTimer, LoseFocusWork, Delete
+		; run "F:\Documents\AHK Current\Enter Arrows.lnk" hide
+		; run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
 	; }
+	; SetTimer, LoseFocus, 500
 ; }
-; return
-; }
-; #if
-
-; #IfWinActive ahk_exe houdini.exe
-; {
-; ~LButton::
-; {
-	; WinGet, active_work, ProcessName, A
-	; run "F:\Documents\AHK Current\Enter Work.lnk" hide
-	; SetTimer, LoseFocusWork, 100
-	; WinWaitClose, ahk_exe %active_work%
-	; if (active_w2 != "acad.exe" and active_w2 != "houdini.exe")
-	; {
-		; run "F:\Documents\AHK Current\Exit Work.lnk" hide
-		; SetTimer, LoseFocusWork, Delete
-	; }
-; }
-; return
-; }
-; #if
-
-; LoseFocusWork:
-; {
-; SetTimer, LoseFocusWork, Off
-; WinWaitNotActive, ahk_exe %active_work%
-; run "F:\Documents\AHK Current\Exit Work.lnk" hide
-; IfWinExist, ahk_exe %active_work%
-; WinWaitActive, ahk_exe %active_work%
-; run "F:\Documents\AHK Current\Enter Work.lnk" hide
-; IfWinExist, ahk_exe %active_work%
-; SetTimer, LoseFocusWork, 100
 ; return
 ; }
