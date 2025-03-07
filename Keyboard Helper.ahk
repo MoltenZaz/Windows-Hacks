@@ -39,20 +39,23 @@ Hook := WinEventHook(event, event, HookProc, 'F')
 MyFunc(hwnd) {
     isFullScreen := isWindowFullScreen(hwnd)
     if (isFullScreen) {
-		global active_id := WinGetProcessName("A")
+		global active_id := WinGetProcessName(hwnd)
+		global active_class := WinGetClass(hwnd)
         ; MsgBox("Window " WinGetTitle(hwnd) " is now fullscreen or borderless fullscreen!")
-		if !WinActive("ahk_class WorkerW")
-		if !WinActive("ahk_class Progman")
-		if !WinActive("ahk_class Windows.UI.Core.CoreWindow")
-		if !WinActive("ahk_class MozillaWindowClass")
-		if !WinActive("ahk_class Chrome_WidgetWin_1")
-		if WinActive("ahk_group Blacklist")
-		{
+		if (active_class != "ahk_class WorkerW")
+		if (active_class != "ahk_class Progman")
+		if (active_class != "ahk_class Windows.UI.Core.CoreWindow")
+		if (active_class != "ahk_class MozillaWindowClass")
+		if (active_class != "ahk_class Chrome_WidgetWin_1")
+		; if WinActive("ahk_group Blacklist")
+		; {
 			; return
-		}
-		else
+		; }
+		; else
 		{
-			Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
+			If WinActive(active_id)
+			if !WinActive("ahk_group Blacklist")
+				Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
 			; run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
 			; also arrow keys list
 			if WinActive("ahk_group Arrows")
@@ -63,9 +66,9 @@ MyFunc(hwnd) {
 			; GoSub, LoseFocus
 			SetTimer(LoseFocus,100)
 			WinWaitClose("ahk_exe " active_id)
-			; return
+			return
 		}
-		; return
+		return
 	}
 }
 
@@ -113,6 +116,8 @@ Loop
 			break
 		; run "F:\Documents\AHK Current\Exit Gaming ID75.lnk" hide
 		WinWaitActive("ahk_exe " active_id)
+		if WinActive("ahk_group Blacklist")
+			break
 		Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
 		if WinActive("ahk_group Arrows")
 		{
