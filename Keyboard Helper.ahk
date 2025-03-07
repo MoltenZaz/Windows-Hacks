@@ -23,67 +23,90 @@ GroupAdd("Blacklist", "ahk_exe steamwebhelper.exe")
 GroupAdd("Blacklist", "ahk_exe ES-DE.exe")
 GroupAdd("Blacklist", "ahk_exe EliteDangerous64.exe")
 
-GroupAdd("Arrows", "ahk_exe TetrisEffect-Win64-Shipping.exe")
-GroupAdd("Arrows", "ahk_exe Apotris.exe")
-GroupAdd("Arrows", "ahk_exe celeste.exe")
-GroupAdd("Arrows", "ahk_exe RiftOfTheNecroDancer.exe")
+; GroupAdd("Arrows", "ahk_exe TetrisEffect-Win64-Shipping.exe")
+; GroupAdd("Arrows", "ahk_exe Apotris.exe")
+; GroupAdd("Arrows", "ahk_exe celeste.exe")
+; GroupAdd("Arrows", "ahk_exe RiftOfTheNecroDancer.exe")
 
+NoEXESearch := ["steamwebhelper.exe", "explorer.exe", "notepad++.exe", "SearchApp.exe", "chrome.exe", "Discord.exe", "powershell.exe", "Taskmgr.exe", "cmd.exe"]
+NoClassSearch := ["WorkerW", "Progman", "Windows.UI.Core.CoreWindow", "MozillaWindowClass"]
 TraySetIcon("pifmgr.dll","13")
 
-Persistent
+dcheck := 19
+prev_id := ""
 
-global lastCheckTime := 0
-event := 0x0000800B ; EVENT_OBJECT_LOCATIONCHANGE
-Hook := WinEventHook(event, event, HookProc, 'F')
-
-MyFunc(hwnd) {
-    isFullScreen := isWindowFullScreen(hwnd)
-    if (isFullScreen) {
-		global active_id := WinGetProcessName(hwnd)
-		global active_class := WinGetClass(hwnd)
-        ; MsgBox("Window " WinGetTitle(hwnd) " is now fullscreen or borderless fullscreen!")
-		if (active_class != "ahk_class WorkerW")
-		if (active_class != "ahk_class Progman")
-		if (active_class != "ahk_class Windows.UI.Core.CoreWindow")
-		if (active_class != "ahk_class MozillaWindowClass")
-		if (active_class != "ahk_class Chrome_WidgetWin_1")
-		; if WinActive("ahk_group Blacklist")
-		; {
-			; return
-		; }
-		; else
+Loop
+{
+	checkfs:
+	try
+	{
+		testing_id := WinGetProcessName("A")
+		if (testing_id != prev_id)
 		{
-			If WinActive(active_id)
-			if !WinActive("ahk_group Blacklist")
-				Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
-			; run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
-			; also arrow keys list
-			if WinActive("ahk_group Arrows")
-			{
-				Run("`"F:\Documents\AHK Current\Enter Arrows Elora.lnk`" hide")
-				; run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
-			}
-			; GoSub, LoseFocus
-			SetTimer(LoseFocus,100)
-			WinWaitClose("ahk_exe " active_id)
-			return
+			dcheck := 19
+			; SoundBeep 750
 		}
-		return
+		for each, word in NoEXESearch
+		{
+			if (testing_id == word)
+			{
+				WinWaitNotActive("ahk_exe " testing_id)
+				testing_id := WinGetProcessName("A")
+			}
+		}
+		active_class := WinGetClass("ahk_exe " testing_id)
+		for each, word in NoClassSearch
+		{
+			if (active_class == word)
+			{
+				WinWaitNotActive("ahk_class " active_class)
+				testing_id := WinGetProcessName("A")
+			}
+		}
+		; SoundBeep
+		isFullScreen := isWindowFullScreen("A")
+		if (isFullScreen) {
+			; SoundBeep 750
+			{
+				; SoundBeep 1500
+				global active_id := testing_id
+				If WinActive("ahk_exe " active_id)
+				if !WinActive("ahk_group Blacklist")
+				{	
+					; SoundBeep 100
+					Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
+					}
+				; also arrow keys list
+				; if WinActive("ahk_group Arrows")
+				; {
+					; SoundBeep 2000
+					; Run("`"F:\Documents\AHK Current\Enter Arrows Elora.lnk`" hide")
+				; }
+				SetTimer(LoseFocus,100)
+				WinWaitClose("ahk_exe " active_id)
+				Goto checkfs
+			}
+		}
+		else
+		{
+			if dcheck > 0
+			{
+				dcheck--
+				Sleep 500
+				prev_id := testing_id
+				Goto checkfs
+			}
+		}
+	} catch {
+			WinWaitNotActive("A")
+			dcheck := 19
+			Goto checkfs
 	}
-}
-
-HookProc(hWinEventHook, event, hwnd, idObject, idChild, dwEventThread, dwmsEventTime) {
-    global lastCheckTime
-    static OBJID_WINDOW := 0, GA_ROOT := 2, debounceTime := 500 ; 500 ms debounce time
-    currentTime := A_TickCount
-    if idObject = OBJID_WINDOW && hwnd = DllCall('GetAncestor', 'UInt', hwnd, 'UInt', GA_ROOT) && (currentTime - lastCheckTime > debounceTime) {
-        lastCheckTime := currentTime
-        MyFunc(hwnd)
-    }
+	WinWaitNotActive("ahk_exe " testing_id)
+	dcheck := 19
 }
 
 ; ──────────────────────────────────────────── FULLSCREEN CHECKER ────────────────────────────────────────────
-
 
 isWindowFullScreen(winTitle) {
     winID := WinExist(winTitle)
@@ -91,7 +114,7 @@ isWindowFullScreen(winTitle) {
         return false
 
     try {
-        style := WinGetStyle("ahk_id " winID)
+        style := WinGetStyle(winID)
         WinGetPos(, , &winW, &winH, winTitle)
     } catch {
         return false
@@ -102,6 +125,19 @@ isWindowFullScreen(winTitle) {
     ; No border and not minimized
     return ((style & 0x20800000) or winH < A_ScreenHeight or winW < A_ScreenWidth) ? false : true
 }
+
+; #HotIf WinActive("ahk_exe steamwebhelper.exe", )
+; ~LButton::
+; {
+; ; msgbox, %dcheck%
+; dcheck := 0
+; ; Sleep, 2000
+; WinWaitNotActive("ahk_exe steamwebhelper.exe")
+; dcheck := 19
+; ; msgbox, %dcheck%
+; return
+; }
+; #HotIf
 
 LoseFocus() ;update and change to loop
 {
@@ -119,11 +155,11 @@ Loop
 		if WinActive("ahk_group Blacklist")
 			break
 		Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
-		if WinActive("ahk_group Arrows")
-		{
-			Run("`"F:\Documents\AHK Current\Enter Arrows Elora.lnk`" hide")
-			; run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
-		}
+		; if WinActive("ahk_group Arrows")
+		; {
+			; Run("`"F:\Documents\AHK Current\Enter Arrows Elora.lnk`" hide")
+			; ; run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
+		; }
 		; run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
 	}
 	else
