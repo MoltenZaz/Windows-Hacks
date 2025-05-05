@@ -1,4 +1,4 @@
-﻿; V1toV2: Removed #NoEnv
+; V1toV2: Removed #NoEnv
 #Requires AutoHotkey v2.0
 #SingleInstance force
 Tray:= A_TrayMenu
@@ -15,20 +15,21 @@ InstallKeybdHook()
 ; look through my keymap.c and the shortcut links in this repo if you want to learn more
 SetNumLockState("AlwaysOn")
 
-GroupAdd("Blacklist", "ahk_exe Shenzhen.exe")
-GroupAdd("Blacklist", "ahk_exe retroarch.exe")
-GroupAdd("Blacklist", "ahk_exe attract.exe")
-GroupAdd("Blacklist", "ahk_exe picross.exe")
-GroupAdd("Blacklist", "ahk_exe steamwebhelper.exe")
-GroupAdd("Blacklist", "ahk_exe ES-DE.exe")
-GroupAdd("Blacklist", "ahk_exe EliteDangerous64.exe")
+; GroupAdd("Blacklist", "ahk_exe Shenzhen.exe")
+; GroupAdd("Blacklist", "ahk_exe retroarch.exe")
+; GroupAdd("Blacklist", "ahk_exe attract.exe")
+; GroupAdd("Blacklist", "ahk_exe picross.exe")
+; GroupAdd("Blacklist", "ahk_exe steamwebhelper.exe")
+; GroupAdd("Blacklist", "ahk_exe ES-DE.exe")
+; GroupAdd("Blacklist", "ahk_exe EliteDangerous64.exe")
 
 ; GroupAdd("Arrows", "ahk_exe TetrisEffect-Win64-Shipping.exe")
 ; GroupAdd("Arrows", "ahk_exe Apotris.exe")
 ; GroupAdd("Arrows", "ahk_exe celeste.exe")
 ; GroupAdd("Arrows", "ahk_exe RiftOfTheNecroDancer.exe")
 
-NoEXESearch := ["steamwebhelper.exe", "explorer.exe", "notepad++.exe", "SearchApp.exe", "chrome.exe", "Discord.exe", "powershell.exe", "Taskmgr.exe", "cmd.exe"]
+NoEXESearch := ["steamwebhelper.exe", "explorer.exe", "notepad++.exe", "SearchApp.exe", "chrome.exe", "Discord.exe", "powershell.exe", "Taskmgr.exe", "cmd.exe", "Shenzhen.exe", "retroarch.exe", "attract.exe", "picross.exe", "ES-DE.exe", "EliteDangerous64.exe"]
+Whitelist := ["chiaki.exe"]
 NoClassSearch := ["WorkerW", "Progman", "Windows.UI.Core.CoreWindow", "MozillaWindowClass"]
 TraySetIcon("pifmgr.dll","13")
 
@@ -51,7 +52,21 @@ Loop
 			if (testing_id == word)
 			{
 				WinWaitNotActive("ahk_exe " testing_id)
-				testing_id := WinGetProcessName("A")
+				goto checkfs
+				; testing_id := WinGetProcessName("A")
+			}
+		}
+		for each, word in Whitelist
+		{
+			if (testing_id == word)
+			{
+				RunWait("F:\Documents\AHK Current\Enter Gaming Elora.lnk", , "Hide")
+				; Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
+				WinWaitNotActive("ahk_exe " testing_id)
+				RunWait("F:\Documents\AHK Current\Exit Gaming Elora.lnk", , "Hide")
+				; Run("`"F:\Documents\AHK Current\Exit Gaming Elora.lnk`" hide")
+				goto checkfs
+				; testing_id := WinGetProcessName("A")
 			}
 		}
 		active_class := WinGetClass("ahk_exe " testing_id)
@@ -60,7 +75,8 @@ Loop
 			if (active_class == word)
 			{
 				WinWaitNotActive("ahk_class " active_class)
-				testing_id := WinGetProcessName("A")
+				goto checkfs
+				; testing_id := WinGetProcessName("A")
 			}
 		}
 		; SoundBeep
@@ -71,10 +87,11 @@ Loop
 				; SoundBeep 1500
 				global active_id := testing_id
 				If WinActive("ahk_exe " active_id)
-				if !WinActive("ahk_group Blacklist")
+				; if !WinActive("ahk_group Blacklist")
 				{	
 					; SoundBeep 100
-					Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
+					RunWait("F:\Documents\AHK Current\Enter Gaming Elora.lnk", , "Hide")
+					; Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
 					}
 				; also arrow keys list
 				; if WinActive("ahk_group Arrows")
@@ -82,8 +99,10 @@ Loop
 					; SoundBeep 2000
 					; Run("`"F:\Documents\AHK Current\Enter Arrows Elora.lnk`" hide")
 				; }
-				SetTimer(LoseFocus,100)
-				WinWaitClose("ahk_exe " active_id)
+				; SetTimer(LoseFocus,100)
+				WinWaitNotActive("ahk_exe " active_id)
+				RunWait("F:\Documents\AHK Current\Exit Gaming Elora.lnk", , "Hide")
+				; Run("`"F:\Documents\AHK Current\Exit Gaming Elora.lnk`" hide")
 				Goto checkfs
 			}
 		}
@@ -139,34 +158,34 @@ isWindowFullScreen(winTitle) {
 ; }
 ; #HotIf
 
-LoseFocus() ;update and change to loop
-{
-SetTimer(LoseFocus,0)
-Loop
-{
-	if WinExist("ahk_exe " active_id)
-	{
-		WinWaitNotActive("ahk_exe " active_id)
-		Run("`"F:\Documents\AHK Current\Exit Gaming Elora.lnk`" hide")
-		if !WinExist("ahk_exe " active_id)
-			break
-		; run "F:\Documents\AHK Current\Exit Gaming ID75.lnk" hide
-		WinWaitActive("ahk_exe " active_id)
-		if WinActive("ahk_group Blacklist")
-			break
-		Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
-		; if WinActive("ahk_group Arrows")
-		; {
-			; Run("`"F:\Documents\AHK Current\Enter Arrows Elora.lnk`" hide")
-			; ; run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
-		; }
-		; run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
-	}
-	else
-		break
-}
-return
-}
+; LoseFocus() ;update and change to loop
+; {
+; SetTimer(LoseFocus,0)
+; Loop
+; {
+	; if WinExist("ahk_exe " active_id)
+	; {
+		; WinWaitNotActive("ahk_exe " active_id)
+		; Run("`"F:\Documents\AHK Current\Exit Gaming Elora.lnk`" hide")
+		; if !WinExist("ahk_exe " active_id)
+			; break
+		; ; run "F:\Documents\AHK Current\Exit Gaming ID75.lnk" hide
+		; WinWaitActive("ahk_exe " active_id)
+		; ; if WinActive("ahk_group Blacklist")
+			; ; break
+		; Run("`"F:\Documents\AHK Current\Enter Gaming Elora.lnk`" hide")
+		; ; if WinActive("ahk_group Arrows")
+		; ; {
+			; ; Run("`"F:\Documents\AHK Current\Enter Arrows Elora.lnk`" hide")
+			; ; ; run "F:\Documents\AHK Current\Enter Arrows ID75.lnk" hide
+		; ; }
+		; ; run "F:\Documents\AHK Current\Enter Gaming ID75.lnk" hide
+	; }
+	; else
+		; break
+; }
+; return
+; }
 
 F23::
 {
@@ -317,7 +336,7 @@ req.Send()
 return
 }
 
-~Backspace & F13:: ; sleep mode
+~Space & F13:: ; sleep mode
 {
 link := "http://192.168.1.135:8123/api/webhook/-ssXOar5koCxBm4idW5GkCwUi"
  
