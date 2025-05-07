@@ -68,7 +68,7 @@ Komorebic(cmd) {
 	return
 }
 
-F20::
+*F20::
 {
 	isFullScreen := isWindowFullScreen("A")
 	if !WinActive("ahk_group Blacklist")
@@ -122,7 +122,7 @@ isWindowFullScreen(winTitle) {
 ; global toggle:=1
 ; return
 ; }
-F18::
+*F18::
 {
 	If (toggle = 1)
 	{
@@ -171,7 +171,7 @@ F18::
 		}
 	}
 }
-F17::
+*F17::
 {
 	If (toggle = 1)
 	{
@@ -197,7 +197,7 @@ F17::
 		return
 	}
 }
-XButton1::
+~*XButton1::
 {
 	If (toggle = 1)
 	{
@@ -222,13 +222,30 @@ XButton1::
 		return
 	}
 }
-XButton2::
+~*XButton2::
 {
 	If (toggle = 1)
 	{
-		global x2_toggle := 1
-		KeyWait("XButton2")
-		global x2_toggle := 0
+		; global x2_toggle := 1
+		; KeyWait("XButton2")
+		; global x2_toggle := 0
+		MouseGetPos(, , &testing_id)
+		; WinActivate("ahk_class Progman")
+		WinActivate(testing_id)
+		WinGetPos , , , &H, "A"
+		if (H == "1080" or H == "1440")
+		{
+			; MsgBox(H)
+			return
+		}
+		else
+		{
+			Komorebic("promote")
+			; Sleep 500
+			WinActivate("ahk_class Progman")
+			WinActivate(testing_id)
+			; ControlClick "ToolbarWindow321", testing_id,,,, "D"
+		}
 		return
 	}
 	else
@@ -251,26 +268,74 @@ XButton2::
 	}
 }
 
+MoveWindowUnderMouseCursor(Except:="Progman WorkerW Shell_TrayWnd") {  ;    By SKAN on D38S/D38S
+	; Local                                            ; @ autohotkey.com/boards/viewtopic.php?t=80416
+	MouseGetPos(, , &hWnd)
+	WinActivate(hWnd)
+	; Sleep 100
+	active_exe := WinGetProcessName(hWnd)
+	active_class := WinGetClass(hWnd)
+	global testing_id := hWnd
+	isFullScreen := isWindowFullScreen(hWnd)
+	if (isFullScreen != 1)
+	{
+		for each, word in BlacklistE
+		{
+			if (active_exe == word)
+			{
+				; SoundBeep
+				return
+			}
+		}
+		for each, word in BlacklistC
+		{
+			if (active_class == word)
+			{
+				; SoundBeep
+				return
+			}
+		}
+	; Class := WinGetClass("ahk_id" . WinExist("ahk_id" . hWnd))
+	; If ( DllCall("IsZoomed", "Ptr", hWnd)  ||  InStr(" " . Except . " ", " " . Class . " ", True) )
+	; Return
+	WinActivate()
+	WinWaitActive(, , 0)
+	MouseGetPos(&x,&y)
+	PostMessage(0x112, 0xF010)                                     ;      WM_SYSCOMMAND, SC_MOVE
+	; Sleep 50
+	SendEvent("^{Down}")
+	; Sleep 50
+	; MouseGetPos(&x)
+	MouseMove x, y, 0
+	}
+	return
+}
+
+
 #HotIf (toggle = 1)
 {
 	LButton::
 	{
-		MouseGetPos(, , &testing_id)
-		; WinActivate("ahk_class Progman")
-		WinActivate(testing_id)
-		WinGetPos , , , &H, "A"
-		if (H == "1080" or H == "1440")
-		{
-			; MsgBox(H)
-			return
-		}
-		else
-		{
-			Komorebic("promote")
-			; Sleep 500
-			WinActivate("ahk_class Progman")
-			WinActivate(testing_id)
-		}
+		MoveWindowUnderMouseCursor()
+		KeyWait("LButton", "U")
+		MouseClick("left")
+		; MouseGetPos(, , &testing_id)
+		; ; WinActivate("ahk_class Progman")
+		; WinActivate(testing_id)
+		; WinGetPos , , , &H, "A"
+		; if (H == "1080" or H == "1440")
+		; {
+			; ; MsgBox(H)
+			; return
+		; }
+		; else
+		; {
+			; ; Komorebic("promote")
+			; ; Sleep 500
+			; ; WinActivate("ahk_class Progman")
+			; WinActivate(testing_id)
+			; ControlClick "ToolbarWindow321", testing_id,,,, "D"
+		; }
 		return
 	}
 	
@@ -295,14 +360,17 @@ XButton2::
 	}
 
 	MButton::Komorebic("close")
-
+	
+	F15::Komorebic("resize-axis vertical increase")
+	F16::Komorebic("resize-axis vertical decrease")
+	
 	WheelUp::
 	{
-		if (x2_toggle = 1)
-		{
-			Komorebic("resize-axis vertical increase")
-		}
-		else
+		; if (x2_toggle = 1)
+		; {
+			; Komorebic("resize-axis vertical increase")
+		; }
+		; else
 		{
 			Komorebic("resize-axis horizontal increase")
 		}
