@@ -1,0 +1,18 @@
+{
+    "KPackageStructure": "KWin/Script",
+    "KPlugin": {
+        "Authors": [
+            {
+                "Email": "mkenneththomas@gmail.com",
+                "Name": "Mitchell Thomas"
+            }
+        ],
+        "Description": "Detects when an application is in fullscreen and changes keyboard layer using hid and mouse keys using keyd",
+        "Icon": "preferences-system-windows-script-test",
+        "Id": "gamedetector",
+        "License": "GPL",
+        "Name": "Game Detector"
+    },
+    "X-KDE-ConfigModule": "kwin/effects/configs/kcm_kwin4_genericscripted",
+    "X-Plasma-API": "javascript"
+}
