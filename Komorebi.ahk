@@ -376,7 +376,13 @@ MoveWindowUnderMouseCursor(Except:="Progman WorkerW Shell_TrayWnd") {  ;    By S
 		return
 	}
 
-	MButton::Komorebic("close")
+	MButton::
+	{
+		MouseGetPos(, , &testing_id)
+		WinClose("ahk_id " testing_id)
+		; Komorebic("close")
+		return
+	}
 	
 	F24::Komorebic("retile")
 	
