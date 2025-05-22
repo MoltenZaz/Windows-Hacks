@@ -157,6 +157,8 @@ isWindowFullScreen(winTitle) {
 				return
 			}
 		}
+		MouseGetPos(, , &testing_id)
+		WinActivate(testing_id)
 		if (WinActive("ahk_class CabinetWClass") or WinActive("ahk_class #32770"))
 		{
 			Send "!{Up}"
@@ -175,8 +177,13 @@ isWindowFullScreen(winTitle) {
 {
 	If (toggle = 1)
 	{
-		Komorebic("minimize")
+		MouseGetPos(, , &testing_id)
+		; This message is mostly equivalent to WinMinimize,
+		; but it avoids a bug with PSPad.
+		PostMessage(0x112, 0xf020, , , "ahk_id " testing_id)
 		return
+		; Komorebic("minimize")
+		; return
 	}
 	else
 	{
@@ -216,9 +223,9 @@ isWindowFullScreen(winTitle) {
 				return
 			}
 		}
-		SendInput "{XButton1 down}"
-		KeyWait("XButton1", "U")
-		SendInput "{XButton1 up}"
+		; SendInput "{XButton1 down}"
+		; KeyWait("XButton1", "U")
+		; SendInput "{XButton1 up}"
 		return
 	}
 }
@@ -240,10 +247,10 @@ isWindowFullScreen(winTitle) {
 		}
 		else
 		{
-			Komorebic("promote")
+			Komorebic("toggle-float")
 			; Sleep 500
-			WinActivate("ahk_class Progman")
-			WinActivate(testing_id)
+			; WinActivate("ahk_class Progman")
+			; WinActivate(testing_id)
 			; ControlClick "ToolbarWindow321", testing_id,,,, "D"
 		}
 		return
@@ -261,12 +268,21 @@ isWindowFullScreen(winTitle) {
 				return
 			}
 		}
-		SendInput "{XButton2 down}"
-		KeyWait("XButton2", "U")
-		SendInput "{XButton2 up}"
+		; global x2_toggle := 1
+		; SendInput "{XButton2 down}"
+		; KeyWait("XButton2", "U")
+		; SendInput "{XButton2 up}"
+		; global x2_toggle := 0
 		return
 	}
 }
+
+; #HotIf (x2_toggle = 1)
+; {
+	; WheelUp::Volume_Up
+	; WheelDown::Volume_Down
+; }
+; #HotIf
 
 MoveWindowUnderMouseCursor(Except:="Progman WorkerW Shell_TrayWnd") {  ;    By SKAN on D38S/D38S
 	; Local                                            ; @ autohotkey.com/boards/viewtopic.php?t=80416
@@ -352,7 +368,8 @@ MoveWindowUnderMouseCursor(Except:="Progman WorkerW Shell_TrayWnd") {  ;    By S
 		}
 		else
 		{
-			Komorebic("cycle-send-to-monitor next")
+			; Komorebic("cycle-send-to-monitor next")
+			Komorebic("promote")
 			WinActivate("ahk_class Progman")
 			WinActivate(testing_id)
 		}
@@ -360,6 +377,8 @@ MoveWindowUnderMouseCursor(Except:="Progman WorkerW Shell_TrayWnd") {  ;    By S
 	}
 
 	MButton::Komorebic("close")
+	
+	F24::Komorebic("retile")
 	
 	F15::Komorebic("resize-axis vertical increase")
 	F16::Komorebic("resize-axis vertical decrease")
@@ -400,6 +419,9 @@ MoveWindowUnderMouseCursor(Except:="Progman WorkerW Shell_TrayWnd") {  ;    By S
 	-::Komorebic("resize-axis horizontal decrease")
 	+=::Komorebic("resize-axis vertical increase")
 	+_::Komorebic("resize-axis vertical decrease")
+	
+	; float
+	j::Komorebic("toggle-float")
 	
 	; flip
 	z::Komorebic("flip-layout horizontal")
@@ -481,12 +503,12 @@ MoveWindowUnderMouseCursor(Except:="Progman WorkerW Shell_TrayWnd") {  ;    By S
 
 ; Manipulate windows
 #t::Komorebic("toggle-float")
-#f::Komorebic("toggle-monocle")
+#f::Komorebic("toggle-maximize")
 
 ; Window manager options
 #!r::Komorebic("retile")
 ; #p::Komorebic("toggle-pause")
-#p::	; Komorebic("toggle-pause")
+#+p::	; Komorebic("toggle-pause")
 {
 	; turn off komorebic, open easy window organiser and close this script
 	RunWait(format("komorebic.exe {}", "stop"), , "Hide")
