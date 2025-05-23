@@ -178,12 +178,39 @@ isWindowFullScreen(winTitle) {
 	If (toggle = 1)
 	{
 		MouseGetPos(, , &testing_id)
-		; This message is mostly equivalent to WinMinimize,
-		; but it avoids a bug with PSPad.
-		PostMessage(0x112, 0xf020, , , "ahk_id " testing_id)
-		return
+		active_exe := WinGetProcessName(testing_id)
+		active_class := WinGetClass(testing_id)
+		global testing_id := testing_id
+		isFullScreen := isWindowFullScreen(testing_id)
+		if (isFullScreen != 1)
+		{
+			for each, word in BlacklistE
+			{
+				if (active_exe == word)
+				{
+					; SoundBeep
+					return
+				}
+			}
+			for each, word in BlacklistC
+			{
+				if (active_class == word)
+				{
+					; SoundBeep
+					return
+				}
+			}
+			WinActivate(testing_id)
+			; RunWait(format("komorebic.exe {}", cmd), , "Hide")
+			; MouseGetPos(, , &testing_id)
+			; This message is mostly equivalent to WinMinimize,
+			; but it avoids a bug with PSPad.
+			PostMessage(0x112, 0xf020, , , "ahk_id " testing_id)
+			return
+		}
 		; Komorebic("minimize")
 		; return
+		
 	}
 	else
 	{
@@ -379,9 +406,37 @@ MoveWindowUnderMouseCursor(Except:="Progman WorkerW Shell_TrayWnd") {  ;    By S
 	MButton::
 	{
 		MouseGetPos(, , &testing_id)
+		active_exe := WinGetProcessName(testing_id)
+		active_class := WinGetClass(testing_id)
+		global testing_id := testing_id
+		isFullScreen := isWindowFullScreen(testing_id)
+		if (isFullScreen != 1)
+		{
+			for each, word in BlacklistE
+			{
+				if (active_exe == word)
+				{
+					; SoundBeep
+					return
+				}
+			}
+			for each, word in BlacklistC
+			{
+				if (active_class == word)
+				{
+					; SoundBeep
+					return
+				}
+			}
+		WinActivate(testing_id)
+		; RunWait(format("komorebic.exe {}", cmd), , "Hide")
 		WinClose("ahk_id " testing_id)
-		; Komorebic("close")
+		}
 		return
+		; MouseGetPos(, , &testing_id)
+		; WinClose("ahk_id " testing_id)
+		; ; Komorebic("close")
+		; return
 	}
 	
 	F24::Komorebic("retile")
