@@ -353,18 +353,18 @@ return
 ; ; #if
 ; #if
 
-~LButton::
-{
-IfWinActive, ahk_id %FFSafe%
-{
-DoFocus := 0
-WinWaitNotActive, ahk_id %FFSafe%
-DoFocus := 1
-return
-}
-return
-}
-#if
+; ~LButton::
+; {
+; IfWinActive, ahk_id %FFSafe%
+; {
+; DoFocus := 0
+; WinWaitNotActive, ahk_id %FFSafe%
+; DoFocus := 1
+; return
+; }
+; return
+; }
+; #if
 
 AppsKey::
 {
@@ -436,7 +436,10 @@ SendToFF(InputType,Key)
 					y = %gy%
 					x -= FFX
 					y -= FFY
-					ControlClick, x%x% y%y%, ahk_id %FFSafe%,, %Key%,, NA	
+					If (Key = "L")
+						ControlClick, x%x% y%y%, ahk_id %FFSafe%,,, NA
+					Else
+						ControlClick, x%x% y%y%, ahk_id %FFSafe%,, %Key%,, NA	
 				}
 				If (InputType = "Key")
 				{
