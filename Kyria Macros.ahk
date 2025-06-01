@@ -1,0 +1,22 @@
+﻿#Requires AutoHotkey v2.0
+TraySetIcon("pifmgr.dll","13")
+
+#HotIf (WinActive("ahk_exe cadwin.exe"))
+{
+	F13::Send "{!}textedit{enter}"
+	F14::Send "{!}textchange case upper ok{enter}"
+	F15::Send "{!}reference{enter}"
+	F16::Send "{!}snapmid{enter}"
+	F17::Send "{!}cpllock{enter}"
+	; F18::Send "{!}notassigned{enter}"
+	; F19::Send "{!}notassigned{enter}"
+	; F20::Send "{!}notassigned{enter}"
+	; F21::Send "{!}notassigned{enter}"
+	; F22::Send "{!}notassigned{enter}"
+	; F23::Send "{!}notassigned{enter}"
+	; F24::Send "{!}notassigned{enter}"
+	^+s::Send "{!}saveas{enter}"
+	^!s::Send "{!}saveall{enter}"
+	^+z::Send "{!}redo{enter}"
+}
+#HotIf
