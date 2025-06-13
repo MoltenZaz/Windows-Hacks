@@ -1,4 +1,4 @@
-﻿#Requires AutoHotkey v2.0
+#Requires AutoHotkey v2.0
 TraySetIcon("pifmgr.dll","13")
 
 #HotIf (WinActive("ahk_exe cadwin.exe"))
@@ -17,6 +17,7 @@ TraySetIcon("pifmgr.dll","13")
 	; F24::Send "{!}notassigned{enter}"
 	^+s::Send "{!}saveas{enter}"
 	^!s::Send "{!}saveall{enter}"
-	^+z::Send "{!}redo{enter}"
+	^+z::^y
+	^Backspace::Send "{ctrl down}{shift down}{left}{shift up}{ctrl up}{backspace}"
 }
 #HotIf
