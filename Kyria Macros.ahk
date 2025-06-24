@@ -21,3 +21,16 @@ TraySetIcon("pifmgr.dll","13")
 	^Backspace::Send "{ctrl down}{shift down}{left}{shift up}{ctrl up}{backspace}"
 }
 #HotIf
+
+#HotIf WinActive("ahk_exe cadwin.exe") && ControlGetClassNN(ControlGetFocus("ahk_exe cadwin.exe")) = "CaddsmanWindowClass1"
+{
+	Left::^Left
+	Right::^Right
+	Up::^Up
+	Down::^Down
+	+Left::^+Left
+	+Right::^+Right
+	+Up::^+Up
+	+Down::^+Down
+}
+#HotIf
