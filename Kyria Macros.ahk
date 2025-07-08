@@ -22,7 +22,13 @@ TraySetIcon("pifmgr.dll","13")
 }
 #HotIf
 
-#HotIf WinActive("ahk_exe cadwin.exe") && ControlGetClassNN(ControlGetFocus("ahk_exe cadwin.exe")) = "CaddsmanWindowClass1"
+#HotIf (WinActive("ahk_exe explorer.exe"))
+{
+	^Backspace::Send "{ctrl down}{shift down}{left}{shift up}{ctrl up}{backspace}"
+}
+#HotIf
+
+#HotIf WinActive("ahk_exe cadwin.exe") && IsControlActive("CaddsmanWindowClass1", "ahk_exe cadwin.exe") ; ControlGetClassNN(ControlGetFocus("ahk_exe cadwin.exe")) = "CaddsmanWindowClass1"
 {
 	Left::^Left
 	Right::^Right
@@ -32,5 +38,9 @@ TraySetIcon("pifmgr.dll","13")
 	+Right::^+Right
 	+Up::^+Up
 	+Down::^+Down
+	XButton1::Send "{!}reference{enter}"
+	XButton2::Send "{!}snapmid{enter}"
 }
 #HotIf
+
+IsControlActive(classNN, winTitle) => (hWnd := WinExist(winTitle)) && WinActive(hWnd) && (focusedCtrl := ControlGetFocus(hWnd)) && ControlGetClassNN(focusedCtrl) = classNN
