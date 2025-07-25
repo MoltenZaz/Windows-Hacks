@@ -12,8 +12,8 @@ XB := false
 	F14::Send "{!}textchange case upper ok{enter}"
 	F15::Send "{!}reference{enter}"
 	F16::Send "{!}snapmid{enter}"
-	F17::Send "{!}cpllock{enter}"
-	; F18::Send "{!}notassigned{enter}"
+	F17::Send "a 0 0 0{enter}"
+	F18::Send "{!}cpllock{enter}"
 	; F19::Send "{!}notassigned{enter}"
 	; F20::Send "{!}notassigned{enter}"
 	; F21::Send "{!}notassigned{enter}"
@@ -215,4 +215,10 @@ XButton2::
 		; WinMinimize(KDE_id)
 	XB := true
 	return
+}
+
+^!d::
+{
+	TimeString := FormatTime(,"dd-MM-yyyy")
+	SendInput TimeString
 }
