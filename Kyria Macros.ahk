@@ -190,35 +190,47 @@ XButton2::
 #MButton::
 {
 	MouseGetPos ,, &KDE_id
-	; WinClose(KDE_id)
+	WinClose(KDE_id)
+	; WinMinimize(KDE_id)
+	XB := true
+	return
+}
+
+~XButton2 & F18::
+#WheelUp::
+{
+	MouseGetPos ,, &KDE_id
+	if WinGetMinMax(KDE_id)
+		WinRestore(KDE_id)
+	else
+		WinMaximize(KDE_id)
+	XB := true
+	return
+}
+
+~XButton2 & F17::
+#WheelDown::
+{
+	MouseGetPos ,, &KDE_id
 	WinMinimize(KDE_id)
 	XB := true
 	return
 }
 
-~XButton2 & WheelUp::
-#WheelUp::
-{
-	MouseGetPos ,, &KDE_id
-	WinMaximize(KDE_id)
-	XB := true
-	return
-}
+; :::dt::
+; ::`;dt::
+; :::date::
+; ::`;date::
+; {
+	; TimeString := FormatTime(,"dd/MM/yyyy")
+	; SendInput TimeString
+; }
 
-~XButton2 & WheelDown::
-#WheelDown::
-{
-	MouseGetPos ,, &KDE_id
-	; if WinGetMinMax(KDE_id)
-		WinRestore(KDE_id)
-	; else
-		; WinMinimize(KDE_id)
-	XB := true
-	return
-}
-
-^!d::
-{
-	TimeString := FormatTime(,"dd-MM-yyyy")
-	SendInput TimeString
-}
+; :::fdt::
+; ::`;fdt::
+; :::fdate::
+; ::`;fdate::
+; {
+	; TimeString := FormatTime(,"(yyyy-MM-dd)")
+	; SendInput TimeString
+; }
