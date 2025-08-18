@@ -1,4 +1,5 @@
 This readme is outdated and I can't be bothered to update it.
+This repo is kind of a dumping ground of my scripts and configs etc.
 
 These are the scripts I use everyday to make my computer behave exactly how I want it to.
 Some of these scripts have been modified from Taran Van Hemert: https://www.youtube.com/channel/UCd0ZD4iCXRXf18p3cA7EQfg
